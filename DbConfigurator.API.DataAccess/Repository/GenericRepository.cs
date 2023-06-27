@@ -9,7 +9,7 @@ namespace DbConfigurator.API.DataAccess.Repository
         where T : class, IEntity
         
     {
-        private readonly DbConfiguratorApiDbContext _dbContext;
+        protected readonly DbConfiguratorApiDbContext _dbContext;
 
         public GenericRepository(DbConfiguratorApiDbContext dbContext)
         {
@@ -44,7 +44,7 @@ namespace DbConfigurator.API.DataAccess.Repository
         {
             await _dbContext.Set<T>().AddAsync(entity);
         }
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
         }

@@ -19,6 +19,7 @@ builder.Services.AddDbContext<DbConfiguratorApiDbContext>(
         builder.Configuration["ConnectionStrings:DbConfiguratorConnectionString"]));
 
 builder.Services.AddScoped<IDistributionInformationService, DistributionInformationService>();
+builder.Services.AddScoped<DistributionInformationRepository>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
 var app = builder.Build();

@@ -4,13 +4,15 @@ using System.Linq.Expressions;
 
 namespace DbConfigurator.Api.Services
 {
-    public class DataService<TEntity, TDto> : IDataService<TEntity, TDto>
-            where TDto : IEntityDto where TEntity : IEntity
+    public class DataService<TRepository, TEntity, TDto> : IDataService<TEntity, TDto>
+            where TDto : IEntityDto 
+            where TEntity : IEntity
+            where TRepository : IRepository<TEntity>
     {
-        protected readonly IRepository<TEntity> _repository;
+        protected readonly TRepository _repository;
         protected readonly IMapper _mapper;
 
-        public DataService(IRepository<TEntity> repository, IMapper mapper)
+        public DataService(TRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

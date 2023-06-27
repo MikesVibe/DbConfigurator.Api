@@ -1,6 +1,8 @@
-﻿namespace DbConfigurator.Model.DTOs.Core
+﻿using DbConfigurator.Api.Services;
+
+namespace DbConfigurator.Model.DTOs.Core
 {
-    public class DistributionInformationWithOnlyIdsDto
+    public class DistributionInformationWithOnlyIdsDto : IEntityDto
     {
         public int Id { get; }
         public int AreaId { get; set; }

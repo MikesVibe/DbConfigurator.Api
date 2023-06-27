@@ -1,8 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using DbConfigurator.Api.Services;
+using System.Collections.ObjectModel;
 
 namespace DbConfigurator.Model.DTOs.Core
 {
-    public class DistributionInformationDto
+    public class DistributionInformationDto : IEntityDto
     {
         public int Id { get; init; }
 

@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DbConfigurator.Api.Services;
+using System.ComponentModel.DataAnnotations;
 
 namespace DbConfigurator.Model.DTOs.Core
 {
-    public class AreaDto
+    public class AreaDto : IEntityDto
     {
         public int Id { get; set; }
         [Required]

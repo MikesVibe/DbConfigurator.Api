@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DbConfigurator.Api.Services;
+using System.ComponentModel.DataAnnotations;
 
 namespace DbConfigurator.Model.DTOs.Core
 {
-    public class RecipientDto
+    public class RecipientDto : IEntityDto
     {
         public int Id { get; init; }
 

@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DbConfigrator.Api.Model\DbConfigrator.Api.Model.csproj" />
+    <ProjectReference Include="..\DbConfigrator.Api.Model\DbConfigurator.Api.Model.csproj" />
     <ProjectReference Include="..\DbConfigurator.API.DataAccess\DbConfigurator.API.DataAccess.csproj" />
   </ItemGroup>
 

@@ -5,9 +5,9 @@ VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbConfigurator.Api", "DbConfigurator.Api\DbConfigurator.Api.csproj", "{76BD99C7-9DA7-4CA9-9CDC-BA0DDA8EA321}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbConfigrator.Api.Model", "DbConfigrator.Api.Model\DbConfigrator.Api.Model.csproj", "{D650E67A-51E8-4D36-9837-224BCC7B3152}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbConfigurator.Api.Model", "DbConfigrator.Api.Model\DbConfigurator.Api.Model.csproj", "{D650E67A-51E8-4D36-9837-224BCC7B3152}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbConfigurator.API.DataAccess", "DbConfigurator.API.DataAccess\DbConfigurator.API.DataAccess.csproj", "{7A6A4802-A093-4873-8987-37D1D00FF90C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbConfigurator.API.DataAccess", "DbConfigurator.API.DataAccess\DbConfigurator.API.DataAccess.csproj", "{7A6A4802-A093-4873-8987-37D1D00FF90C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

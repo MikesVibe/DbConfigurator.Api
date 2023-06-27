@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace DbConfigurator.API.DataAccess.Repository
 {
-    public class GenericRepository<T> : IRepository<T>, IRepositoryAsync<T> 
+    public class GenericRepository<T> : IRepository<T>
         where T : class, IEntity
         
     {

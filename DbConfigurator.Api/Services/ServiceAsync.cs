@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DbConfigurator.Api.Services.Repositories;
 using System.Linq.Expressions;
 
 namespace DbConfigurator.Api.Services
@@ -6,10 +7,10 @@ namespace DbConfigurator.Api.Services
     public class ServiceAsync<TEntity, TDto> : IServiceAsync<TEntity, TDto>
             where TDto : IEntityDto where TEntity : IEntity
     {
-        protected readonly IRepositoryAsync<TEntity> _repository;
+        protected readonly IRepository<TEntity> _repository;
         protected readonly IMapper _mapper;
 
-        public ServiceAsync(IRepositoryAsync<TEntity> repository, IMapper mapper)
+        public ServiceAsync(IRepository<TEntity> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -21,9 +22,14 @@ namespace DbConfigurator.Api.Services
             await _repository.AddAsync(entity);
         }
 
-        public async Task DeleteAsync(int id)
+        public bool Delete(int id)
         {
-            await _repository.DeleteAsync(await _repository.GetByIdAsync(id));
+            var entity = _repository.GetById(id);
+            if (entity is null)
+                return false;
+
+            _repository.Delete(entity);
+            return true;
         }
 
         public async Task<IEnumerable<TDto>> GetAllAsync()
@@ -38,10 +44,10 @@ namespace DbConfigurator.Api.Services
             return _mapper.Map<TDto>(entity);
         }
 
-        public async Task UpdateAsync(TDto entityTDto)
+        public void Update(TDto entityTDto)
         {
             var entity = _mapper.Map<TEntity>(entityTDto);
-            await _repository.UpdateAsync(entity);
+            _repository.Update(entity);
         }
     }
 }

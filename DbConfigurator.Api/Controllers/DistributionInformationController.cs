@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Model.DTOs.Core;
+﻿using DbConfigurator.Api.IService;
+using DbConfigurator.Model.DTOs.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,27 +9,36 @@ namespace DbConfigurator.Api.Controllers
     [ApiController]
     public class DistributionInformationController : ControllerBase
     {
+        private readonly IDistributionInformationService _distributionInformationService;
+
+        public DistributionInformationController(IDistributionInformationService distributionInformationService)
+        {
+            this._distributionInformationService = distributionInformationService;
+        }
+
 
         [HttpGet(Name = "GetDistributionInformation")]
-        public IActionResult GetDistributionInformation()
+        public async Task<IActionResult> GetDistributionInformation()
         {
-            var distributionInformation = new List<DistributionInformationDto>
-            {
-                new DistributionInformationDto
-                {
-                    Id = 1,
-                    Region = new RegionDto
-                    {
-                        Id = 1,
-                        Area = new AreaDto{ Id = 1, Name = "America" },
-                        BuisnessUnit = new BuisnessUnitDto{ Id = 1, Name = "NAO" },
-                        Country = new CountryDto{ Id = 1, CountryName = "Canada", CountryCode= "CA" }
-                    },
-                    Priority=new PriorityDto{ Id = 1, Name="P1"}
-                }
-            };
+            //var distributionInformation = new List<DistributionInformationDto>
+            //{
+            //    new DistributionInformationDto
+            //    {
+            //        Id = 1,
+            //        Region = new RegionDto
+            //        {
+            //            Id = 1,
+            //            Area = new AreaDto{ Id = 1, Name = "America" },
+            //            BuisnessUnit = new BuisnessUnitDto{ Id = 1, Name = "NAO" },
+            //            Country = new CountryDto{ Id = 1, CountryName = "Canada", CountryCode= "CA" }
+            //        },
+            //        Priority=new PriorityDto{ Id = 1, Name="P1"}
+            //    }
+            //};
 
-            return Ok(distributionInformation);
+            var distributionInformation = await _distributionInformationService.GetAllAsync();
+
+            return Ok(distributionInformation.ToList());
         }
     }
 }

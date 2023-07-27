@@ -13,12 +13,14 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="MediatR" Version="11.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DbConfigrator.Api.Model\DbConfigurator.Api.Model.csproj" />
-    <ProjectReference Include="..\DbConfigurator.API.DataAccess\DbConfigurator.API.DataAccess.csproj" />
+    <ProjectReference Include="..\DbConfigurator.Aplication\DbConfigurator.Aplication.csproj" />
+    <ProjectReference Include="..\DbConfigurator.Infrastracture\DbConfigurator.Infrastracture.csproj" />
+    <ProjectReference Include="..\DbConfigurator.Persistence\DbConfigurator.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

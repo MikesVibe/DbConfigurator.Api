@@ -1,5 +1,8 @@
-﻿using DbConfigurator.Api.IService;
+﻿using DbConfigurator.Aplication.Features.DistributionInformation;
+using DbConfigurator.Aplication.Features.DistributionInformation.Queries;
+using DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformation;
 using DbConfigurator.Model.DTOs.Core;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,19 +12,19 @@ namespace DbConfigurator.Api.Controllers
     [ApiController]
     public class DistributionInformationController : ControllerBase
     {
-        private readonly IDistributionInformationService _distributionInformationService;
+        private readonly IMediator _mediator;
 
-        public DistributionInformationController(IDistributionInformationService distributionInformationService)
+        public DistributionInformationController(IMediator mediator)
         {
-            this._distributionInformationService = distributionInformationService;
+            _mediator = mediator;
         }
 
 
         [HttpGet(Name = "GetDistributionInformation")]
-        public async Task<IActionResult> GetDistributionInformation()
+        public async Task<ActionResult<IEnumerable<DistributionInformationListItem>>> GetDistributionInformation()
         {
-            var distributionInformation = await _distributionInformationService.GetAllAsync();
-            return Ok(distributionInformation.ToList());
+            var distributionInformation = await _mediator.Send(new GetDistributionInformationListItemQuery());
+            return Ok(distributionInformation);
         }
     }
 }

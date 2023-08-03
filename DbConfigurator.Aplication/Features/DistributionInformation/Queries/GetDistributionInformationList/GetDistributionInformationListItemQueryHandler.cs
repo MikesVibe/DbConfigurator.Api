@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformation
+namespace DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformationList
 {
     public class GetDistributionInformationListItemQueryHandler :
-        IRequestHandler<GetDistributionInformationListItemQuery, IEnumerable<DistributionInformationListItem>>
+        IRequestHandler<GetDistributionInformationListQuery, IEnumerable<DistributionInformationItem>>
     {
         private readonly IDistributionInformationRepository _repository;
         private readonly IMapper _mapper;
@@ -23,13 +23,13 @@ namespace DbConfigurator.Aplication.Features.DistributionInformation.Queries.Get
             _mapper = mapper;
         }
 
-        async Task<IEnumerable<DistributionInformationListItem>>
-            IRequestHandler<GetDistributionInformationListItemQuery,
-                IEnumerable<DistributionInformationListItem>>
-            .Handle(GetDistributionInformationListItemQuery request, CancellationToken cancellationToken)
+        async Task<IEnumerable<DistributionInformationItem>>
+            IRequestHandler<GetDistributionInformationListQuery,
+                IEnumerable<DistributionInformationItem>>
+            .Handle(GetDistributionInformationListQuery request, CancellationToken cancellationToken)
         {
             var list = await _repository.GetAllAsync();
-            return _mapper.Map<IEnumerable<DistributionInformationListItem>>(list);
+            return _mapper.Map<IEnumerable<DistributionInformationItem>>(list);
         }
     }
 }

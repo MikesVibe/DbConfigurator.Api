@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DbConfigurator.Api.Models;
-using DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformation;
+using DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformationList;
 using DbConfigurator.Model.DTOs.Core;
 
 namespace DbConfigurator.Api.Profiles
@@ -9,7 +9,7 @@ namespace DbConfigurator.Api.Profiles
     {
         public DistributionInformationProfile()
         {
-            CreateMap<DistributionInformation, DistributionInformationListItem>();
+            CreateMap<DistributionInformation, DistributionInformationItem>();
         }
     }
 }

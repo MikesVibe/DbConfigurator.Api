@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DbConfigurator.Api.Models;
-using DbConfigurator.Model.DTOs.Core;
+using DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformationList.Dtos;
 using DbConfigurator.Model.Entities.Core;
 
 namespace DbConfigurator.Api.Profiles

@@ -1,6 +1,6 @@
 ﻿using DbConfigurator.Aplication.Features.DistributionInformation;
 using DbConfigurator.Aplication.Features.DistributionInformation.Queries;
-using DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformation;
+using DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformationList;
 using DbConfigurator.Model.DTOs.Core;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -20,11 +20,25 @@ namespace DbConfigurator.Api.Controllers
         }
 
 
-        [HttpGet(Name = "GetDistributionInformation")]
-        public async Task<ActionResult<IEnumerable<DistributionInformationListItem>>> GetDistributionInformation()
+        [HttpGet(Name = "DistributionInformation")]
+        public async Task<ActionResult<IEnumerable<DistributionInformationItem>>> GetDistributionInformation()
         {
-            var distributionInformation = await _mediator.Send(new GetDistributionInformationListItemQuery());
+            var distributionInformation = await _mediator.Send(new GetDistributionInformationListQuery());
             return Ok(distributionInformation);
+        }
+
+        [HttpGet(Name = "DistributionInformation")]
+        public async Task<ActionResult<IEnumerable<DistributionInformationItem>>> GetDistributionInformationById()
+        {
+            var distributionInformation = await _mediator.Send(new GetDistributionInformationListQuery());
+            return Ok(distributionInformation);
+        }
+
+        [HttpPut(Name = "DistributionInformation")]
+        public async Task<IActionResult> AddReciepientsTo(int disInfoId, [FromBody]IEnumerable<int> value)
+        {
+            await Task.CompletedTask;
+            return Ok();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using DbConfigurator.Api.Services;
 
-namespace DbConfigurator.Model.DTOs.Core
+namespace DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformationList.Dtos
 {
     public class RegionDto
     {

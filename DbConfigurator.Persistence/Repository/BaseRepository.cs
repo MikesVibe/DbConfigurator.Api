@@ -40,7 +40,7 @@ namespace DbConfigurator.API.DataAccess.Repository
         }
 
         //IRepositoryAsync
-        public async Task AddAsync(T entity)
+        public virtual async Task AddAsync(T entity)
         {
             await _dbContext.Set<T>().AddAsync(entity);
         }
@@ -48,7 +48,7 @@ namespace DbConfigurator.API.DataAccess.Repository
         {
             return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
         }
-        public async Task<T?> GetByIdAsync(int id)
+        public virtual async Task<T?> GetByIdAsync(int id)
         {
             return await _dbContext.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
         }

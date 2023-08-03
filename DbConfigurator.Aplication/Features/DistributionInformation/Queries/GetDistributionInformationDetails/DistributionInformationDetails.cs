@@ -1,14 +1,13 @@
 ﻿using DbConfigurator.Aplication.Features.DistributionInformation.Common.Dtos;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformationList
+namespace DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformationDetails
 {
-    public class DistributionInformationItem
+    public class DistributionInformationDetails
     {
         public int Id { get; init; }
         public RegionDto Region { get; set; } = default!;

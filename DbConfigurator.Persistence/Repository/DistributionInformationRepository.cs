@@ -11,7 +11,18 @@ namespace DbConfigurator.API.DataAccess.Repository
         }
         public override async Task<IEnumerable<DistributionInformation>> GetAllAsync()
         {
-            return await _dbContext.Set<DistributionInformation>()
+            return await QueryableDistributionInformation()
+                .AsNoTracking().ToListAsync();
+        }
+        public override async Task<DistributionInformation?> GetByIdAsync(int id)
+        {
+            return await QueryableDistributionInformation()
+                .FirstOrDefaultAsync(e => e.Id == id);
+        }
+
+        private IQueryable<DistributionInformation> QueryableDistributionInformation()
+        {
+            return _dbContext.Set<DistributionInformation>()
                 .Include(d => d.Region)
                     .ThenInclude(r => r.Area)
                 .Include(d => d.Region)
@@ -20,7 +31,8 @@ namespace DbConfigurator.API.DataAccess.Repository
                     .ThenInclude(r => r.Country)
                 .Include(d => d.RecipientsCc)
                 .Include(d => d.RecipientsTo)
-                .AsNoTracking().ToListAsync();
+                .Include(d => d.Priority)
+                .AsQueryable();
         }
     }
 }

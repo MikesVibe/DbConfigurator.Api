@@ -1,4 +1,5 @@
 ﻿using DbConfigurator.Aplication.Features.DistributionInformation;
+using DbConfigurator.Aplication.Features.DistributionInformation.Commands;
 using DbConfigurator.Aplication.Features.DistributionInformation.Queries;
 using DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformationDetails;
 using DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformationList;
@@ -36,10 +37,10 @@ namespace DbConfigurator.Api.Controllers
         }
 
         [HttpPut(Name = "AddRecipientsTo")]
-        public async Task<IActionResult> AddReciepientsTo(int disInfoId, [FromBody]IEnumerable<int> value)
+        public async Task<IActionResult> AddReciepientsTo(int disInfoId, [FromBody]IEnumerable<int> recipientIds)
         {
             Task.CompletedTask.Wait();
-            //await _mediator.Send(new DistributionInformationAddRecipientsToCommand())
+            await _mediator.Send(new DistributionInformationAddRecipientsToCommand(disInfoId, recipientIds));
             return Ok();
         }
     }

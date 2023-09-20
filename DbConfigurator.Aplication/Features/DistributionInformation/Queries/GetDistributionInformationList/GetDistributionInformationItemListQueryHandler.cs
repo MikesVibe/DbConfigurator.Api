@@ -23,13 +23,12 @@ namespace DbConfigurator.Aplication.Features.DistributionInformation.Queries.Get
             _mapper = mapper;
         }
 
-        async Task<IEnumerable<DistributionInformationItem>>
-            IRequestHandler<GetDistributionInformationItemListQuery,
-                IEnumerable<DistributionInformationItem>>
-            .Handle(GetDistributionInformationItemListQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<DistributionInformationItem>> Handle(GetDistributionInformationItemListQuery request, CancellationToken cancellationToken)
         {
             var list = await _repository.GetAllAsync();
             return _mapper.Map<IEnumerable<DistributionInformationItem>>(list);
         }
+
+
     }
 }

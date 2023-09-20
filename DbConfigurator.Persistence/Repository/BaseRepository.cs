@@ -16,34 +16,26 @@ namespace DbConfigurator.API.DataAccess.Repository
             _dbContext = dbContext;
         }
 
-        //IRepository
-        public void Add(T entity)
-        {
-            _dbContext.Set<T>().Add(entity);
-        }
-        public void Delete(T entity)
-        {
-            _dbContext.Set<T>().Remove(entity);
-        }
-        public IEnumerable<T> GetAll()
-        {
-            return _dbContext.Set<T>().AsNoTracking().ToList();
-        }
-        public T? GetById(int id)
-        {
-            return _dbContext.Set<T>().FirstOrDefault(e => e.Id == id);
-        }
-        public void Update(T entity)
-        {
-            _dbContext.Attach(entity);
-            _dbContext.Entry(entity).State = EntityState.Modified;
-        }
-
-        //IRepositoryAsync
         public virtual async Task AddAsync(T entity)
         {
             await _dbContext.Set<T>().AddAsync(entity);
+            await _dbContext.SaveChangesAsync();
         }
+        public virtual async Task DeleteAsync(T entity)
+        {
+            _dbContext.Set<T>().Remove(entity);
+            await _dbContext.SaveChangesAsync();
+        }
+        public virtual async Task<bool> UpdateAsync(T entity)
+        {
+            _dbContext.Attach(entity);
+            _dbContext.Entry(entity).State = EntityState.Modified;
+            var result = await _dbContext.SaveChangesAsync();
+
+            return result > 0;
+        }
+
+
         public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _dbContext.Set<T>().AsNoTracking().ToListAsync();

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformationList
 {
-    public class GetDistributionInformationListQuery : IRequest<IEnumerable<DistributionInformationItem>>
+    public class GetDistributionInformationItemListQuery : IRequest<IEnumerable<DistributionInformationItem>>
     {
     }
 }

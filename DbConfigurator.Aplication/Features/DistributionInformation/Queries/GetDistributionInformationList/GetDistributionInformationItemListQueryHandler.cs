@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformationList
 {
-    public class GetDistributionInformationListItemQueryHandler :
-        IRequestHandler<GetDistributionInformationListQuery, IEnumerable<DistributionInformationItem>>
+    public class GetDistributionInformationItemListQueryHandler :
+        IRequestHandler<GetDistributionInformationItemListQuery, IEnumerable<DistributionInformationItem>>
     {
         private readonly IDistributionInformationRepository _repository;
         private readonly IMapper _mapper;
 
-        public GetDistributionInformationListItemQueryHandler(
+        public GetDistributionInformationItemListQueryHandler(
             IDistributionInformationRepository distributionInformationRepository,
             IMapper mapper)
         {
@@ -24,9 +24,9 @@ namespace DbConfigurator.Aplication.Features.DistributionInformation.Queries.Get
         }
 
         async Task<IEnumerable<DistributionInformationItem>>
-            IRequestHandler<GetDistributionInformationListQuery,
+            IRequestHandler<GetDistributionInformationItemListQuery,
                 IEnumerable<DistributionInformationItem>>
-            .Handle(GetDistributionInformationListQuery request, CancellationToken cancellationToken)
+            .Handle(GetDistributionInformationItemListQuery request, CancellationToken cancellationToken)
         {
             var list = await _repository.GetAllAsync();
             return _mapper.Map<IEnumerable<DistributionInformationItem>>(list);

@@ -22,10 +22,10 @@ namespace DbConfigurator.Api.Controllers
         }
 
 
-        [HttpGet(Name = "GetDistributionInformation")]
+        [HttpGet("all", Name = "GetDistributionInformation")]
         public async Task<ActionResult<IEnumerable<DistributionInformationItem>>> GetDistributionInformation()
         {
-            var distributionInformation = await _mediator.Send(new GetDistributionInformationListQuery());
+            var distributionInformation = await _mediator.Send(new GetDistributionInformationItemListQuery());
             return Ok(distributionInformation);
         }
 

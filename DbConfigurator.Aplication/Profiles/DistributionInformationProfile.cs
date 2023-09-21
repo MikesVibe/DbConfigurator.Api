@@ -4,7 +4,7 @@ using DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDist
 using DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformationList;
 using DbConfigurator.Model.DTOs.Core;
 
-namespace DbConfigurator.Api.Profiles
+namespace DbConfigurator.Application.Profiles
 {
     public class DistributionInformationProfile : Profile
     {

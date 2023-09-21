@@ -10,9 +10,8 @@ namespace DbConfigurator.Aplication.Features.DistributionInformation.Queries.Get
 {
     public class GetDistributionInformationDetailsQuery : IRequest<DistributionInformationItem>
     {
-        public GetDistributionInformationDetailsQuery(int id)
+        public GetDistributionInformationDetailsQuery()
         {
-            Id = id;
         }
 
         public int Id { get; set; }

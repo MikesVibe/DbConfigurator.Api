@@ -32,7 +32,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpGet("{disInfoId}", Name = "GetDistributionInformationById")]
         public async Task<ActionResult<DistributionInformationItem>> GetDistributionInformationById(int disInfoId)
         {
-            var distributionInformation = await _mediator.Send(new GetDistributionInformationDetailsQuery(disInfoId));
+            var distributionInformation = await _mediator.Send(new GetDistributionInformationDetailsQuery() { Id = disInfoId });
             return Ok(distributionInformation);
         }
 

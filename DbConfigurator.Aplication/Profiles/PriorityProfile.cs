@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Aplication.Profiles
+namespace DbConfigurator.Application.Profiles
 {
     public class PriorityProfile : Profile
     {

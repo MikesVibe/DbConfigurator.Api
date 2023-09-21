@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbConfigurator.Infrastractu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{34B53E17-666D-4F0D-AFB4-55D06FCDB7F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbConfigurator.Aplication.UnitTests", "DbConfigurator.Aplication.UnitTests\DbConfigurator.Aplication.UnitTests.csproj", "{35AB11F1-4417-4769-98F3-27152FB884C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbConfigurator.Application.UnitTests", "DbConfigurator.Aplication.UnitTests\DbConfigurator.Application.UnitTests.csproj", "{35AB11F1-4417-4769-98F3-27152FB884C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

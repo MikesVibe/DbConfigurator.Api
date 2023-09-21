@@ -1,27 +1,26 @@
 ﻿using AutoMapper;
-using DbConfigurator.Api.Models;
 using DbConfigurator.Application.Profiles;
-using DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformationList;
-using DbConfigurator.Aplication.UnitTests.Common;
-using DbConfigurator.Model.Entities.Core;
-using FluentResults;
-using NSubstitute;
-using NSubstitute.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformationList;
+using DbConfigurator.Aplication.UnitTests.Common;
+using DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformationDetails;
 
 namespace DbConfigurator.Application.UnitTests.DistibutionInformation.Queries
 {
-    public class GetDistributionInformationItemListQueryHandlerTests
+    public class GetDistributionInformationDetailsQueryHandlerTests
     {
         [Fact]
-        public async void Handle_Should_ReturnDistribiutionInformationItemList()
+        public async void Handle_Should_ReturnDistribiutionInformationDetails()
         {
             // Arragne
-            var getCommand = new GetDistributionInformationItemListQuery();
+            var getCommand = new GetDistributionInformationDetailsQuery() 
+            {
+                Id = 1
+            };
             var fakeRepository = new FakeDistributionInformationRepository();
 
             var mapperConfiguration = new MapperConfiguration(
@@ -36,23 +35,19 @@ namespace DbConfigurator.Application.UnitTests.DistibutionInformation.Queries
                 });
             var mapper = new Mapper(mapperConfiguration);
 
-            var handler = new GetDistributionInformationItemListQueryHandler(
+            var handler = new GetDistributionInformationDetailsQueryHandler(
                 fakeRepository,
                 mapper);
 
             // Act
             var result = await handler.Handle(getCommand, new CancellationToken());
-            var first = result.First();
-            
+
             // Assert
-            Assert.Equal(3, result.Count());
-            Assert.Equal("America", first.Region.Area.Name);
-            Assert.Equal("NAO", first.Region.BuisnessUnit.Name);
-            Assert.Equal("Canada", first.Region.Country.CountryName);
-            Assert.Equal("CA", first.Region.Country.CountryCode);
-            Assert.Equal("P1", first.Priority.Name);
+            Assert.Equal("America", result.Region.Area.Name);
+            Assert.Equal("NAO", result.Region.BuisnessUnit.Name);
+            Assert.Equal("Canada", result.Region.Country.CountryName);
+            Assert.Equal("CA", result.Region.Country.CountryCode);
+            Assert.Equal("P1", result.Priority.Name);
         }
-
-
     }
 }

@@ -43,7 +43,11 @@ namespace DbConfigurator.Api.Controllers
         public async Task<IActionResult> AddDistributionInformation([FromBody] DistributionInformationDto distributionInfo)
         {
             var response = await _mediator.Send(new CreateDistributionInformationCommand() { DistributionInformation = distributionInfo });
-            return Ok(response);
+
+            if(response == false)
+                return BadRequest();
+
+            return Ok();
         }
     }
 }

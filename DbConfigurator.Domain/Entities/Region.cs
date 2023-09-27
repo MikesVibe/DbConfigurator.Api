@@ -1,10 +1,11 @@
 ﻿using DbConfigurator.Api.Models;
+using DbConfigurator.Api.Services;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DbConfigurator.Model.Entities.Core
 {
-    public class Region
+    public class Region : IEntity
     {
         [Required]
         public int Id { get; set; }

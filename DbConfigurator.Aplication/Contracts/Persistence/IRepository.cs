@@ -8,5 +8,7 @@
 
         Task<T?> GetByIdAsync(int id);
         Task<IEnumerable<T>> GetAllAsync();
+
+        Task<bool> ExistsAsync(int id);
     }
 }

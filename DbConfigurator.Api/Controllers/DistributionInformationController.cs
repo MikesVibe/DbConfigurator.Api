@@ -1,5 +1,8 @@
-﻿using DbConfigurator.Aplication.Features.DistributionInformation;
+﻿using DbConfigurator.Api.Models;
+using DbConfigurator.Aplication.Features.DistributionInformation;
+using DbConfigurator.Aplication.Features.DistributionInformation.Base.Dtos;
 using DbConfigurator.Aplication.Features.DistributionInformation.Commands;
+using DbConfigurator.Aplication.Features.DistributionInformation.Commands.Create;
 using DbConfigurator.Aplication.Features.DistributionInformation.Queries;
 using DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformationDetails;
 using DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformationList;
@@ -36,6 +39,11 @@ namespace DbConfigurator.Api.Controllers
             return Ok(distributionInformation);
         }
 
-
+        [HttpPost(Name = "AddDistributionInformation")]
+        public async Task<IActionResult> AddDistributionInformation([FromBody] DistributionInformationDto distributionInfo)
+        {
+            var response = await _mediator.Send(new CreateDistributionInformationCommand() { DistributionInformation = distributionInfo });
+            return Ok(response);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace DbConfigurator.Model.Entities.Core
@@ -7,19 +8,12 @@ namespace DbConfigurator.Model.Entities.Core
     {
         [Required]
         public int Id { get; set; }
-
         [Required]
         [MaxLength(50)]
-        public string CountryName { get; set; }
-
+        public string CountryName { get; set; } = string.Empty;
         [Required]
         [MaxLength(3)]
-        public string CountryCode { get; set; }
-
-
-        public ICollection<Region> Regions { get; set; }
-        //public ICollection<BuisnessUnit> BuisnessUnits { get; set; }
-        //public ICollection<DistributionInformation> DistributionInformations { get; set; }
-
+        public string CountryCode { get; set; } = string.Empty;
+        public ICollection<Region> Regions { get; set; } = new Collection<Region>();
     }
 }

@@ -36,12 +36,6 @@ namespace DbConfigurator.Api.Controllers
             return Ok(distributionInformation);
         }
 
-        [HttpPut(Name = "AddRecipientsTo")]
-        public async Task<IActionResult> AddReciepientsTo(int disInfoId, [FromBody]IEnumerable<int> recipientIds)
-        {
-            Task.CompletedTask.Wait();
-            await _mediator.Send(new DistributionInformationAddRecipientsToCommand(disInfoId, recipientIds));
-            return Ok();
-        }
+
     }
 }

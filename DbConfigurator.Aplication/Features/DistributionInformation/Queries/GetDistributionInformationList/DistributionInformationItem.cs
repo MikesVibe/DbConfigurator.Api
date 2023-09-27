@@ -1,4 +1,4 @@
-﻿using DbConfigurator.Aplication.Features.DistributionInformation.Common.Dtos;
+﻿using DbConfigurator.Aplication.Features.DistributionInformation.Base.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

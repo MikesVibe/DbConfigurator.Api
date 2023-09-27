@@ -29,4 +29,8 @@
     <ProjectReference Include="..\DbConfigurator.Aplication\DbConfigurator.Aplication.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DistibutionInformation\Commands\" />
+  </ItemGroup>
+
 </Project>

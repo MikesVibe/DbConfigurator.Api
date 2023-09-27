@@ -1,6 +1,6 @@
 ﻿using DbConfigurator.Api.Services;
 
-namespace DbConfigurator.Aplication.Features.DistributionInformation.Common.Dtos
+namespace DbConfigurator.Aplication.Features.DistributionInformation.Base.Dtos
 {
     public class BuisnessUnitDto
     {

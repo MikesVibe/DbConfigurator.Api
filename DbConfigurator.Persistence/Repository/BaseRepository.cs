@@ -44,5 +44,13 @@ namespace DbConfigurator.API.DataAccess.Repository
         {
             return await _dbContext.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
         }
+        public virtual async Task<bool> ExistsAsync(int id)
+        {
+            var entity = await _dbContext.Set<T>()
+                .Where(entity => entity.Id == id)
+                .AsNoTracking()
+                .FirstOrDefaultAsync();
+            return entity is not null;
+        }
     }
 }

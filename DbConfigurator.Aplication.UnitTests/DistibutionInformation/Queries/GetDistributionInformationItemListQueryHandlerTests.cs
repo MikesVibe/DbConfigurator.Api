@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DbConfigurator.Application.UnitTests.Common;
+using DbConfigurator.Application.UnitTests.Common.Repositories;
 
 namespace DbConfigurator.Application.UnitTests.DistibutionInformation.Queries
 {

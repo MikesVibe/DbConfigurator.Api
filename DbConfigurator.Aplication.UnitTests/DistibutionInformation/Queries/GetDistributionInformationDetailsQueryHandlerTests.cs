@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using DbConfigurator.Application.Features.DistributionInformation.Queries.GetDistributionInformationList;
 using DbConfigurator.Application.UnitTests.Common;
 using DbConfigurator.Application.Features.DistributionInformation.Queries.GetDistributionInformationDetails;
-using DbConfigurator.Application.UnitTests.Common;
+using DbConfigurator.Application.UnitTests.Common.Repositories;
 
 namespace DbConfigurator.Application.UnitTests.DistibutionInformation.Queries
 {

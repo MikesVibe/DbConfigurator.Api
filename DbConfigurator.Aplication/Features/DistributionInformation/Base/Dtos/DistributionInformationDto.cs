@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Aplication.Features.DistributionInformation.Base.Dtos
+namespace DbConfigurator.Application.Features.DistributionInformation.Base.Dtos
 {
     public class DistributionInformationDto
     {

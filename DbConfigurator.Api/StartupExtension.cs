@@ -1,4 +1,4 @@
-﻿using DbConfigurator.Aplication;
+﻿using DbConfigurator.Application;
 using DbConfigurator.Persistence;
 
 namespace DbConfigurator.Api

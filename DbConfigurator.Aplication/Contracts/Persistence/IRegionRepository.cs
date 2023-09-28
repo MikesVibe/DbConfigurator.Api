@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Aplication.Contracts.Persistence
+namespace DbConfigurator.Application.Contracts.Persistence
 {
     public interface IRegionRepository : IRepository<Region>
     {

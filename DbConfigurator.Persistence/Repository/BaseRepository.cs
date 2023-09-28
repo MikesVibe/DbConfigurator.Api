@@ -1,5 +1,5 @@
 ﻿using DbConfigurator.Api.Services;
-using DbConfigurator.Aplication.Contracts.Persistence;
+using DbConfigurator.Application.Contracts.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -7,6 +7,7 @@ namespace DbConfigurator.API.DataAccess.Repository
 {
     public class BaseRepository<T> : IRepository<T>
         where T : class, IEntity
+        
     {
         protected readonly DbConfiguratorApiDbContext _dbContext;
 
@@ -33,6 +34,8 @@ namespace DbConfigurator.API.DataAccess.Repository
 
             return result > 0;
         }
+
+
         public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
@@ -40,14 +43,6 @@ namespace DbConfigurator.API.DataAccess.Repository
         public virtual async Task<T?> GetByIdAsync(int id)
         {
             return await _dbContext.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
-        }
-        public virtual async Task<bool> ExistsAsync(int id)
-        {
-            var entity = await _dbContext.Set<T>()
-                .Where(entity => entity.Id == id)
-                .AsNoTracking()
-                .FirstOrDefaultAsync();
-            return entity is not null;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DbConfigurator.Aplication
+namespace DbConfigurator.Application
 {
     public static class ApplicationServiceRegistration
     {

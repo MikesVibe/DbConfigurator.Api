@@ -1,4 +1,4 @@
-﻿namespace DbConfigurator.Aplication.Contracts.Persistence
+﻿namespace DbConfigurator.Application.Contracts.Persistence
 {
     public interface IRepository<T> where T : class
     {

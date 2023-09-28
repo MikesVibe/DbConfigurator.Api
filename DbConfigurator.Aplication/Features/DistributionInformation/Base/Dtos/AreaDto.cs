@@ -1,7 +1,7 @@
 ﻿using DbConfigurator.Api.Services;
 using System.ComponentModel.DataAnnotations;
 
-namespace DbConfigurator.Aplication.Features.DistributionInformation.Base.Dtos
+namespace DbConfigurator.Application.Features.DistributionInformation.Base.Dtos
 {
     public class AreaDto
     {

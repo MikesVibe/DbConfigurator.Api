@@ -1,11 +1,11 @@
-﻿using DbConfigurator.Aplication.Features.DistributionInformation.Base.Dtos;
+﻿using DbConfigurator.Application.Features.DistributionInformation.Base.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Aplication.Features.DistributionInformation.Queries.GetDistributionInformationDetails
+namespace DbConfigurator.Application.Features.DistributionInformation.Queries.GetDistributionInformationDetails
 {
     public class DistributionInformationDetails
     {

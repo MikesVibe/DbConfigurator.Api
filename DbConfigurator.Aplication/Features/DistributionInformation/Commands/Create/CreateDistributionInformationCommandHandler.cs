@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Application.Features.DistributionInformation.Commands.Create
+namespace DbConfigurator.Application.Features.DistributionInformation
 {
-    public class CreateDistributionInformationCommandHandler : IRequestHandler<CreateDistributionInformationCommand, bool>
+    public class CreateDistributionInformationCommandHandler : IRequestHandler<CreateDistributionInformationCommand, int>
     {
         private readonly IDistributionInformationRepository _distributionInformationRepository;
         private readonly IRegionRepository _regionRecpository;
@@ -26,12 +26,12 @@ namespace DbConfigurator.Application.Features.DistributionInformation.Commands.C
             _mapper = mapper;
         }
 
-        public async Task<bool> Handle(CreateDistributionInformationCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CreateDistributionInformationCommand request, CancellationToken cancellationToken)
         {
             var disInfo = request.DistributionInformation;
             var regionExists = await _regionRecpository.ExistsAsync(disInfo.Region.Id);
 
-            return regionExists;
+            return -1;
         }
     }
 }

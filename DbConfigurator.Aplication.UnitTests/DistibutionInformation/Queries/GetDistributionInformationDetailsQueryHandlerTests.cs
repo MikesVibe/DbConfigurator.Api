@@ -5,12 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DbConfigurator.Application.Features.DistributionInformation.Queries.GetDistributionInformationList;
 using DbConfigurator.Application.UnitTests.Common;
-using DbConfigurator.Application.Features.DistributionInformation.Queries.GetDistributionInformationDetails;
 using DbConfigurator.Application.UnitTests.Common.Repositories;
+using DbConfigurator.Application.Features.DistributionInformation;
 
-namespace DbConfigurator.Application.UnitTests.DistibutionInformation.Queries
+namespace DbConfigurator.Application.UnitTests.DistributionInformation.Queries
 {
     public class GetDistributionInformationDetailsQueryHandlerTests
     {

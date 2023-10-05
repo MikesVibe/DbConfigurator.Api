@@ -1,5 +1,6 @@
 ﻿using DbConfigurator.Api.Models;
 using DbConfigurator.Application.Contracts.Persistence;
+using DbConfigurator.Application.Features.DistributionInformation;
 using DbConfigurator.Model.Entities.Core;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,14 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
 {
     internal class FakeDistributionInformationRepository : IDistributionInformationRepository
     {
-        public Task AddAsync(DistributionInformation entity)
+        public FakeDistributionInformationRepository()
+        {
+            InitializeDistributionInformation();
+        }
+
+
+        public IEnumerable<Api.Models.DistributionInformation> DistributionInformation { get; set; } = Enumerable.Empty<Api.Models.DistributionInformation>();
+        public Task AddAsync(Api.Models.DistributionInformation entity)
         {
             throw new NotImplementedException();
         }
@@ -21,7 +29,7 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(DistributionInformation value)
+        public Task DeleteAsync(Api.Models.DistributionInformation value)
         {
             throw new NotImplementedException();
         }
@@ -31,11 +39,33 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<DistributionInformation>> GetAllAsync()
+        public async Task<IEnumerable<Api.Models.DistributionInformation>> GetAllAsync()
         {
-            IEnumerable<DistributionInformation> list = new List<DistributionInformation>
+            await Task.Delay(0);
+            return DistributionInformation;
+        }
+
+        public async Task<Api.Models.DistributionInformation?> GetByIdAsync(int id)
+        {
+            var list = await GetAllAsync();
+            return list.FirstOrDefault(d => d.Id == id);
+        }
+
+        public Task<bool> UpdateAsync(Api.Models.DistributionInformation entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DistributionInformationDto GetNotExistingDistributionInformationDto()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void InitializeDistributionInformation()
+        {
+            DistributionInformation = new List<Api.Models.DistributionInformation>
             {
-                new DistributionInformation()
+                new Api.Models.DistributionInformation()
                 {
                     Id=1,
                     Region = new Region()
@@ -64,7 +94,7 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
                         Name="P1"
                     }
                 },
-                new DistributionInformation()
+                new Api.Models.DistributionInformation()
                 {
                     Id=2,
                     Region = new Region()
@@ -93,7 +123,7 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
                         Name="P2"
                     }
                 },
-                new DistributionInformation()
+                new Api.Models.DistributionInformation()
   {
                     Id=3,
                     Region = new Region()
@@ -123,19 +153,7 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
                     }
                 }
             };
-
-            return list;
         }
 
-        public async Task<DistributionInformation?> GetByIdAsync(int id)
-        {
-            var list = await GetAllAsync();
-            return list.FirstOrDefault(d => d.Id == id);
-        }
-
-        public Task<bool> UpdateAsync(DistributionInformation entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

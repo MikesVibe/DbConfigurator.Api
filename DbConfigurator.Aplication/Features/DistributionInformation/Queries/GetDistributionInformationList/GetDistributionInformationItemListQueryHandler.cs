@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Application.Features.DistributionInformation.Queries.GetDistributionInformationList
+namespace DbConfigurator.Application.Features.DistributionInformation
 {
     public class GetDistributionInformationItemListQueryHandler :
         IRequestHandler<GetDistributionInformationItemListQuery, IEnumerable<DistributionInformationItem>>

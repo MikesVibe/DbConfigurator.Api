@@ -1,4 +1,4 @@
-﻿using DbConfigurator.Application.Features.DistributionInformation.Base.Dtos;
+﻿using DbConfigurator.Application.Features.DistributionInformation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Application.Features.DistributionInformation.Queries.GetDistributionInformationList
+namespace DbConfigurator.Application.Features.DistributionInformation
 {
     public class DistributionInformationItem
     {

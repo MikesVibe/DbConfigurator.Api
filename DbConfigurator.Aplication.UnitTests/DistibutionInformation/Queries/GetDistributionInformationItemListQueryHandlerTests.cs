@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using DbConfigurator.Api.Models;
 using DbConfigurator.Application.Profiles;
-using DbConfigurator.Application.Features.DistributionInformation.Queries.GetDistributionInformationList;
+using DbConfigurator.Application.Features.DistributionInformation;
 using DbConfigurator.Application.UnitTests.Common;
 using DbConfigurator.Model.Entities.Core;
 using FluentResults;
@@ -13,22 +13,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DbConfigurator.Application.UnitTests.Common.Repositories;
+using DbConfigurator.Application.UnitTests.Common.Fixtures;
 
-namespace DbConfigurator.Application.UnitTests.DistibutionInformation.Queries
+namespace DbConfigurator.Application.UnitTests.DistributionInformation
 {
     public class GetDistributionInformationItemListQueryHandlerTests
     {
+        private readonly FakeDistributionInformationRepository _distributionInfromationRepository;
+        private readonly Mapper _mapper;
+
+        public GetDistributionInformationItemListQueryHandlerTests()
+        {
+            _distributionInfromationRepository = new FakeDistributionInformationRepository();
+            _mapper = MapperBuilder.AddDistributionInformationProfiles().Create();
+        }
         [Fact]
         public async void Handle_Should_ReturnDistribiutionInformationItemList()
         {
             // Arragne
             var getCommand = new GetDistributionInformationItemListQuery();
-            var fakeRepository = new FakeDistributionInformationRepository();
-            var mapper = MapperBuilder.AddDistributionInformationProfiles().Create();
 
             var handler = new GetDistributionInformationItemListQueryHandler(
-                fakeRepository,
-                mapper);
+                _distributionInfromationRepository,
+                _mapper);
 
             // Act
             var result = await handler.Handle(getCommand, new CancellationToken());
@@ -42,7 +49,5 @@ namespace DbConfigurator.Application.UnitTests.DistibutionInformation.Queries
             Assert.Equal("CA", first.Region.Country.CountryCode);
             Assert.Equal("P1", first.Priority.Name);
         }
-
-
     }
 }

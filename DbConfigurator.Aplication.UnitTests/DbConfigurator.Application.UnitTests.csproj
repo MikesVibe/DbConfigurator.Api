@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DbConfigurator.Aplication\DbConfigurator.Aplication.csproj" />
+    <ProjectReference Include="..\DbConfigurator.Domain\DbConfigurator.Domain.csproj" />
   </ItemGroup>
 
 </Project>

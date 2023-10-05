@@ -1,11 +1,5 @@
 ﻿using DbConfigurator.Api.Models;
 using DbConfigurator.Application.Features.DistributionInformation;
-using DbConfigurator.Application.Features.DistributionInformation.Base.Dtos;
-using DbConfigurator.Application.Features.DistributionInformation.Commands;
-using DbConfigurator.Application.Features.DistributionInformation.Commands.Create;
-using DbConfigurator.Application.Features.DistributionInformation.Queries;
-using DbConfigurator.Application.Features.DistributionInformation.Queries.GetDistributionInformationDetails;
-using DbConfigurator.Application.Features.DistributionInformation.Queries.GetDistributionInformationList;
 using DbConfigurator.Model.DTOs.Core;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -44,7 +38,7 @@ namespace DbConfigurator.Api.Controllers
         {
             var response = await _mediator.Send(new CreateDistributionInformationCommand() { DistributionInformation = distributionInfo });
 
-            if(response == false)
+            if(response == -1)
                 return BadRequest();
 
             return Ok();

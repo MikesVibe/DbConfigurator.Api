@@ -1,6 +1,6 @@
 ﻿using DbConfigurator.Api.Services;
 
-namespace DbConfigurator.Application.Features.DistributionInformation.Base.Dtos
+namespace DbConfigurator.Application.Features.DistributionInformation
 {
     public class PriorityDto
     {

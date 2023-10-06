@@ -3,6 +3,8 @@ using DbConfigurator.Application.Features.DistributionInformation;
 using DbConfigurator.Application.UnitTests.Common;
 using DbConfigurator.Application.UnitTests.Common.Fixtures;
 using DbConfigurator.Application.UnitTests.Common.Repositories;
+using DbConfigurator.Model.Entities.Core;
+using FluentAssertions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,15 +25,17 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformation
             _regionRepository = new FakeRegionRepository();
             _mapper = MapperBuilder.AddDistributionInformationProfiles().Create();
         }
+
         [Fact]
-        public async Task Handle_Should_ReturnNewlyCreatedDistributionInformation_When_SuccessfullyCreateDistribiutionInformation()
+        public async Task Handle_Should_ReturnFailedResult_When_NoInstanceOfRegionWithSpecifiedIdIsPresentInDatabase()
         {
             // Arragne
-            var distributionInformationToCreate = _distributionInfromationRepository.GetNotExistingDistributionInformationDto();
-            var createCommand = new CreateDistributionInformationCommand() 
-            { 
+            var distributionInformationToCreate = CreateNotExistingDistributionInformationDto();
+            var createCommand = new CreateDistributionInformationCommand()
+            {
                 DistributionInformation = distributionInformationToCreate
             };
+            _regionRepository.ExistsAsyncReturns(false);
             var handler = new CreateDistributionInformationCommandHandler(
                 _distributionInfromationRepository,
                 _regionRepository,
@@ -41,34 +45,91 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformation
             var result = await handler.Handle(createCommand, new CancellationToken());
 
             // Assert
-            Assert.NotNull(result);
-
-            //Assert.Equal(distributionInformationToCreate.Region.Area.Name, first.Region.Area.Name);
-            //Assert.Equal("NAO", first.Region.BuisnessUnit.Name);
-            //Assert.Equal("Canada", first.Region.Country.CountryName);
-            //Assert.Equal("CA", first.Region.Country.CountryCode);
-            //Assert.Equal("P1", first.Priority.Name);
+            result.IsFailed.Should().BeTrue();
+            result.Errors.First().Message.Should().Be("No istnace of region object with specified Id is present in database.");
         }
 
         [Fact]
-        public async Task Handle_Should_ReturnFalse_When_DataInCreateCommandAreNotValid()
+        public async Task Handle_Should_ReturnNewlyCreatedDistributionInformation_When_SuccessfullyCreateDistribiutionInformation()
         {
             // Arragne
-            var createCommand = new CreateDistributionInformationCommand();
-            var distributionInfromationRepository = new FakeDistributionInformationRepository();
-            var regionRepository = new FakeRegionRepository();
-            var mapper = MapperBuilder.AddDistributionInformationProfiles().Create();
-
+            var distributionInformationToCreate = CreateNotExistingDistributionInformationDto();
+            var createCommand = new CreateDistributionInformationCommand()
+            {
+                DistributionInformation = distributionInformationToCreate
+            };
+            _regionRepository.ExistsAsyncReturns(false);
             var handler = new CreateDistributionInformationCommandHandler(
-                distributionInfromationRepository,
-                regionRepository,
-                mapper);
+                _distributionInfromationRepository,
+                _regionRepository,
+                _mapper);
 
             // Act
             var result = await handler.Handle(createCommand, new CancellationToken());
 
             // Assert
-            Assert.True(false);
+            result.IsSuccess.Should().BeTrue();
+            var resultValue = result.Value;
+
+            Assert.Equal(distributionInformationToCreate.Region.Area.Name, resultValue.Region.Area.Name);
+            Assert.Equal(distributionInformationToCreate.Region.BuisnessUnit.Name, resultValue.Region.Area.Name);
+            Assert.Equal(distributionInformationToCreate.Region.Country.CountryName, resultValue.Region.Area.Name);
+            Assert.Equal(distributionInformationToCreate.Region.Country.CountryCode, resultValue.Region.Area.Name);
+            Assert.Equal(distributionInformationToCreate.Priority.Name, resultValue.Region.Area.Name);
         }
+
+        private DistributionInformationDto CreateNotExistingDistributionInformationDto()
+        {
+            return new DistributionInformationDto()
+            {
+                Id = 0,
+                Region = new RegionDto()
+                {
+                    Id = 1,
+                    Area = new AreaDto()
+                    {
+                        Id = 1,
+                        Name = "America"
+                    },
+                    BuisnessUnit = new BuisnessUnitDto()
+                    {
+                        Id = 1,
+                        Name = "NAO"
+                    },
+                    Country = new CountryDto()
+                    {
+                        Id = 1,
+                        CountryName = "Canada",
+                        CountryCode = "CA"
+                    }
+                },
+                Priority = new PriorityDto()
+                {
+                    Id = 1,
+                    Name = "P1"
+                }
+            };
+        }
+
+        //[Fact]
+        //public async Task Handle_Should_ReturnFalse_When_DataInCreateCommandAreNotValid()
+        //{
+        //    // Arragne
+        //    var createCommand = new CreateDistributionInformationCommand();
+        //    var distributionInfromationRepository = new FakeDistributionInformationRepository();
+        //    var regionRepository = new FakeRegionRepository();
+        //    var mapper = MapperBuilder.AddDistributionInformationProfiles().Create();
+
+        //    var handler = new CreateDistributionInformationCommandHandler(
+        //        distributionInfromationRepository,
+        //        regionRepository,
+        //        mapper);
+
+        //    // Act
+        //    var result = await handler.Handle(createCommand, new CancellationToken());
+
+        //    // Assert
+        //    Assert.True(false);
+        //}
     }
 }

@@ -19,9 +19,13 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
 
 
         public IEnumerable<Api.Models.DistributionInformation> DistributionInformation { get; set; } = Enumerable.Empty<Api.Models.DistributionInformation>();
-        public Task AddAsync(Api.Models.DistributionInformation entity)
+        
+        public bool ExistsAsyncReturnValue { get; private set; }
+
+        public async Task<Api.Models.DistributionInformation> AddAsync(Api.Models.DistributionInformation entity)
         {
-            throw new NotImplementedException();
+            await Task.Delay(0);
+            return entity;
         }
 
         public Task AddRecipients(int disInfoId, IEnumerable<int> recipientIds)
@@ -34,9 +38,10 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<bool> ExistsAsync(int id)
+        public async Task<bool> ExistsAsync(int id)
         {
-            throw new NotImplementedException();
+            await Task.Delay(0);
+            return ExistsAsyncReturnValue;
         }
 
         public async Task<IEnumerable<Api.Models.DistributionInformation>> GetAllAsync()
@@ -56,10 +61,6 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
             throw new NotImplementedException();
         }
 
-        public DistributionInformationDto GetNotExistingDistributionInformationDto()
-        {
-            throw new NotImplementedException();
-        }
 
         private void InitializeDistributionInformation()
         {
@@ -155,5 +156,10 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
             };
         }
 
+
+        public void ExistsAsyncReturns(bool retrunValue)
+        {
+            ExistsAsyncReturnValue = retrunValue;
+        }
     }
 }

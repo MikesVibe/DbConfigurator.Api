@@ -1,4 +1,5 @@
 ﻿using DbConfigurator.Application.Features.DistributionInformation;
+using FluentResults;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.DistributionInformation
 {
-    public class CreateDistributionInformationCommand : IRequest<int>
+    public class CreateDistributionInformationCommand : IRequest<Result<DistributionInformationDto>>
     {
         public DistributionInformationDto DistributionInformation { get; set; } = new DistributionInformationDto();
     }

@@ -9,7 +9,7 @@ namespace DbConfigurator.Application.Profiles
     {
         public BuisnessUnitProfile()
         {
-            CreateMap<BuisnessUnit, BuisnessUnitDto>();
+            CreateMap<BuisnessUnit, BuisnessUnitDto>().ReverseMap();
         }
     }
 }

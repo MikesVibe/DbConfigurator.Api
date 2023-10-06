@@ -10,7 +10,9 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
 {
     public class FakeRegionRepository : IRegionRepository
     {
-        public Task AddAsync(Region entity)
+        private bool _existsAsyncReturnValue;
+
+        public Task<Region> AddAsync(Region entity)
         {
             throw new NotImplementedException();
         }
@@ -20,9 +22,10 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<bool> ExistsAsync(int id)
+        public async Task<bool> ExistsAsync(int id)
         {
-            throw new NotImplementedException();
+            await Task.Delay(0);
+            return _existsAsyncReturnValue;
         }
 
         public Task<IEnumerable<Region>> GetAllAsync()
@@ -38,6 +41,10 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
         public Task<bool> UpdateAsync(Region entity)
         {
             throw new NotImplementedException();
+        }
+        public void ExistsAsyncReturns(bool retrunValue)
+        {
+            _existsAsyncReturnValue = retrunValue;
         }
     }
 }

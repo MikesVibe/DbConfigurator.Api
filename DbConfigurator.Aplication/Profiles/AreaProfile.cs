@@ -9,7 +9,7 @@ namespace DbConfigurator.Application.Profiles
     {
         public AreaProfile()
         {
-            CreateMap<Area, AreaDto>();
+            CreateMap<Area, AreaDto>().ReverseMap();
         }
     }
 }

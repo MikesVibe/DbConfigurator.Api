@@ -13,7 +13,7 @@ namespace DbConfigurator.Application.Profiles
     {
         public PriorityProfile()
         {
-            CreateMap<Priority, PriorityDto>();
+            CreateMap<Priority, PriorityDto>().ReverseMap();
         }
     }
 }

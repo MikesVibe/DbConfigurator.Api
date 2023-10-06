@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Model.Entities.Core;
+using FluentResults;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.DistributionInformation
 {
-    public class CreateDistributionInformationCommandHandler : IRequestHandler<CreateDistributionInformationCommand, int>
+    public class CreateDistributionInformationCommandHandler : IRequestHandler<CreateDistributionInformationCommand, Result<DistributionInformationDto>>
     {
         private readonly IDistributionInformationRepository _distributionInformationRepository;
         private readonly IRegionRepository _regionRecpository;
@@ -26,12 +27,29 @@ namespace DbConfigurator.Application.Features.DistributionInformation
             _mapper = mapper;
         }
 
-        public async Task<int> Handle(CreateDistributionInformationCommand request, CancellationToken cancellationToken)
+        public async Task<Result<DistributionInformationDto>> Handle(CreateDistributionInformationCommand request, CancellationToken cancellationToken)
         {
             var disInfo = request.DistributionInformation;
             var regionExists = await _regionRecpository.ExistsAsync(disInfo.Region.Id);
+            if (regionExists == false)
+                return Result.Fail("No istnace of region object with specified Id is present in database.");
 
-            return -1;
+            //var mappedDisInfo = _mapper.Map<Api.Models.DistributionInformation>(request.DistributionInformation);
+            
+            ////Returns invalid dto, in future change it to return result exception message
+            //if (mappedDisInfo is null)
+            //    return new DistributionInformationDto() { Id = -1 };
+
+            //var createdEntity = await _distributionInformationRepository.AddAsync(mappedDisInfo);
+            //if (createdEntity.Id <= 0)
+            //    return new DistributionInformationDto() { Id = -1 };
+
+            //var result = _mapper.Map<DistributionInformationDto>(createdEntity);
+            //if (result is null)
+            //    return new DistributionInformationDto() { Id = -1 };
+
+
+            return new DistributionInformationDto();
         }
     }
 }

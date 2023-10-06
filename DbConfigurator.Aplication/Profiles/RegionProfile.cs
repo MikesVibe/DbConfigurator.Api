@@ -8,7 +8,7 @@ namespace DbConfigurator.Application.Profiles
     {
         public RegionProfile()
         {
-            CreateMap<Region, RegionDto>();
+            CreateMap<Region, RegionDto>().ReverseMap();
         }
     }
 }

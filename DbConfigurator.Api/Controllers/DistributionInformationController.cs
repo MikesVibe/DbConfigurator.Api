@@ -38,7 +38,7 @@ namespace DbConfigurator.Api.Controllers
         {
             var response = await _mediator.Send(new CreateDistributionInformationCommand() { DistributionInformation = distributionInfo });
 
-            if(response == -1)
+            if(response.IsFailed)
                 return BadRequest();
 
             return Ok();

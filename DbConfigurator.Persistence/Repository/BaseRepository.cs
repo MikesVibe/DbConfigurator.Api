@@ -16,10 +16,11 @@ namespace DbConfigurator.API.DataAccess.Repository
             _dbContext = dbContext;
         }
 
-        public virtual async Task AddAsync(T entity)
+        public virtual async Task<T> AddAsync(T entity)
         {
             await _dbContext.Set<T>().AddAsync(entity);
             await _dbContext.SaveChangesAsync();
+            return entity;
         }
         public virtual async Task DeleteAsync(T entity)
         {

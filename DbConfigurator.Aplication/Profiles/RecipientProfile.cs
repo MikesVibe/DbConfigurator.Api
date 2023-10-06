@@ -8,7 +8,7 @@ namespace DbConfigurator.Application.Profiles
     {
         public RecipientProfile()
         {
-            CreateMap<Recipient, RecipientDto>();
+            CreateMap<Recipient, RecipientDto>().ReverseMap();
         }
     }
 }

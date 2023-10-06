@@ -34,22 +34,22 @@ namespace DbConfigurator.Application.Features.DistributionInformation
             if (regionExists == false)
                 return Result.Fail("No istnace of region object with specified Id is present in database.");
 
-            //var mappedDisInfo = _mapper.Map<Api.Models.DistributionInformation>(request.DistributionInformation);
-            
-            ////Returns invalid dto, in future change it to return result exception message
-            //if (mappedDisInfo is null)
-            //    return new DistributionInformationDto() { Id = -1 };
+            var mappedDisInfo = _mapper.Map<Api.Models.DistributionInformation>(request.DistributionInformation);
 
-            //var createdEntity = await _distributionInformationRepository.AddAsync(mappedDisInfo);
-            //if (createdEntity.Id <= 0)
-            //    return new DistributionInformationDto() { Id = -1 };
+            //Returns invalid dto, in future change it to return result exception message
+            if (mappedDisInfo is null)
+                return Result.Fail("Failed to map DistributionInformation.");
 
-            //var result = _mapper.Map<DistributionInformationDto>(createdEntity);
-            //if (result is null)
-            //    return new DistributionInformationDto() { Id = -1 };
+            var createdEntity = await _distributionInformationRepository.AddAsync(mappedDisInfo);
+            if (createdEntity is null)
+                return Result.Fail("Failed to create DistributionInformation.");
+
+            var result = _mapper.Map<DistributionInformationDto>(createdEntity);
+            if (result is null)
+                return Result.Fail("Failed to map DistributionInformation.");
 
 
-            return new DistributionInformationDto();
+            return result;
         }
     }
 }

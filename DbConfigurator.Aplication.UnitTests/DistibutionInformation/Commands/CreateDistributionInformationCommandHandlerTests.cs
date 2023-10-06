@@ -58,7 +58,7 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformation
             {
                 DistributionInformation = distributionInformationToCreate
             };
-            _regionRepository.ExistsAsyncReturns(false);
+            _regionRepository.ExistsAsyncReturns(true);
             var handler = new CreateDistributionInformationCommandHandler(
                 _distributionInfromationRepository,
                 _regionRepository,
@@ -72,10 +72,10 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformation
             var resultValue = result.Value;
 
             Assert.Equal(distributionInformationToCreate.Region.Area.Name, resultValue.Region.Area.Name);
-            Assert.Equal(distributionInformationToCreate.Region.BuisnessUnit.Name, resultValue.Region.Area.Name);
-            Assert.Equal(distributionInformationToCreate.Region.Country.CountryName, resultValue.Region.Area.Name);
-            Assert.Equal(distributionInformationToCreate.Region.Country.CountryCode, resultValue.Region.Area.Name);
-            Assert.Equal(distributionInformationToCreate.Priority.Name, resultValue.Region.Area.Name);
+            Assert.Equal(distributionInformationToCreate.Region.BuisnessUnit.Name, resultValue.Region.BuisnessUnit.Name);
+            Assert.Equal(distributionInformationToCreate.Region.Country.CountryName, resultValue.Region.Country.CountryName);
+            Assert.Equal(distributionInformationToCreate.Region.Country.CountryCode, resultValue.Region.Country.CountryCode);
+            Assert.Equal(distributionInformationToCreate.Priority.Name, resultValue.Priority.Name);
         }
 
         private DistributionInformationDto CreateNotExistingDistributionInformationDto()

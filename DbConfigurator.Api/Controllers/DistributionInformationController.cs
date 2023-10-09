@@ -53,5 +53,15 @@ namespace DbConfigurator.Api.Controllers
 
             return Ok();
         }
+        [HttpPut]
+        public async Task<IActionResult> UpdateDistributionInformation([FromBody] DistributionInformationDto distributionInformation)
+        {
+            var response = await _mediator.Send(new UpdateDistributionInformationCommand() { DistributionInformation = distributionInformation});
+
+            if (response.IsFailed)
+                return BadRequest();
+
+            return Ok();
+        }
     }
 }

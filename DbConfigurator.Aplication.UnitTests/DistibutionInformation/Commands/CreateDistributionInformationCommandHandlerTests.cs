@@ -41,6 +41,7 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformation
         {
             // Arragne
             _regionRepository.ExistsAsyncReturns(false);
+            _priorityRepository.ExistsAsyncReturns(true);
             var handler = new CreateDistributionInformationCommandHandler(
                 _distributionInfromationRepository,
                 _priorityRepository,

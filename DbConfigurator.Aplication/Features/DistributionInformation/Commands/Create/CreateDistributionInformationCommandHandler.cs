@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DbConfigurator.Aplication.Contracts.Persistence;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Model.Entities.Core;
 using FluentResults;
@@ -14,15 +15,19 @@ namespace DbConfigurator.Application.Features.DistributionInformation
     public class CreateDistributionInformationCommandHandler : IRequestHandler<CreateDistributionInformationCommand, Result<DistributionInformationDto>>
     {
         private readonly IDistributionInformationRepository _distributionInformationRepository;
+        private readonly IPriorityRepository _priorityRepository;
         private readonly IRegionRepository _regionRecpository;
+        private readonly IPriorityRepository _priorityRecpository;
         private readonly IMapper _mapper;
 
         public CreateDistributionInformationCommandHandler(
             IDistributionInformationRepository distributionInformationRepository,
+            IPriorityRepository priorityRepository,
             IRegionRepository regionRecpository,
             IMapper mapper)
         {
             _distributionInformationRepository = distributionInformationRepository;
+            _priorityRepository = priorityRepository;
             _regionRecpository = regionRecpository;
             _mapper = mapper;
         }

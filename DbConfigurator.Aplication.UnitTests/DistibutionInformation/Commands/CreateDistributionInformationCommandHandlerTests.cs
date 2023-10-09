@@ -17,12 +17,14 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformation
     {
         private readonly FakeDistributionInformationRepository _distributionInfromationRepository;
         private readonly FakeRegionRepository _regionRepository;
+        private readonly FakePriorityRepository _priorityRepository;
         private readonly Mapper _mapper;
 
         public CreateDistributionInformationCommandHandlerTests()
         {
             _distributionInfromationRepository = new FakeDistributionInformationRepository();
             _regionRepository = new FakeRegionRepository();
+            _priorityRepository = new FakePriorityRepository();
             _mapper = MapperBuilder.AddDistributionInformationProfiles().Create();
         }
 
@@ -38,6 +40,7 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformation
             _regionRepository.ExistsAsyncReturns(false);
             var handler = new CreateDistributionInformationCommandHandler(
                 _distributionInfromationRepository,
+                _priorityRepository,
                 _regionRepository,
                 _mapper);
 
@@ -48,7 +51,28 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformation
             result.IsFailed.Should().BeTrue();
             result.Errors.First().Message.Should().Be("No istnace of region object with specified Id is present in database.");
         }
+        //[Fact]
+        //public async Task Handle_Should_ReturnFailedResult_When_NoInstanceOfPriorityWithSpecifiedIdIsPresentInDatabase()
+        //{
+        //    // Arragne
+        //    var distributionInformationToCreate = CreateNotExistingDistributionInformationDto();
+        //    var createCommand = new CreateDistributionInformationCommand()
+        //    {
+        //        DistributionInformation = distributionInformationToCreate
+        //    };
+        //    _regionRepository.ExistsAsyncReturns(false);
+        //    var handler = new CreateDistributionInformationCommandHandler(
+        //        _distributionInfromationRepository,
+        //        _regionRepository,
+        //        _mapper);
 
+        //    // Act
+        //    var result = await handler.Handle(createCommand, new CancellationToken());
+
+        //    // Assert
+        //    result.IsFailed.Should().BeTrue();
+        //    result.Errors.First().Message.Should().Be("No istnace of priority object with specified Id is present in database.");
+        //}
         [Fact]
         public async Task Handle_Should_ReturnNewlyCreatedDistributionInformation_When_SuccessfullyCreateDistribiutionInformation()
         {
@@ -61,6 +85,7 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformation
             _regionRepository.ExistsAsyncReturns(true);
             var handler = new CreateDistributionInformationCommandHandler(
                 _distributionInfromationRepository,
+                _priorityRepository,
                 _regionRepository,
                 _mapper);
 
@@ -111,25 +136,5 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformation
             };
         }
 
-        //[Fact]
-        //public async Task Handle_Should_ReturnFalse_When_DataInCreateCommandAreNotValid()
-        //{
-        //    // Arragne
-        //    var createCommand = new CreateDistributionInformationCommand();
-        //    var distributionInfromationRepository = new FakeDistributionInformationRepository();
-        //    var regionRepository = new FakeRegionRepository();
-        //    var mapper = MapperBuilder.AddDistributionInformationProfiles().Create();
-
-        //    var handler = new CreateDistributionInformationCommandHandler(
-        //        distributionInfromationRepository,
-        //        regionRepository,
-        //        mapper);
-
-        //    // Act
-        //    var result = await handler.Handle(createCommand, new CancellationToken());
-
-        //    // Assert
-        //    Assert.True(false);
-        //}
     }
 }

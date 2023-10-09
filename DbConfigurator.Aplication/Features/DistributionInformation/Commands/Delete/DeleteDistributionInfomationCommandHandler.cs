@@ -19,9 +19,17 @@ namespace DbConfigurator.Application.Features.DistributionInformation
         {
             _distributionInformationRepository = distributionInformationRepository;
         }
-        public Task<Result<bool>> Handle(DeleteDistributionInfomationCommand request, CancellationToken cancellationToken)
+        public async Task<Result<bool>> Handle(DeleteDistributionInfomationCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var entity = await _distributionInformationRepository.GetByIdAsync(request.DistributionInformationId);
+            if (entity == null)
+            {
+                return Result.Fail("No istnace of distribution information object with specified Id is present in database.");
+            }
+
+            await _distributionInformationRepository.DeleteAsync(entity);
+
+            return true;
         }
     }
 }

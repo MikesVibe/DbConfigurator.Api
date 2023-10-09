@@ -1,6 +1,6 @@
 ﻿using DbConfigurator.API.DataAccess;
 using DbConfigurator.API.DataAccess.Repository;
-using DbConfigurator.Aplication.Contracts.Persistence;
+using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Persistence.Repository;
 using Microsoft.EntityFrameworkCore;

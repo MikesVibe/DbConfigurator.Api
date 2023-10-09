@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using DbConfigurator.Aplication.Contracts.Persistence;
+using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Model.Entities.Core;
 using FluentResults;
@@ -43,20 +43,19 @@ namespace DbConfigurator.Application.Features.DistributionInformation
             if (priorityExists == false)
                 return Result.Fail("No istnace of priority object with specified Id is present in database.");
 
-            var mappedDisInfo = _mapper.Map<Api.Models.DistributionInformation>(request.DistributionInformation);
+            var region = await _regionRecpository.GetByIdAsync(disInfo.Region.Id);
+            var priority = await _priorityRepository.GetByIdAsync(disInfo.Priority.Id);
+            var disInfoInstance = new Api.Models.DistributionInformation()
+            {
+                Region = region!,
+                Priority = priority!
+            };
 
-            ////Returns invalid dto, in future change it to return result exception message
-            //if (mappedDisInfo is null)
-            //    return Result.Fail("Failed to map DistributionInformation.");
-
-            var createdEntity = await _distributionInformationRepository.AddAsync(mappedDisInfo);
+            var createdEntity = await _distributionInformationRepository.AddAsync(disInfoInstance);
             if (createdEntity is null)
                 return Result.Fail("Failed to create DistributionInformation.");
 
             var result = _mapper.Map<DistributionInformationDto>(createdEntity);
-            //if (result is null)
-                //return Result.Fail("Failed to map DistributionInformation.");
-
 
             return result;
         }

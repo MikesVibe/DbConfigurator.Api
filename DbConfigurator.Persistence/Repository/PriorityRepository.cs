@@ -1,6 +1,6 @@
 ﻿using DbConfigurator.API.DataAccess;
 using DbConfigurator.API.DataAccess.Repository;
-using DbConfigurator.Aplication.Contracts.Persistence;
+using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Model.Entities.Core;
 using System;
 using System.Collections.Generic;

@@ -39,19 +39,23 @@ namespace DbConfigurator.Application.Features.DistributionInformation
             if (regionExists == false)
                 return Result.Fail("No istnace of region object with specified Id is present in database.");
 
+            var priorityExists = await _priorityRepository.ExistsAsync(disInfo.Priority.Id);
+            if (priorityExists == false)
+                return Result.Fail("No istnace of priority object with specified Id is present in database.");
+
             var mappedDisInfo = _mapper.Map<Api.Models.DistributionInformation>(request.DistributionInformation);
 
-            //Returns invalid dto, in future change it to return result exception message
-            if (mappedDisInfo is null)
-                return Result.Fail("Failed to map DistributionInformation.");
+            ////Returns invalid dto, in future change it to return result exception message
+            //if (mappedDisInfo is null)
+            //    return Result.Fail("Failed to map DistributionInformation.");
 
             var createdEntity = await _distributionInformationRepository.AddAsync(mappedDisInfo);
             if (createdEntity is null)
                 return Result.Fail("Failed to create DistributionInformation.");
 
             var result = _mapper.Map<DistributionInformationDto>(createdEntity);
-            if (result is null)
-                return Result.Fail("Failed to map DistributionInformation.");
+            //if (result is null)
+                //return Result.Fail("Failed to map DistributionInformation.");
 
 
             return result;

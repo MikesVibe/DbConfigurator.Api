@@ -1,5 +1,4 @@
-﻿using DbConfigurator.Application.Features.Area;
-using DbConfigurator.Application.Features.DistributionInformation;
+﻿using DbConfigurator.Application.Features.DistributionInformation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +24,7 @@ namespace DbConfigurator.Api.Controllers
             //return Ok(Area);
         }
 
-        [HttpGet("{disInfoId}", Name = "GetAreaById")]
+        [HttpGet("{areaId}", Name = "GetAreaById")]
         public async Task<ActionResult<AreaDto>> GetAreaById(int areaId)
         {
             throw new NotImplementedException();

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DbConfigurator.Api.Models;
+using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.DistributionInformation;
 
 namespace DbConfigurator.Application.Profiles

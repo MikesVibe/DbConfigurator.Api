@@ -1,4 +1,4 @@
-﻿namespace DbConfigurator.Application.Features.DistributionInformation
+﻿namespace DbConfigurator.Application.Dtos
 {
     public class RegionDto
     {

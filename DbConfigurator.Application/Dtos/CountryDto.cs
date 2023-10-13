@@ -1,7 +1,7 @@
 ﻿using DbConfigurator.Api.Services;
 using System.ComponentModel.DataAnnotations;
 
-namespace DbConfigurator.Application.Features.DistributionInformation
+namespace DbConfigurator.Application.Dtos
 {
     public class CountryDto : IEntityDto
     {

@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Application.Features.DistributionInformation;
+﻿using DbConfigurator.Application.Dtos;
+using DbConfigurator.Application.Features.DistributionInformation;
 using DbConfigurator.Application.UnitTests.Common.Repositories;
 using FluentAssertions;
 

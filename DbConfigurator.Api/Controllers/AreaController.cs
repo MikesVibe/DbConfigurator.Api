@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Application.Features.DistributionInformation;
+﻿using DbConfigurator.Application.Dtos;
+using DbConfigurator.Application.Features.Area;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,55 +19,46 @@ namespace DbConfigurator.Api.Controllers
         [HttpGet("all", Name = "GetArea")]
         public async Task<ActionResult<IEnumerable<AreaDto>>> GetArea()
         {
-            throw new NotImplementedException();
-
-            //var Area = await _mediator.Send(new GetAreaItemListQuery());
-            //return Ok(Area);
+            var Area = await _mediator.Send(new GetAreaItemListQuery());
+            return Ok(Area);
         }
 
         [HttpGet("{areaId}", Name = "GetAreaById")]
         public async Task<ActionResult<AreaDto>> GetAreaById(int areaId)
         {
-            throw new NotImplementedException();
-
-            //var Area = await _mediator.Send(new GetAreaDetailsQuery() { Id = disInfoId });
-            //return Ok(Area);
+            var Area = await _mediator.Send(new GetAreaDetailsQuery() { AreaId = areaId });
+            return Ok(Area);
         }
 
         [HttpPost(Name = "AddArea")]
         public async Task<IActionResult> AddArea([FromBody] AreaDto area)
         {
-            throw new NotImplementedException();
+            var response = await _mediator.Send(new CreateAreaCommand() { Area = area });
 
-            //var response = await _mediator.Send(new CreateAreaCommand() { Area = distributionInfo });
+            if (response.IsFailed)
+                return BadRequest();
 
-            //if (response.IsFailed)
-            //    return BadRequest();
-
-            //return Ok();
+            return Ok();
         }
         [HttpDelete]
-        public async Task<IActionResult> DeleteArea(int areaId)
+        public async Task<IActionResult> DeleteArea([FromBody] AreaDto area)
         {
-            throw new NotImplementedException();
+            var response = await _mediator.Send(new DeleteAreaCommand() { Area = area });
 
-            //var response = await _mediator.Send(new DeleteDistributionInfomationCommand() { AreaId = disInfoId });
+            if (response.IsFailed)
+                return BadRequest();
 
-            //if (response.IsFailed)
-            //    return BadRequest();
-
-            //return Ok();
+            return Ok();
         }
         [HttpPut]
         public async Task<IActionResult> UpdateArea([FromBody] AreaDto area)
         {
-            throw new NotImplementedException();
-            //var response = await _mediator.Send(new UpdateAreaCommand() { Area = Area });
+            var response = await _mediator.Send(new UpdateAreaCommand() { Area = area });
 
-            //if (response.IsFailed)
-            //    return BadRequest();
+            if (response.IsFailed)
+                return BadRequest();
 
-            //return Ok();
+            return Ok();
         }
     }
 }

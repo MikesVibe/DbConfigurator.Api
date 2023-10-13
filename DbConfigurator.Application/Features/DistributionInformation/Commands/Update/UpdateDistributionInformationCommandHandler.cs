@@ -1,4 +1,5 @@
 ﻿using DbConfigurator.Application.Contracts.Persistence;
+using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
 

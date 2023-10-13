@@ -1,4 +1,6 @@
-﻿namespace DbConfigurator.Application.Features.DistributionInformation
+﻿using DbConfigurator.Application.Dtos;
+
+namespace DbConfigurator.Application.Features.DistributionInformation
 {
     public class DistributionInformationDetails
     {

@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Application.Features.DistributionInformation;
+﻿using DbConfigurator.Application.Dtos;
+using DbConfigurator.Application.Features.DistributionInformation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

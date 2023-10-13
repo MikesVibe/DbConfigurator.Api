@@ -26,8 +26,11 @@ namespace DbConfigurator.Api.Controllers
         [HttpGet("{areaId}", Name = "GetAreaById")]
         public async Task<ActionResult<AreaDto>> GetAreaById(int areaId)
         {
-            var Area = await _mediator.Send(new GetAreaDetailsQuery() { AreaId = areaId });
-            return Ok(Area);
+            var area = await _mediator.Send(new GetAreaDetailsQuery() { AreaId = areaId });
+            if (area.IsFailed)
+                return BadRequest(area.Errors.Single());
+
+            return Ok(area.Value);
         }
 
         [HttpPost(Name = "AddArea")]

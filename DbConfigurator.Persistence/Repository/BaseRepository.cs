@@ -42,7 +42,7 @@ namespace DbConfigurator.API.DataAccess.Repository
         }
         public virtual async Task<T?> GetByIdAsync(int id)
         {
-            return await _dbContext.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
+            return await _dbContext.Set<T>().SingleOrDefaultAsync(e => e.Id == id);
         }
         public virtual async Task<bool> ExistsAsync(int id)
         {

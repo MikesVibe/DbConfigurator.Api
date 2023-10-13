@@ -1,8 +1,5 @@
-﻿using DbConfigurator.Api.Models;
-using DbConfigurator.Application.Features.DistributionInformation;
-using DbConfigurator.Model.DTOs.Core;
+﻿using DbConfigurator.Application.Features.DistributionInformation;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DbConfigurator.Api.Controllers
@@ -38,7 +35,7 @@ namespace DbConfigurator.Api.Controllers
         {
             var response = await _mediator.Send(new CreateDistributionInformationCommand() { DistributionInformation = distributionInfo });
 
-            if(response.IsFailed)
+            if (response.IsFailed)
                 return BadRequest();
 
             return Ok();
@@ -56,7 +53,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateDistributionInformation([FromBody] DistributionInformationDto distributionInformation)
         {
-            var response = await _mediator.Send(new UpdateDistributionInformationCommand() { DistributionInformation = distributionInformation});
+            var response = await _mediator.Send(new UpdateDistributionInformationCommand() { DistributionInformation = distributionInformation });
 
             if (response.IsFailed)
                 return BadRequest();

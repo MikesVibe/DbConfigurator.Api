@@ -1,16 +1,10 @@
 ﻿using DbConfigurator.API.DataAccess;
 using DbConfigurator.API.DataAccess.Repository;
 using DbConfigurator.Application.Contracts.Persistence;
-using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Persistence.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DbConfigurator.Persistence
 {

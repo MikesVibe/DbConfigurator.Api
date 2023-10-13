@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DbConfigurator.Aplication\DbConfigurator.Aplication.csproj" />
+    <ProjectReference Include="..\DbConfigurator.Application\DbConfigurator.Application.csproj" />
     <ProjectReference Include="..\DbConfigurator.Infrastracture\DbConfigurator.Infrastracture.csproj" />
     <ProjectReference Include="..\DbConfigurator.Persistence\DbConfigurator.Persistence.csproj" />
   </ItemGroup>

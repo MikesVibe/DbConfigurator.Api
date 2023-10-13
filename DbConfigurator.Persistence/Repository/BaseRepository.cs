@@ -1,13 +1,12 @@
 ﻿using DbConfigurator.Api.Services;
 using DbConfigurator.Application.Contracts.Persistence;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 
 namespace DbConfigurator.API.DataAccess.Repository
 {
     public class BaseRepository<T> : IRepository<T>
         where T : class, IEntity
-        
+
     {
         protected readonly DbConfiguratorApiDbContext _dbContext;
 

@@ -1,6 +1,7 @@
 ﻿using DbConfigurator.API.DataAccess;
 using DbConfigurator.API.DataAccess.Repository;
 using DbConfigurator.Application.Contracts.Persistence;
+using DbConfigurator.Model.Entities.Core;
 using DbConfigurator.Persistence.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -18,7 +19,12 @@ namespace DbConfigurator.Persistence
 
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
 
+
+            services.AddScoped<IAreaRepository, AreaRepository>();
+            services.AddScoped<IBusinessUnitRepository, BusinessUnitRepository>();
+            services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<IDistributionInformationRepository, DistributionInformationRepository>();
+            services.AddScoped<IRecipientRepository, RecipientRepository>();
             services.AddScoped<IRegionRepository, RegionRepository>();
             services.AddScoped<IPriorityRepository, PriorityRepository>();
 

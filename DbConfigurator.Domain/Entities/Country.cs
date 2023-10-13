@@ -1,9 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using DbConfigurator.Api.Services;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace DbConfigurator.Model.Entities.Core
 {
-    public class Country
+    public class Country : IEntity
     {
         [Required]
         public int Id { get; set; }

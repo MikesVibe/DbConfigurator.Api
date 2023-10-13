@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Contracts.Persistence
 {
-    public interface IBuisnessUnitRepository : IRepository<BuisnessUnit>
+    public interface IBusinessUnitRepository : IRepository<BusinessUnit>
     {
     }
 }

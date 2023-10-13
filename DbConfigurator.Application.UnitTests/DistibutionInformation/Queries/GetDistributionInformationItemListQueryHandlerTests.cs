@@ -32,7 +32,7 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformation
             // Assert
             Assert.Equal(3, result.Count());
             Assert.Equal("America", first.Region.Area.Name);
-            Assert.Equal("NAO", first.Region.BuisnessUnit.Name);
+            Assert.Equal("NAO", first.Region.BusinessUnit.Name);
             Assert.Equal("Canada", first.Region.Country.CountryName);
             Assert.Equal("CA", first.Region.Country.CountryCode);
             Assert.Equal("P1", first.Priority.Name);

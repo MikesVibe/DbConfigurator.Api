@@ -88,7 +88,7 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformation
             var resultValue = result.Value;
 
             Assert.Equal(_distributionInformationToCreate.Region.Area.Name, resultValue.Region.Area.Name);
-            Assert.Equal(_distributionInformationToCreate.Region.BuisnessUnit.Name, resultValue.Region.BuisnessUnit.Name);
+            Assert.Equal(_distributionInformationToCreate.Region.BusinessUnit.Name, resultValue.Region.BusinessUnit.Name);
             Assert.Equal(_distributionInformationToCreate.Region.Country.CountryName, resultValue.Region.Country.CountryName);
             Assert.Equal(_distributionInformationToCreate.Region.Country.CountryCode, resultValue.Region.Country.CountryCode);
             Assert.Equal(_distributionInformationToCreate.Priority.Name, resultValue.Priority.Name);
@@ -107,7 +107,7 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformation
                         Id = 1,
                         Name = "America"
                     },
-                    BuisnessUnit = new BuisnessUnitDto()
+                    BusinessUnit = new BusinessUnitDto()
                     {
                         Id = 1,
                         Name = "NAO"

@@ -11,8 +11,8 @@ namespace DbConfigurator.Model.Entities.Core
         public int Id { get; set; }
         public Area Area { get; set; } = new Area();
         public int AreaId { get; set; }
-        public BuisnessUnit BuisnessUnit { get; set; } = new BuisnessUnit();
-        public int BuisnessUnitId { get; set; }
+        public BusinessUnit BusinessUnit { get; set; } = new BusinessUnit();
+        public int BusinessUnitId { get; set; }
         public Country Country { get; set; } = new Country();
         public int CountryId { get; set; }
         public ICollection<DistributionInformation> DistributionInformations { get; set; } = new Collection<DistributionInformation>();

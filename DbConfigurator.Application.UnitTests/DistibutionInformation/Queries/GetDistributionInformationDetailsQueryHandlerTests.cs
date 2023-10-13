@@ -26,7 +26,7 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformation.Queries
 
             // Assert
             Assert.Equal("America", result.Region.Area.Name);
-            Assert.Equal("NAO", result.Region.BuisnessUnit.Name);
+            Assert.Equal("NAO", result.Region.BusinessUnit.Name);
             Assert.Equal("Canada", result.Region.Country.CountryName);
             Assert.Equal("CA", result.Region.Country.CountryCode);
             Assert.Equal("P1", result.Priority.Name);

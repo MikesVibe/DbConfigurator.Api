@@ -70,7 +70,7 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
                             Id=1,
                             Name="America"
                         },
-                        BuisnessUnit=new BuisnessUnit()
+                        BusinessUnit=new BusinessUnit()
                         {
                             Id=1,
                             Name="NAO"
@@ -99,7 +99,7 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
                             Id=82,
                             Name="Central Europe"
                         },
-                        BuisnessUnit=new BuisnessUnit()
+                        BusinessUnit=new BusinessUnit()
                         {
                             Id=2,
                             Name="GER"
@@ -128,7 +128,7 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
                             Id=3,
                             Name="Southern Europe"
                         },
-                        BuisnessUnit=new BuisnessUnit()
+                        BusinessUnit=new BusinessUnit()
                         {
                             Id=3,
                             Name="FRA"

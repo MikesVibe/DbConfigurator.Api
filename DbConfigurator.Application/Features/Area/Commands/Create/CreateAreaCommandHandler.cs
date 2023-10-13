@@ -5,9 +5,9 @@ using MediatR;
 
 namespace DbConfigurator.Application.Features.Area
 {
-    public class CreateAreaCommandHandler : IRequestHandler<CreateAreaCommand, Result<AreaDto>>
+    public class CreateBusinessUnitCommandHandler : IRequestHandler<CreateAreaCommand, Result<AreaDto>>
     {
-        public CreateAreaCommandHandler()
+        public CreateBusinessUnitCommandHandler()
         {
         }
 

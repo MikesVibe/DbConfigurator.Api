@@ -4,11 +4,11 @@ using DbConfigurator.Model.Entities.Core;
 
 namespace DbConfigurator.Application.Profiles
 {
-    public class BuisnessUnitProfile : Profile
+    public class BusinessUnitProfile : Profile
     {
-        public BuisnessUnitProfile()
+        public BusinessUnitProfile()
         {
-            CreateMap<BuisnessUnit, BuisnessUnitDto>().ReverseMap();
+            CreateMap<BusinessUnit, BusinessUnitDto>().ReverseMap();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace DbConfigurator.Application.UnitTests.Common
                     cfg.AddProfile<RegionProfile>();
                     cfg.AddProfile<PriorityProfile>();
                     cfg.AddProfile<AreaProfile>();
-                    cfg.AddProfile<BuisnessUnitProfile>();
+                    cfg.AddProfile<BusinessUnitProfile>();
                     cfg.AddProfile<CountryProfile>();
                 });
         }

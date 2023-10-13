@@ -57,7 +57,7 @@ namespace DbConfigurator.API.DataAccess.Repository
                 .Include(d => d.Region)
                     .ThenInclude(r => r.Area)
                 .Include(d => d.Region)
-                    .ThenInclude(r => r.BuisnessUnit)
+                    .ThenInclude(r => r.BusinessUnit)
                 .Include(d => d.Region)
                     .ThenInclude(r => r.Country)
                 .Include(d => d.RecipientsCc)

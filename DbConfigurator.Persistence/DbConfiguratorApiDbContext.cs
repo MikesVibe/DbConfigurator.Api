@@ -15,7 +15,7 @@ namespace DbConfigurator.API.DataAccess
         public DbSet<DistributionInformation> DistributionInformation { get; set; }
         public DbSet<Region> Region { get; set; }
         public DbSet<Area> Area { get; set; }
-        public DbSet<BuisnessUnit> BuisnessUnit { get; set; }
+        public DbSet<BusinessUnit> BusinessUnit { get; set; }
         public DbSet<Country> Country { get; set; }
         public DbSet<Priority> Priority { get; set; }
         public DbSet<RecipientGroupCc> RecipientGroupCc { get; set; }

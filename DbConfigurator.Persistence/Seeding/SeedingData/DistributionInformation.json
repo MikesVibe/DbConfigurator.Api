@@ -1,0 +1,20 @@
+[{
+        "RegionId": 1,
+        "PriorityId": 1
+    }, {
+        "RegionId": 13,
+        "PriorityId": 2
+    }, {
+        "RegionId": 4,
+        "PriorityId": 2
+    }, {
+        "RegionId": 23,
+        "PriorityId": 3
+    }, {
+        "RegionId": 65,
+        "PriorityId": 99
+    }, {
+        "RegionId": 1,
+        "PriorityId": 4
+    }
+]

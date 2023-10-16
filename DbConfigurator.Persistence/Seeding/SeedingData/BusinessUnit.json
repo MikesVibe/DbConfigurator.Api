@@ -1,0 +1,44 @@
+[{
+        "Id": 1,
+        "Name": "NAO"
+    }, {
+        "Id": 2,
+        "Name": "SAM"
+    }, {
+        "Id": 3,
+        "Name": "GER"
+    }, {
+        "Id": 4,
+        "Name": "CEE"
+    }, {
+        "Id": 5,
+        "Name": "MEK"
+    }, {
+        "Id": 6,
+        "Name": "AFR"
+    }, {
+        "Id": 7,
+        "Name": "IND"
+    }, {
+        "Id": 8,
+        "Name": "APAC"
+    }, {
+        "Id": 9,
+        "Name": "BTN"
+    }, {
+        "Id": 10,
+        "Name": "UK&I"
+    }, {
+        "Id": 11,
+        "Name": "ITA"
+    }, {
+        "Id": 12,
+        "Name": "IBE"
+    }, {
+        "Id": 13,
+        "Name": "FRA"
+    }, {
+        "Id": 99,
+        "Name": "ANY"
+    }
+]

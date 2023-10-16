@@ -1,5 +1,6 @@
 ﻿using DbConfigurator.API.DataAccess;
 using DbConfigurator.Application;
+using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -54,16 +55,26 @@ namespace DbConfigurator.Api
 
         }
 
-        public static async Task ResetDatabaseAsync(this WebApplication app)
+        public static async Task CreateDatabaseAsync(this WebApplication app)
         {
             using var scope = app.Services.CreateScope();
 
             var context = scope.ServiceProvider.GetService<DbConfiguratorApiDbContext>();
-            if (context != null)
-            {
-                await context.Database.EnsureDeletedAsync();
-                await context.Database.MigrateAsync();
-            }
+            if (context is null)
+                return;
+
+            if (await context.Database.CanConnectAsync())
+                return;
+
+            await context.Database.EnsureDeletedAsync();
+            await context.Database.MigrateAsync();
+
+            var seeder = scope.ServiceProvider.GetService<ISeeder>();
+            if (seeder is null)
+                return;
+
+            await seeder.SeedAsync();
+
             try
             {
 

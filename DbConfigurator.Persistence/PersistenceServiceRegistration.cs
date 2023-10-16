@@ -3,6 +3,7 @@ using DbConfigurator.API.DataAccess.Repository;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Model.Entities.Core;
 using DbConfigurator.Persistence.Repository;
+using DbConfigurator.Persistence.Seeding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +28,9 @@ namespace DbConfigurator.Persistence
             services.AddScoped<IRecipientRepository, RecipientRepository>();
             services.AddScoped<IRegionRepository, RegionRepository>();
             services.AddScoped<IPriorityRepository, PriorityRepository>();
+
+
+            services.AddScoped<ISeeder, Seeder>();
 
             return services;
         }

@@ -1,6 +1,8 @@
 ﻿using DbConfigurator.Api.Models;
 using DbConfigurator.Model.Entities.Core;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System.Reflection.Emit;
 
 namespace DbConfigurator.Persistence
 {
@@ -35,7 +37,29 @@ namespace DbConfigurator.Persistence
                 .WithMany(r => r.RecipientGroupCc)
                 .UsingEntity<RecipientGroupCc>();
 
-           
+
+            modelBuilder.HasDataFromFileAsync<Area>("Area.json");
+            modelBuilder.HasDataFromFileAsync<BusinessUnit>("BusinessUnit.json");
+            modelBuilder.HasDataFromFileAsync<Country>("Country.json");
+            modelBuilder.HasDataFromFileAsync<Priority>("Priority.json");
+            modelBuilder.HasDataFromFileAsync<Recipient>("Recipient.json");
+        }
+
+
+    }
+    public static class Test
+    {
+        public static void HasDataFromFileAsync<T>(this ModelBuilder modelBuilder, string fileName)
+            where T : class
+        {
+            var basePath = AppDomain.CurrentDomain.BaseDirectory;
+            var filePath = Path.Combine(basePath, "Seeding", "SeedingData", fileName);
+
+            var fromFile = File.ReadAllText(filePath);
+            var entities = JsonConvert.DeserializeObject<IEnumerable<T>>(fromFile);
+
+            modelBuilder.Entity<T>().HasData(entities);
         }
     }
+
 }

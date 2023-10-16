@@ -9,11 +9,11 @@ namespace DbConfigurator.Model.Entities.Core
     {
         [Required]
         public int Id { get; set; }
-        public Area Area { get; set; } = new Area();
+        public Area Area { get; set; }
         public int AreaId { get; set; }
-        public BusinessUnit BusinessUnit { get; set; } = new BusinessUnit();
+        public BusinessUnit BusinessUnit { get; set; }
         public int BusinessUnitId { get; set; }
-        public Country Country { get; set; } = new Country();
+        public Country Country { get; set; }
         public int CountryId { get; set; }
         public ICollection<DistributionInformation> DistributionInformations { get; set; } = new Collection<DistributionInformation>();
     }

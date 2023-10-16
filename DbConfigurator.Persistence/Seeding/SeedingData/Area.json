@@ -1,0 +1,20 @@
+[{
+        "Id": 1,
+        "Name": "Americas"
+    }, {
+        "Id": 2,
+        "Name": "Central Europe"
+    }, {
+        "Id": 3,
+        "Name": "Growing Markets"
+    }, {
+        "Id": 4,
+        "Name": "Northern Europe"
+    }, {
+        "Id": 5,
+        "Name": "Southern Europe"
+    }, {
+        "Id": 99,
+        "Name": "ANY"
+    }
+]

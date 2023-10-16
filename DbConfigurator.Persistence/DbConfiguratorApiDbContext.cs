@@ -2,7 +2,7 @@
 using DbConfigurator.Model.Entities.Core;
 using Microsoft.EntityFrameworkCore;
 
-namespace DbConfigurator.API.DataAccess
+namespace DbConfigurator.Persistence
 {
     public class DbConfiguratorApiDbContext : DbContext
     {
@@ -34,6 +34,8 @@ namespace DbConfigurator.API.DataAccess
                 .HasMany(g => g.RecipientsCc)
                 .WithMany(r => r.RecipientGroupCc)
                 .UsingEntity<RecipientGroupCc>();
+
+           
         }
     }
 }

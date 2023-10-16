@@ -39,7 +39,7 @@ namespace DbConfigurator.Api.Controllers
             var response = await _mediator.Send(new CreateAreaCommand() { Area = area });
 
             if (response.IsFailed)
-                return BadRequest();
+                return BadRequest(response.Errors.Single());
 
             return Ok();
         }
@@ -49,7 +49,7 @@ namespace DbConfigurator.Api.Controllers
             var response = await _mediator.Send(new DeleteAreaCommand() { Area = area });
 
             if (response.IsFailed)
-                return BadRequest();
+                return BadRequest(response.Errors.Single());
 
             return Ok();
         }
@@ -59,7 +59,7 @@ namespace DbConfigurator.Api.Controllers
             var response = await _mediator.Send(new UpdateAreaCommand() { Area = area });
 
             if (response.IsFailed)
-                return BadRequest();
+                return BadRequest(response.Errors.Single());
 
             return Ok();
         }

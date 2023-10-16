@@ -1,5 +1,7 @@
-﻿using DbConfigurator.Application;
+﻿using DbConfigurator.API.DataAccess;
+using DbConfigurator.Application;
 using DbConfigurator.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace DbConfigurator.Api
 {
@@ -50,6 +52,27 @@ namespace DbConfigurator.Api
 
             return app;
 
+        }
+
+        public static async Task ResetDatabaseAsync(this WebApplication app)
+        {
+            using var scope = app.Services.CreateScope();
+
+            var context = scope.ServiceProvider.GetService<DbConfiguratorApiDbContext>();
+            if (context != null)
+            {
+                await context.Database.EnsureDeletedAsync();
+                await context.Database.MigrateAsync();
+            }
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                //var logger = scope.ServiceProvider.GetRequiredService<ILogger>();
+                //logger.LogError(ex, "An error occurred while migrating the database.");
+            }
         }
     }
 }

@@ -6,6 +6,13 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
     internal class FakePriorityRepository : IPriorityRepository
     {
         private bool _existsAsyncReturnValue;
+        public FakePriorityRepository()
+        {
+            Initialize();
+        }
+
+        public IEnumerable<Priority> Priorities { get; set; } = Enumerable.Empty<Priority>();
+
 
         public Task<Priority> AddAsync(Priority entity)
         {
@@ -23,14 +30,16 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
             return _existsAsyncReturnValue;
         }
 
-        public Task<IEnumerable<Priority>> GetAllAsync()
+        public async Task<IEnumerable<Priority>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            await Task.Delay(0);
+            return Priorities;
         }
 
-        public Task<Priority?> GetByIdAsync(int id)
+        public async Task<Priority?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var list = await GetAllAsync();
+            return list.FirstOrDefault(d => d.Id == id);
         }
 
         public Task<bool> UpdateAsync(Priority entity)
@@ -40,6 +49,28 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
         public void ExistsAsyncReturns(bool retrunValue)
         {
             _existsAsyncReturnValue = retrunValue;
+        }
+
+        private void Initialize()
+        {
+            Priorities = new List<Priority>()
+            {
+                new Priority()
+                {
+                    Id = 1,
+                    Name = "P1"
+                },
+                new Priority()
+                {
+                    Id = 2,
+                    Name = "P2"
+                },
+                new Priority()
+                {
+                    Id = 3,
+                    Name = "P3"
+                }
+            };
         }
     }
 }

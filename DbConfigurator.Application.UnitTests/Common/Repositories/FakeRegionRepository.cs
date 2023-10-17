@@ -7,6 +7,14 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
     {
         private bool _existsAsyncReturnValue;
 
+        public FakeRegionRepository()
+        {
+            Initialize();
+        }
+
+        public IEnumerable<Region> Regions { get; set; } = Enumerable.Empty<Region>();
+
+
         public Task<Region> AddAsync(Region entity)
         {
             throw new NotImplementedException();
@@ -23,14 +31,16 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
             return _existsAsyncReturnValue;
         }
 
-        public Task<IEnumerable<Region>> GetAllAsync()
+        public async Task<IEnumerable<Region>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            await Task.Delay(0);
+            return Regions;
         }
 
-        public Task<Region?> GetByIdAsync(int id)
+        public async Task<Region?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var list = await GetAllAsync();
+            return list.FirstOrDefault(d => d.Id == id);
         }
 
         public Task<bool> UpdateAsync(Region entity)
@@ -40,6 +50,74 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
         public void ExistsAsyncReturns(bool retrunValue)
         {
             _existsAsyncReturnValue = retrunValue;
+        }
+
+        private void Initialize()
+        {
+            Regions = new List<Region>()
+            {
+                new Region()
+                {
+                    Id = 1,
+                    Area = new Area()
+                    {
+                        Id = 1,
+                        Name = "America"
+                    },
+                    BusinessUnit = new BusinessUnit()
+                    {
+                        Id = 1,
+                        Name = "NAO"
+                    },
+                    Country = new Country()
+                    {
+                        Id = 1,
+                        CountryName = "Canada",
+                        CountryCode = "CA"
+                    }
+                },
+                new Region()
+                {
+                    Id = 2,
+                    Area = new Area()
+                    {
+                        Id = 82,
+                        Name = "Central Europe"
+                    },
+                    BusinessUnit = new BusinessUnit()
+                    {
+                        Id = 2,
+                        Name = "GER"
+                    },
+                    Country = new Country()
+                    {
+                        Id = 2,
+                        CountryName = "Germany",
+                        CountryCode = "DE"
+                    }
+                },
+                new Region()
+                {
+                    Id = 3,
+                    Area = new Area()
+                    {
+                        Id = 3,
+                        Name = "Southern Europe"
+                    },
+                    BusinessUnit = new BusinessUnit()
+                    {
+                        Id = 3,
+                        Name = "FRA"
+                    },
+                    Country = new Country()
+                    {
+                        Id = 3,
+                        CountryName = "New Caledonia",
+                        CountryCode = "NC"
+                    }
+                }
+            };
+
         }
     }
 }

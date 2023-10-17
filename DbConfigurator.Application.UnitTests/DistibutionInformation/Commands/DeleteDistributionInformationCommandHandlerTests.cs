@@ -1,8 +1,8 @@
-﻿using DbConfigurator.Application.Features.DistributionInformation;
+﻿using DbConfigurator.Application.Features.DistributionInformationFeature;
 using DbConfigurator.Application.UnitTests.Common.Repositories;
 using FluentAssertions;
 
-namespace DbConfigurator.Application.UnitTests.DistibutionInformation.Commands
+namespace DbConfigurator.Application.UnitTests.DistibutionInformationTests.Commands
 {
     public class DeleteDistributionInformationCommandHandlerTests
     {

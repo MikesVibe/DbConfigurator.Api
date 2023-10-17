@@ -2,7 +2,7 @@
 using DbConfigurator.Application.Contracts.Persistence;
 using MediatR;
 
-namespace DbConfigurator.Application.Features.DistributionInformation
+namespace DbConfigurator.Application.Features.DistributionInformationFeature
 {
     public class GetDistributionInformationItemListQueryHandler :
         IRequestHandler<GetDistributionInformationItemListQuery, IEnumerable<DistributionInformationItem>>

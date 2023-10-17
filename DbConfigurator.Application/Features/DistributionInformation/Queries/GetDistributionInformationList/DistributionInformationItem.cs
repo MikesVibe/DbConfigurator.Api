@@ -1,6 +1,6 @@
 ﻿using DbConfigurator.Application.Dtos;
 
-namespace DbConfigurator.Application.Features.DistributionInformation
+namespace DbConfigurator.Application.Features.DistributionInformationFeature
 {
     public class DistributionInformationItem
     {

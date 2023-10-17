@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
+using DbConfigurator.Domain.Model.Entities;
 using FluentResults;
 using MediatR;
 
-namespace DbConfigurator.Application.Features.DistributionInformation
+namespace DbConfigurator.Application.Features.DistributionInformationFeature
 {
     public class CreateDistributionInformationCommandHandler : IRequestHandler<CreateDistributionInformationCommand, Result<DistributionInformationDto>>
     {
@@ -39,7 +40,7 @@ namespace DbConfigurator.Application.Features.DistributionInformation
 
             var region = await _regionRecpository.GetByIdAsync(disInfo.Region.Id);
             var priority = await _priorityRepository.GetByIdAsync(disInfo.Priority.Id);
-            var disInfoInstance = new Domain.Model.Entities.DistributionInformation()
+            var disInfoInstance = new DistributionInformation()
             {
                 Region = region!,
                 Priority = priority!

@@ -1,8 +1,8 @@
-﻿using DbConfigurator.Application.Features.DistributionInformation;
+﻿using DbConfigurator.Application.Features.DistributionInformationFeature;
 using DbConfigurator.Application.UnitTests.Common;
 using DbConfigurator.Application.UnitTests.Common.Repositories;
 
-namespace DbConfigurator.Application.UnitTests.DistributionInformation.Queries
+namespace DbConfigurator.Application.UnitTests.DistributionInformationTests.Queries
 {
     public class GetDistributionInformationDetailsQueryHandlerTests
     {

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using DbConfigurator.Application.Features.DistributionInformation;
+using DbConfigurator.Application.Features.DistributionInformationFeature;
 using DbConfigurator.Application.UnitTests.Common;
 using DbConfigurator.Application.UnitTests.Common.Repositories;
 
-namespace DbConfigurator.Application.UnitTests.DistributionInformation
+namespace DbConfigurator.Application.UnitTests.DistributionInformationTests
 {
     public class GetDistributionInformationItemListQueryHandlerTests
     {

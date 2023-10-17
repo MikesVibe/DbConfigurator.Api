@@ -1,21 +1,25 @@
-﻿using DbConfigurator.Application.Dtos;
-using DbConfigurator.Application.Features.DistributionInformation;
+﻿using AutoMapper;
+using DbConfigurator.Application.Dtos;
+using DbConfigurator.Application.Features.DistributionInformationFeature;
+using DbConfigurator.Application.UnitTests.Common;
 using DbConfigurator.Application.UnitTests.Common.Repositories;
 using FluentAssertions;
 
-namespace DbConfigurator.Application.UnitTests.DistibutionInformation.Commands
+namespace DbConfigurator.Application.UnitTests.DistibutionInformationTests.Commands
 {
     public class UpdateDistributionInformationCommandHandlerTests
     {
         private readonly FakeDistributionInformationRepository _distributionInfromationRepository;
         private readonly FakePriorityRepository _priorityRepository;
         private readonly FakeRegionRepository _regionRepository;
+        private readonly IMapper _mapper;
 
         public UpdateDistributionInformationCommandHandlerTests()
         {
             _distributionInfromationRepository = new FakeDistributionInformationRepository();
             _priorityRepository = new FakePriorityRepository();
             _regionRepository = new FakeRegionRepository();
+            _mapper = MapperBuilder.AddDistributionInformationProfiles().Create();
         }
         [Fact]
         public async Task Handle_Should_ReturnFailedResult_When_NoInstanceOfDistributionInformationWithSpecifiedIdIsPresentInDatabase()
@@ -24,7 +28,8 @@ namespace DbConfigurator.Application.UnitTests.DistibutionInformation.Commands
             var handler = new UpdateDistributionInformationCommandHandler(
                 _distributionInfromationRepository,
                 _priorityRepository,
-                _regionRepository);
+                _regionRepository,
+                _mapper);
 
             var _updateCommand = new UpdateDistributionInformationCommand() { DistributionInformation = UpdateDistributionInformationDto() };
 

@@ -2,7 +2,7 @@
 using FluentResults;
 using MediatR;
 
-namespace DbConfigurator.Application.Features.DistributionInformation
+namespace DbConfigurator.Application.Features.DistributionInformationFeature
 {
     public class DeleteDistributionInfomationCommandHandler : IRequestHandler<DeleteDistributionInfomationCommand, Result<bool>>
     {

@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using DbConfigurator.Application.Dtos;
-using DbConfigurator.Application.Features.DistributionInformation;
+using DbConfigurator.Application.Features.DistributionInformationFeature;
 using DbConfigurator.Application.UnitTests.Common;
 using DbConfigurator.Application.UnitTests.Common.Repositories;
 using FluentAssertions;
 
-namespace DbConfigurator.Application.UnitTests.DistributionInformation
+namespace DbConfigurator.Application.UnitTests.DistributionInformationTests.Commands
 {
     public class CreateDistributionInformationCommandHandlerTests
     {

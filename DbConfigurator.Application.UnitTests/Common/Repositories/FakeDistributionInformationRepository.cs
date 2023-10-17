@@ -11,11 +11,11 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
         }
 
 
-        public IEnumerable<Domain.Model.Entities.DistributionInformation> DistributionInformation { get; set; } = Enumerable.Empty<Domain.Model.Entities.DistributionInformation>();
+        public IEnumerable<DistributionInformation> DistributionInformation { get; set; } = new List<DistributionInformation>();
 
         public bool ExistsAsyncReturnValue { get; private set; }
 
-        public async Task<Domain.Model.Entities.DistributionInformation> AddAsync(Domain.Model.Entities.DistributionInformation entity)
+        public async Task<DistributionInformation> AddAsync(DistributionInformation entity)
         {
             await Task.Delay(0);
             return entity;
@@ -26,7 +26,7 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(Domain.Model.Entities.DistributionInformation value)
+        public Task DeleteAsync(DistributionInformation value)
         {
             throw new NotImplementedException();
         }
@@ -37,19 +37,19 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
             return ExistsAsyncReturnValue;
         }
 
-        public async Task<IEnumerable<Domain.Model.Entities.DistributionInformation>> GetAllAsync()
+        public async Task<IEnumerable<DistributionInformation>> GetAllAsync()
         {
             await Task.Delay(0);
             return DistributionInformation;
         }
 
-        public async Task<Domain.Model.Entities.DistributionInformation?> GetByIdAsync(int id)
+        public async Task<DistributionInformation?> GetByIdAsync(int id)
         {
             var list = await GetAllAsync();
             return list.FirstOrDefault(d => d.Id == id);
         }
 
-        public Task<bool> UpdateAsync(Domain.Model.Entities.DistributionInformation entity)
+        public Task<bool> UpdateAsync(DistributionInformation entity)
         {
             throw new NotImplementedException();
         }
@@ -57,9 +57,9 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
 
         private void InitializeDistributionInformation()
         {
-            DistributionInformation = new List<Domain.Model.Entities.DistributionInformation>
+            DistributionInformation = new List<DistributionInformation>
             {
-                new Domain.Model.Entities.DistributionInformation()
+                new DistributionInformation()
                 {
                     Id=1,
                     Region = new Region()
@@ -88,7 +88,7 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
                         Name="P1"
                     }
                 },
-                new Domain.Model.Entities.DistributionInformation()
+                new DistributionInformation()
                 {
                     Id=2,
                     Region = new Region()
@@ -117,7 +117,7 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
                         Name="P2"
                     }
                 },
-                new Domain.Model.Entities.DistributionInformation()
+                new DistributionInformation()
   {
                     Id=3,
                     Region = new Region()

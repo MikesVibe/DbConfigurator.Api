@@ -1,5 +1,6 @@
 ﻿using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.DistributionInformationFeature;
+using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Update;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -52,7 +53,7 @@ namespace DbConfigurator.Api.Controllers
             return Ok();
         }
         [HttpPut]
-        public async Task<IActionResult> UpdateDistributionInformation([FromBody] DistributionInformationDto distributionInformation)
+        public async Task<IActionResult> UpdateDistributionInformation([FromBody] UpdateDistributionInformationDto distributionInformation)
         {
             var response = await _mediator.Send(new UpdateDistributionInformationCommand() { DistributionInformation = distributionInformation });
 

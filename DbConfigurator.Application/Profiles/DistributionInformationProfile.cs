@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DbConfigurator.Application.Dtos;
+using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Update;
 using DbConfigurator.Application.Features.DistributionInformationFeature;
 using DbConfigurator.Domain.Model.Entities;
 
@@ -13,6 +14,7 @@ namespace DbConfigurator.Application.Profiles
             CreateMap<DistributionInformation, DistributionInformationDetails>();
             //CreateMap<DistributionInformation, DistributionInformationDto>();
             CreateMap<DistributionInformationDto, DistributionInformation>().ReverseMap();
+            CreateMap<UpdateDistributionInformationDto, DistributionInformation>();
         }
     }
 }

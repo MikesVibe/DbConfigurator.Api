@@ -1,5 +1,5 @@
 ﻿using DbConfigurator.Application.Dtos;
-using DbConfigurator.Application.Features.Area;
+using DbConfigurator.Application.Features.AreaFeature;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,7 +34,7 @@ namespace DbConfigurator.Api.Controllers
         }
 
         [HttpPost(Name = "AddArea")]
-        public async Task<IActionResult> AddArea([FromBody] AreaCreateDto area)
+        public async Task<IActionResult> AddArea([FromBody] CreateAreaDto area)
         {
             var response = await _mediator.Send(new CreateAreaCommand() { Area = area });
 

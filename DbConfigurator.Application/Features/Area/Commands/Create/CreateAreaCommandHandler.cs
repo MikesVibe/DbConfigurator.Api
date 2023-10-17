@@ -5,7 +5,7 @@ using DbConfigurator.Domain.Model;
 using FluentResults;
 using MediatR;
 
-namespace DbConfigurator.Application.Features.Area
+namespace DbConfigurator.Application.Features.AreaFeature
 {
     public class CreateBusinessUnitCommandHandler : IRequestHandler<CreateAreaCommand, Result<AreaDto>>
     {

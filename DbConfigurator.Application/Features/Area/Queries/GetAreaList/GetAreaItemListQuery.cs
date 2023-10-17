@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Application.Features.Area
+namespace DbConfigurator.Application.Features.AreaFeature
 {
     public class GetAreaItemListQuery : IRequest<IEnumerable<AreaDto>>
     {

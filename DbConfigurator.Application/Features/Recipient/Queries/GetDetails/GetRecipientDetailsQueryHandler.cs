@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
-using DbConfigurator.Application.Features.Priority;
+using DbConfigurator.Application.Features.Feature;
 using FluentResults;
 using MediatR;
 using System;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Application.Features.Recipient
+namespace DbConfigurator.Application.Features.RecipientFeature
 {
     public class GetRecipientDetailsQueryHandler : IRequestHandler<GetRecipientDetailsQuery, Result<RecipientDto>>
     {

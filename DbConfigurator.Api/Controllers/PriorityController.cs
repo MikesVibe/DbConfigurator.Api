@@ -1,5 +1,5 @@
 ﻿using DbConfigurator.Application.Dtos;
-using DbConfigurator.Application.Features.Priority;
+using DbConfigurator.Application.Features.Feature;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Application.Features.Recipient
+namespace DbConfigurator.Application.Features.RecipientFeature
 {
     public class GetRecipientDetailsQuery : IRequest<Result<RecipientDto>>
     {

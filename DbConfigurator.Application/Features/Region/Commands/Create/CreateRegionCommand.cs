@@ -2,7 +2,7 @@
 using FluentResults;
 using MediatR;
 
-namespace DbConfigurator.Application.Features.Region
+namespace DbConfigurator.Application.Features.RegionFeature
 {
     public class CreateRegionCommand : IRequest<Result<RegionDto>>
     {

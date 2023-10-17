@@ -3,7 +3,7 @@ using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
 
-namespace DbConfigurator.Application.Features.BusinessUnit
+namespace DbConfigurator.Application.Features.BusinessUnitFeature
 {
     public class CreateBusinessUnitCommandHandler : IRequestHandler<CreateBusinessUnitCommand, Result<BusinessUnitDto>>
     {

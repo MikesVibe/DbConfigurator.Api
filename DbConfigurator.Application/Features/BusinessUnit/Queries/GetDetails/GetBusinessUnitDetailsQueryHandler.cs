@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
-using DbConfigurator.Application.Features.Area;
+using DbConfigurator.Application.Features.AreaFeature;
 using FluentResults;
 using MediatR;
 using System;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Application.Features.BusinessUnit
+namespace DbConfigurator.Application.Features.BusinessUnitFeature
 {
     public class GetBusinessUnitDetailsQueryHandler : IRequestHandler<GetBusinessUnitDetailsQuery, Result<BusinessUnitDto>>
     {

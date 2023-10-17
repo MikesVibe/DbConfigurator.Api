@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Application.Features.Priority
+namespace DbConfigurator.Application.Features.Feature
 {
     public class UpdatePriorityCommandHandler : IRequestHandler<UpdatePriorityCommand, Result<PriorityDto>>
     {

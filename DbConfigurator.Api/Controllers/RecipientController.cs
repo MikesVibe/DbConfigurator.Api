@@ -1,5 +1,5 @@
 ﻿using DbConfigurator.Application.Dtos;
-using DbConfigurator.Application.Features.Recipient;
+using DbConfigurator.Application.Features.RecipientFeature;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

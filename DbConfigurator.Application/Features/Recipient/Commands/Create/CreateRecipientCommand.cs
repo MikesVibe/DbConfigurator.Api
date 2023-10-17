@@ -2,7 +2,7 @@
 using FluentResults;
 using MediatR;
 
-namespace DbConfigurator.Application.Features.Recipient
+namespace DbConfigurator.Application.Features.RecipientFeature
 {
     public class CreateRecipientCommand : IRequest<Result<RecipientDto>>
     {

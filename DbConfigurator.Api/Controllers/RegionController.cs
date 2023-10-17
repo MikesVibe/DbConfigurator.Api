@@ -1,5 +1,5 @@
 ﻿using DbConfigurator.Application.Dtos;
-using DbConfigurator.Application.Features.Region;
+using DbConfigurator.Application.Features.RegionFeature;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

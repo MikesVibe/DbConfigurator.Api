@@ -6,7 +6,7 @@ using MediatR;
 
 namespace DbConfigurator.Application.Features.DistributionInformationFeature
 {
-    public class UpdateDistributionInformationCommandHandler : IRequestHandler<UpdateDistributionInformationCommand, Result<DistributionInformationDto>>
+    public class UpdateDistributionInformationCommandHandler : IRequestHandler<UpdateDistributionInformationCommand, Result>
     {
         private readonly IDistributionInformationRepository _distributionInformationRepository;
         private readonly IPriorityRepository _priorityRepository;
@@ -24,7 +24,7 @@ namespace DbConfigurator.Application.Features.DistributionInformationFeature
             _regionRepository = regionRepository;
             _mapper = mapper;
         }
-        public async Task<Result<DistributionInformationDto>> Handle(UpdateDistributionInformationCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(UpdateDistributionInformationCommand request, CancellationToken cancellationToken)
         {
             var entity = await _distributionInformationRepository.GetByIdAsync(request.DistributionInformation.Id);
             if (entity == null)
@@ -33,7 +33,7 @@ namespace DbConfigurator.Application.Features.DistributionInformationFeature
             }
             _mapper.Map(request.DistributionInformation, entity);
             await _distributionInformationRepository.UpdateAsync(entity);
-            return new DistributionInformationDto();
+            return Result.Ok();
         }
     }
 }

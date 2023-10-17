@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Application.Features.BusinessUnit
+namespace DbConfigurator.Application.Features.BusinessUnitFeature
 {
     public class UpdateBusinessUnitCommand : IRequest<Result<BusinessUnitDto>>
     {

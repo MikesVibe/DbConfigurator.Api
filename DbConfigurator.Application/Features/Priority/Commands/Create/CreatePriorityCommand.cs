@@ -2,7 +2,7 @@
 using FluentResults;
 using MediatR;
 
-namespace DbConfigurator.Application.Features.Priority
+namespace DbConfigurator.Application.Features.Feature
 {
     public class CreatePriorityCommand : IRequest<Result<PriorityDto>>
     {

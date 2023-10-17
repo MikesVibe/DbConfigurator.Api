@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Model.Entities.Core;
+﻿
+using DbConfigurator.Domain.Model.Entities;
 
 namespace DbConfigurator.Application.Contracts.Persistence
 {

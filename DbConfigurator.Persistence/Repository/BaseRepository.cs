@@ -1,5 +1,4 @@
-﻿using DbConfigurator.Api.Models;
-using DbConfigurator.Api.Services;
+﻿using DbConfigurator.Api.Services;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Persistence;
 using Microsoft.EntityFrameworkCore;

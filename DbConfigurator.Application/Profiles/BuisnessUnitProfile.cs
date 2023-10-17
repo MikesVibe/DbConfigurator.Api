@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DbConfigurator.Application.Dtos;
-using DbConfigurator.Model.Entities.Core;
+using DbConfigurator.Domain.Model.Entities;   
 
 namespace DbConfigurator.Application.Profiles
 {

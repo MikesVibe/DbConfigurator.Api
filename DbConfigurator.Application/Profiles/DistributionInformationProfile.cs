@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using DbConfigurator.Api.Models;
 using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.DistributionInformation;
+using DbConfigurator.Domain.Model.Entities;
 
 namespace DbConfigurator.Application.Profiles
 {

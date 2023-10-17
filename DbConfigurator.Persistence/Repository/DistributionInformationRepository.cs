@@ -1,5 +1,5 @@
-﻿using DbConfigurator.Api.Models;
-using DbConfigurator.Application.Contracts.Persistence;
+﻿using DbConfigurator.Application.Contracts.Persistence;
+using DbConfigurator.Domain.Model.Entities;
 using DbConfigurator.Persistence;
 using Microsoft.EntityFrameworkCore;
 

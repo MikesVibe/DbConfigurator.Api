@@ -39,7 +39,7 @@ namespace DbConfigurator.Application.Features.DistributionInformation
 
             var region = await _regionRecpository.GetByIdAsync(disInfo.Region.Id);
             var priority = await _priorityRepository.GetByIdAsync(disInfo.Priority.Id);
-            var disInfoInstance = new Api.Models.DistributionInformation()
+            var disInfoInstance = new Domain.Model.Entities.DistributionInformation()
             {
                 Region = region!,
                 Priority = priority!

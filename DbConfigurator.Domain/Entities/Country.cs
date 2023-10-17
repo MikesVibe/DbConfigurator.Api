@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace DbConfigurator.Model.Entities.Core
+namespace DbConfigurator.Domain.Model.Entities
 {
     public class Country : IEntity
     {

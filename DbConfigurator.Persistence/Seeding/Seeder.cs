@@ -1,7 +1,6 @@
-﻿using DbConfigurator.Api.Models;
-using DbConfigurator.Api.Services;
+﻿using DbConfigurator.Api.Services;
 using DbConfigurator.Application.Contracts.Persistence;
-using DbConfigurator.Model.Entities.Core;
+using DbConfigurator.Domain.Model.Entities;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;

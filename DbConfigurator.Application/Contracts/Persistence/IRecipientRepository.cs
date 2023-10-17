@@ -1,4 +1,4 @@
-﻿using DbConfigurator.Model.Entities.Core;
+﻿using DbConfigurator.Domain.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

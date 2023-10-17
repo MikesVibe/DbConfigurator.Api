@@ -1,9 +1,8 @@
 ﻿using DbConfigurator.Api.Services;
-using DbConfigurator.Model.Entities.Core;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace DbConfigurator.Api.Models
+namespace DbConfigurator.Domain.Model.Entities
 {
     public class DistributionInformation : IEntity
     {

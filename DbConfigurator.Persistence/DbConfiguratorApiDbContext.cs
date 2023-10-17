@@ -1,5 +1,4 @@
-﻿using DbConfigurator.Api.Models;
-using DbConfigurator.Model.Entities.Core;
+﻿using DbConfigurator.Domain.Model.Entities;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Reflection.Emit;

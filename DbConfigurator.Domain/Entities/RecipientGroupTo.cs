@@ -1,7 +1,6 @@
-﻿using DbConfigurator.Api.Models;
-using DbConfigurator.Api.Services;
+﻿using DbConfigurator.Api.Services;
 
-namespace DbConfigurator.Model.Entities.Core
+namespace DbConfigurator.Domain.Model.Entities
 {
     public class RecipientGroupTo : IEntity
     {

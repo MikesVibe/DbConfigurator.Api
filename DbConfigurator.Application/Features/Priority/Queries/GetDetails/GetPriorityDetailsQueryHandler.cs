@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Application.Features.Feature
+namespace DbConfigurator.Application.Features.PriorityFeature
 {
     public class GetPriorityDetailsQueryHandler : IRequestHandler<GetPriorityDetailsQuery, Result<PriorityDto>>
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Application.Features.Feature
+namespace DbConfigurator.Application.Features.PriorityFeature
 {
     public class GetPriorityListQuery : IRequest<IEnumerable<PriorityDto>>
     {

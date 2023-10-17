@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
-using DbConfigurator.Application.Features.Feature;
+using DbConfigurator.Application.Features.PriorityFeature;
 using FluentResults;
 using MediatR;
 using System;

@@ -3,7 +3,7 @@ using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
 
-namespace DbConfigurator.Application.Features.Feature
+namespace DbConfigurator.Application.Features.PriorityFeature
 {
     public class CreatePriorityCommandHandler : IRequestHandler<CreatePriorityCommand, Result<PriorityDto>>
     {

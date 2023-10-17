@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DbConfigurator.Application.Dtos;
+using DbConfigurator.Application.Features.DistributionInformation.Commands.Update;
 using DbConfigurator.Domain.Model.Entities;
 
 namespace DbConfigurator.Application.Profiles
@@ -9,6 +10,8 @@ namespace DbConfigurator.Application.Profiles
         public RecipientProfile()
         {
             CreateMap<Recipient, RecipientDto>().ReverseMap();
+            CreateMap<RecipientIdDto, Recipient>();
+
         }
     }
 }

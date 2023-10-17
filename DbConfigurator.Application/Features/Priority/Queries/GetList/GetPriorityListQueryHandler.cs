@@ -1,4 +1,7 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using AutoMapper;
+using DbConfigurator.Application.Contracts.Persistence;
+using DbConfigurator.Application.Dtos;
+using FluentResults;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,9 +13,21 @@ namespace DbConfigurator.Application.Features.Priority
 {
     public class GetPriorityListQueryHandler : IRequestHandler<GetPriorityListQuery, IEnumerable<PriorityDto>>
     {
-        public Task<IEnumerable<PriorityDto>> Handle(GetPriorityListQuery request, CancellationToken cancellationToken)
+        private readonly IPriorityRepository _priorityRepository;
+        private readonly IMapper _mapper;
+
+        public GetPriorityListQueryHandler(
+            IPriorityRepository priorityRepository,
+            IMapper mapper)
         {
-            throw new NotImplementedException();
+            _priorityRepository = priorityRepository;
+            _mapper = mapper;
+        }
+
+        public async Task<IEnumerable<PriorityDto>> Handle(GetPriorityListQuery request, CancellationToken cancellationToken)
+        {
+            var entity = await _priorityRepository.GetAllAsync();
+            return _mapper.Map<IEnumerable<PriorityDto>>(entity);
         }
     }
 }

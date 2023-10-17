@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.DistributionInformationFeature;
+using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Update;
 using DbConfigurator.Application.UnitTests.Common;
 using DbConfigurator.Application.UnitTests.Common.Repositories;
 using FluentAssertions;
@@ -31,7 +32,7 @@ namespace DbConfigurator.Application.UnitTests.DistibutionInformationTests.Comma
                 _regionRepository,
                 _mapper);
 
-            var _updateCommand = new UpdateDistributionInformationCommand() { DistributionInformation = UpdateDistributionInformationDto() };
+            var _updateCommand = new UpdateDistributionInformationCommand() { DistributionInformation = CreateUpdateDistributionInformationDto() };
 
             _distributionInfromationRepository.ExistsAsyncReturns(false);
             _regionRepository.ExistsAsyncReturns(true);
@@ -46,36 +47,13 @@ namespace DbConfigurator.Application.UnitTests.DistibutionInformationTests.Comma
             result.Errors.First().Message.Should().Be("No istnace of distribution information object with specified Id is present in database.");
         }
 
-        private DistributionInformationDto UpdateDistributionInformationDto()
+        private UpdateDistributionInformationDto CreateUpdateDistributionInformationDto()
         {
-            return new DistributionInformationDto()
+            return new UpdateDistributionInformationDto()
             {
                 Id = 0,
-                Region = new RegionDto()
-                {
-                    Id = 1,
-                    Area = new AreaDto()
-                    {
-                        Id = 1,
-                        Name = "America"
-                    },
-                    BusinessUnit = new BusinessUnitDto()
-                    {
-                        Id = 1,
-                        Name = "NAO"
-                    },
-                    Country = new CountryDto()
-                    {
-                        Id = 1,
-                        CountryName = "Canada",
-                        CountryCode = "CA"
-                    }
-                },
-                Priority = new PriorityDto()
-                {
-                    Id = 2,
-                    Name = "P2"
-                }
+                RegionId = 1,
+                PriorityId = 2
             };
         }
     }

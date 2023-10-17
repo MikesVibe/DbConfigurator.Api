@@ -1,4 +1,7 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using AutoMapper;
+using DbConfigurator.Application.Contracts.Persistence;
+using DbConfigurator.Application.Dtos;
+using FluentResults;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,9 +13,21 @@ namespace DbConfigurator.Application.Features.Country
 {
     public class GetCountryListQueryHandler : IRequestHandler<GetCountryListQuery, IEnumerable<CountryDto>>
     {
-        public Task<IEnumerable<CountryDto>> Handle(GetCountryListQuery request, CancellationToken cancellationToken)
+        private readonly ICountryRepository _countryRepository;
+        private readonly IMapper _mapper;
+
+        public GetCountryListQueryHandler(
+            ICountryRepository countryRepository,
+            IMapper mapper)
         {
-            throw new NotImplementedException();
+            _countryRepository = countryRepository;
+            _mapper = mapper;
+        }
+
+        public async Task<IEnumerable<CountryDto>> Handle(GetCountryListQuery request, CancellationToken cancellationToken)
+        {
+            var entity = await _countryRepository.GetAllAsync();
+            return _mapper.Map<IEnumerable<CountryDto>>(entity);
         }
     }
 }

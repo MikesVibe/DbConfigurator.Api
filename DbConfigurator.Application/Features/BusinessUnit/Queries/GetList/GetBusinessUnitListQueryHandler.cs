@@ -1,4 +1,7 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using AutoMapper;
+using DbConfigurator.Application.Contracts.Persistence;
+using DbConfigurator.Application.Dtos;
+using FluentResults;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,9 +13,21 @@ namespace DbConfigurator.Application.Features.BusinessUnit
 {
     public class GetBusinessUnitListQueryHandler : IRequestHandler<GetBusinessUnitListQuery, IEnumerable<BusinessUnitDto>>
     {
-        public Task<IEnumerable<BusinessUnitDto>> Handle(GetBusinessUnitListQuery request, CancellationToken cancellationToken)
+        private readonly IBusinessUnitRepository _businessUnitRepository;
+        private readonly IMapper _mapper;
+
+        public GetBusinessUnitListQueryHandler(
+            IBusinessUnitRepository businessUnitRepository,
+            IMapper mapper)
         {
-            throw new NotImplementedException();
+            _businessUnitRepository = businessUnitRepository;
+            _mapper = mapper;
+        }
+
+        public async Task<IEnumerable<BusinessUnitDto>> Handle(GetBusinessUnitListQuery request, CancellationToken cancellationToken)
+        {
+            var entity = await _businessUnitRepository.GetAllAsync();
+            return _mapper.Map<IEnumerable<BusinessUnitDto>>(entity);
         }
     }
 }

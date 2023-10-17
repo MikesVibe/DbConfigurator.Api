@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Api.Services;
+﻿using DbConfigurator.Api.Models;
+using DbConfigurator.Api.Services;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -35,15 +36,13 @@ namespace DbConfigurator.API.DataAccess.Repository
 
             return result > 0;
         }
-
-
         public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
+            return await GetAllQueryable().ToListAsync();
         }
         public virtual async Task<T?> GetByIdAsync(int id)
         {
-            return await _dbContext.Set<T>().SingleOrDefaultAsync(e => e.Id == id);
+            return await GetAllQueryable().SingleOrDefaultAsync(e => e.Id == id);
         }
         public virtual async Task<bool> ExistsAsync(int id)
         {
@@ -52,6 +51,11 @@ namespace DbConfigurator.API.DataAccess.Repository
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
             return entity is not null;
+        }
+
+        protected virtual IQueryable<T> GetAllQueryable()
+        {
+            return _dbContext.Set<T>().AsNoTracking().AsQueryable();
         }
     }
 }

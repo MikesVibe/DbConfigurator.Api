@@ -14,7 +14,7 @@ namespace DbConfigurator.API.DataAccess.Repository
         public async Task AddRecipients(int disInfoId, IEnumerable<int> recipientIds)
         {
             // Retrieve the DistributionInformation entity with the specified disInfoId
-            var distributionInformation = await QueryableDistributionInformation()
+            var distributionInformation = await GetAllQueryable()
                 .FirstOrDefaultAsync(di => di.Id == disInfoId);
 
             if (distributionInformation == null)
@@ -41,18 +41,7 @@ namespace DbConfigurator.API.DataAccess.Repository
             await _dbContext.SaveChangesAsync();
         }
 
-        public override async Task<IEnumerable<DistributionInformation>> GetAllAsync()
-        {
-            return await QueryableDistributionInformation()
-                .AsNoTracking().ToListAsync();
-        }
-        public override async Task<DistributionInformation?> GetByIdAsync(int id)
-        {
-            return await QueryableDistributionInformation()
-                .FirstOrDefaultAsync(e => e.Id == id);
-        }
-
-        private IQueryable<DistributionInformation> QueryableDistributionInformation()
+        protected override IQueryable<DistributionInformation> GetAllQueryable()
         {
             return _dbContext.Set<DistributionInformation>()
                 .Include(d => d.Region)

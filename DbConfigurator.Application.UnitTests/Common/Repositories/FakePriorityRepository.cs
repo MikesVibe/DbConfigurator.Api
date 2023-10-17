@@ -1,5 +1,5 @@
 ﻿using DbConfigurator.Application.Contracts.Persistence;
-using DbConfigurator.Model.Entities.Core;
+using DbConfigurator.Domain.Model.Entities;
 
 namespace DbConfigurator.Application.UnitTests.Common.Repositories
 {

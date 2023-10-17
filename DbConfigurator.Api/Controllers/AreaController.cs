@@ -34,7 +34,7 @@ namespace DbConfigurator.Api.Controllers
         }
 
         [HttpPost(Name = "AddArea")]
-        public async Task<IActionResult> AddArea([FromBody] AreaDto area)
+        public async Task<IActionResult> AddArea([FromBody] AreaCreateDto area)
         {
             var response = await _mediator.Send(new CreateAreaCommand() { Area = area });
 
@@ -44,9 +44,9 @@ namespace DbConfigurator.Api.Controllers
             return Ok();
         }
         [HttpDelete]
-        public async Task<IActionResult> DeleteArea([FromBody] AreaDto area)
+        public async Task<IActionResult> DeleteArea(int areaId)
         {
-            var response = await _mediator.Send(new DeleteAreaCommand() { Area = area });
+            var response = await _mediator.Send(new DeleteAreaCommand() { AreaId = areaId });
 
             if (response.IsFailed)
                 return BadRequest(response.Errors.Single());

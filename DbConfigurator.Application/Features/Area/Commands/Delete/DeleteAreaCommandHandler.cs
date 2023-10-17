@@ -1,4 +1,7 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using AutoMapper;
+using DbConfigurator.Application.Contracts.Persistence;
+using DbConfigurator.Application.Dtos;
+using DbConfigurator.Application.Features.DistributionInformation;
 using FluentResults;
 using MediatR;
 using System;
@@ -9,11 +12,29 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.Area
 {
-    public class DeleteAreaCommandHandler : IRequestHandler<DeleteAreaCommand, Result<AreaDto>>
+    public class DeleteAreaCommandHandler : IRequestHandler<DeleteAreaCommand, Result>
     {
-        public async Task<Result<AreaDto>> Handle(DeleteAreaCommand request, CancellationToken cancellationToken)
+        private readonly IAreaRepository _areaRepository;
+        private readonly IMapper _mapper;
+
+        public DeleteAreaCommandHandler(
+            IAreaRepository areaRepository,
+            IMapper mapper)
         {
-            throw new NotImplementedException();
+            _areaRepository = areaRepository;
+            _mapper = mapper;
+        }
+
+        public async Task<Result> Handle(DeleteAreaCommand request, CancellationToken cancellationToken)
+        {
+            var entity = await _areaRepository.GetByIdAsync(request.AreaId);
+            if (entity == null)
+            {
+                return Result.Fail("No instance of area object with specified Id is present in database.");
+            }
+
+            await _areaRepository.DeleteAsync(entity);
+            return Result.Ok();
         }
     }
 }

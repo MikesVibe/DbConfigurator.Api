@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.Area
 {
-    public class DeleteAreaCommand : IRequest<Result<AreaDto>>
+    public class DeleteAreaCommand : IRequest<Result>
     {
-        public AreaDto Area { get; set; } = new AreaDto();
+        public int AreaId { get; set; }
     }
 }

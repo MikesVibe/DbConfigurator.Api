@@ -6,6 +6,6 @@ namespace DbConfigurator.Application.Features.Area
 {
     public class CreateAreaCommand : IRequest<Result<AreaDto>>
     {
-        public AreaDto Area { get; set; } = new AreaDto();
+        public AreaCreateDto Area { get; set; } = new AreaCreateDto();
     }
 }

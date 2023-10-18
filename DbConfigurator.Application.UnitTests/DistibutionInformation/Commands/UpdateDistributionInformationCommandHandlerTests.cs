@@ -11,6 +11,7 @@ namespace DbConfigurator.Application.UnitTests.DistibutionInformationTests.Comma
     public class UpdateDistributionInformationCommandHandlerTests
     {
         private readonly FakeDistributionInformationRepository _distributionInfromationRepository;
+        private readonly FakeRecipientRepository _recipientRepository;
         private readonly FakePriorityRepository _priorityRepository;
         private readonly FakeRegionRepository _regionRepository;
         private readonly IMapper _mapper;
@@ -18,6 +19,7 @@ namespace DbConfigurator.Application.UnitTests.DistibutionInformationTests.Comma
         public UpdateDistributionInformationCommandHandlerTests()
         {
             _distributionInfromationRepository = new FakeDistributionInformationRepository();
+            _recipientRepository = new FakeRecipientRepository();
             _priorityRepository = new FakePriorityRepository();
             _regionRepository = new FakeRegionRepository();
             _mapper = MapperBuilder.AddDistributionInformationProfiles().Create();
@@ -28,6 +30,7 @@ namespace DbConfigurator.Application.UnitTests.DistibutionInformationTests.Comma
             // Arragne
             var handler = new UpdateDistributionInformationCommandHandler(
                 _distributionInfromationRepository,
+                _recipientRepository,
                 _priorityRepository,
                 _regionRepository,
                 _mapper);

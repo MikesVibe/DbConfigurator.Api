@@ -35,15 +35,6 @@ namespace DbConfigurator.API.DataAccess.Repository
 
             return result > 0;
         }
-        public virtual async Task<bool> UpdateAsync(T newEntity, T oldEntity)
-        {
-            //_dbContext.Attach(entity);
-            //_dbContext.Entry(entity).State = EntityState.Modified;
-            //var result = await _dbContext.SaveChangesAsync();
-
-            //return result > 0;
-            throw new NotImplementedException();
-        }
         public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             return await GetAllQueryable().ToListAsync();

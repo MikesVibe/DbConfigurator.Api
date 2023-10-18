@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
+using DbConfigurator.Domain.Model.Entities;
 using FluentResults;
 using MediatR;
 
@@ -45,9 +46,24 @@ namespace DbConfigurator.Application.Features.DistributionInformationFeature
             {
                 return Result.Fail("Some recipients are no longer present in database.");
             }
+            var priorityExists = await _priorityRepository.ExistsAsync(request.DistributionInformation.PriorityId);
+            if (priorityExists == false)
+            {
+                return Result.Fail("Priority with specified Id is no longer present in database.");
+            }
+            var regionExists = await _regionRepository.ExistsAsync(request.DistributionInformation.PriorityId);
+            if (regionExists == false)
+            {
+                return Result.Fail("Region with specified Id is no longer present in database.");
+            }
 
 
             _mapper.Map(request.DistributionInformation, entity);
+
+            // Manually handle the relationships. Get real entities from database with Ids specified in request
+            entity.RecipientsTo = await _recipientRepository.GetRecipientsAsync(request.DistributionInformation.RecipientsTo);
+            entity.RecipientsCc = await _recipientRepository.GetRecipientsAsync(request.DistributionInformation.RecipientsCc);
+
             await _distributionInformationRepository.UpdateAsync(entity);
             return Result.Ok();
         }

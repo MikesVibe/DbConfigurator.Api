@@ -1,9 +1,12 @@
-﻿using DbConfigurator.API.DataAccess;
+﻿using Azure.Core;
+using DbConfigurator.API.DataAccess;
 using DbConfigurator.API.DataAccess.Repository;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Features.DistributionInformation.Commands.Update;
 using DbConfigurator.Domain.Model.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,5 +30,12 @@ namespace DbConfigurator.Persistence.Repository
             }
             return true;
         }
+
+        public async Task<ICollection<Recipient>> GetRecipientsAsync(ICollection<RecipientIdDto> recipientIds)
+        {
+            IEnumerable<int> ids = recipientIds.Select(x => x.Id);
+            return await _dbContext.Set<Recipient>().Where(r => ids.Contains(r.Id)).ToListAsync();
+        }
+
     }
 }

@@ -12,7 +12,6 @@ namespace DbConfigurator.Application.Profiles
         {
             CreateMap<DistributionInformation, DistributionInformationItem>();
             CreateMap<DistributionInformation, DistributionInformationDetails>();
-            //CreateMap<DistributionInformation, DistributionInformationDto>();
             CreateMap<DistributionInformationDto, DistributionInformation>().ReverseMap();
             CreateMap<UpdateDistributionInformationDto, DistributionInformation>();
         }

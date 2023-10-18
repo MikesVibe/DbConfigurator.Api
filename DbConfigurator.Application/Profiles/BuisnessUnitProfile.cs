@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using DbConfigurator.Application.Dtos;
-using DbConfigurator.Application.Features.BusinessUnitFeature;
-using DbConfigurator.Domain.Model.Entities;   
+using DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Create;
+using DbConfigurator.Domain.Model.Entities;
 
 namespace DbConfigurator.Application.Profiles
 {

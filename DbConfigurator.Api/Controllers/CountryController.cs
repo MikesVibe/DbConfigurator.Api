@@ -1,5 +1,9 @@
 ﻿using DbConfigurator.Application.Dtos;
-using DbConfigurator.Application.Features.Country;
+using DbConfigurator.Application.Features.CountriesFeature.Commands.Create;
+using DbConfigurator.Application.Features.CountriesFeature.Commands.Delete;
+using DbConfigurator.Application.Features.CountriesFeature.Commands.Update;
+using DbConfigurator.Application.Features.CountriesFeature.Queries.GetDetails;
+using DbConfigurator.Application.Features.CountriesFeature.Queries.GetList;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

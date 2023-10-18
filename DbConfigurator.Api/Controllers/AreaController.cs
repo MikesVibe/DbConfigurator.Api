@@ -1,5 +1,9 @@
 ﻿using DbConfigurator.Application.Dtos;
-using DbConfigurator.Application.Features.AreaFeature;
+using DbConfigurator.Application.Features.AreaFeature.Commands.Create;
+using DbConfigurator.Application.Features.AreaFeature.Commands.Delete;
+using DbConfigurator.Application.Features.AreaFeature.Commands.Update;
+using DbConfigurator.Application.Features.AreaFeature.Queries.GetAreaDetails;
+using DbConfigurator.Application.Features.AreaFeature.Queries.GetAreaList;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

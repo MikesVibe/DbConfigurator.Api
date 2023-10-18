@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Update;
-using DbConfigurator.Application.Features.DistributionInformationFeature;
 using DbConfigurator.Domain.Model.Entities;
+using DbConfigurator.Application.Features.DistributionInformationFeature.Queries.GetDistributionInformationDetails;
+using DbConfigurator.Application.Features.DistributionInformationFeature.Queries.GetDistributionInformationList;
 
 namespace DbConfigurator.Application.Profiles
 {

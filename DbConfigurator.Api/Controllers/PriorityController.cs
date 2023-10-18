@@ -1,5 +1,10 @@
 ﻿using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.PriorityFeature;
+using DbConfigurator.Application.Features.PriorityFeature.Commands.Create;
+using DbConfigurator.Application.Features.PriorityFeature.Commands.Delete;
+using DbConfigurator.Application.Features.PriorityFeature.Commands.Update;
+using DbConfigurator.Application.Features.PriorityFeature.Queries.GetDetails;
+using DbConfigurator.Application.Features.PriorityFeature.Queries.GetList;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

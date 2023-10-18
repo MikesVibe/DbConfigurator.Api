@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DbConfigurator.Application.Dtos;
-using DbConfigurator.Application.Features.DistributionInformation.Commands.Update;
+using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Update;
 using DbConfigurator.Domain.Model.Entities;
 
 namespace DbConfigurator.Application.Profiles

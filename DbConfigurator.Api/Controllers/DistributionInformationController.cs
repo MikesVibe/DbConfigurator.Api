@@ -1,6 +1,10 @@
 ﻿using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.DistributionInformationFeature;
+using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Create;
+using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Delete;
 using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Update;
+using DbConfigurator.Application.Features.DistributionInformationFeature.Queries.GetDistributionInformationDetails;
+using DbConfigurator.Application.Features.DistributionInformationFeature.Queries.GetDistributionInformationList;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

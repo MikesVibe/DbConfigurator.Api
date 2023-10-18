@@ -54,7 +54,7 @@ namespace DbConfigurator.Api.Controllers
             return Ok();
         }
         [HttpPut]
-        public async Task<IActionResult> UpdateArea([FromBody] AreaDto area)
+        public async Task<IActionResult> UpdateArea([FromBody] UpdateAreaDto area)
         {
             var response = await _mediator.Send(new UpdateAreaCommand() { Area = area });
 

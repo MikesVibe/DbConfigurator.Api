@@ -11,6 +11,6 @@ namespace DbConfigurator.Application.Features.AreaFeature
 {
     public class UpdateAreaCommand : IRequest<Result<AreaDto>>
     {
-        public AreaDto Area { get; set; } = new AreaDto();
+        public UpdateAreaDto Area { get; set; } = new UpdateAreaDto();
     }
 }

@@ -11,6 +11,7 @@ namespace DbConfigurator.Application.Profiles
         {
             CreateMap<Area, AreaDto>().ReverseMap();
             CreateMap<CreateAreaDto, Area>();
+            CreateMap<UpdateAreaDto, Area>();
         }
     }
 }

@@ -6,6 +6,6 @@ namespace DbConfigurator.Application.Features.BusinessUnitFeature
 {
     public class CreateBusinessUnitCommand : IRequest<Result<BusinessUnitDto>>
     {
-        public BusinessUnitDto BusinessUnit { get; set; } = new BusinessUnitDto();
+        public CreateBusinessUnitDto BusinessUnit { get; set; } = new CreateBusinessUnitDto();
     }
 }

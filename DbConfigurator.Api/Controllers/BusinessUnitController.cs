@@ -31,7 +31,7 @@ namespace DbConfigurator.Api.Controllers
         }
 
         [HttpPost(Name = "AddBusinessUnit")]
-        public async Task<IActionResult> AddBusinessUnit([FromBody] BusinessUnitDto businessUnit)
+        public async Task<IActionResult> AddBusinessUnit([FromBody] CreateBusinessUnitDto businessUnit)
         {
             var response = await _mediator.Send(new CreateBusinessUnitCommand() { BusinessUnit = businessUnit });
 

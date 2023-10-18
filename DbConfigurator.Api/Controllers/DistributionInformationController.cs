@@ -48,7 +48,7 @@ namespace DbConfigurator.Api.Controllers
             var response = await _mediator.Send(new DeleteDistributionInfomationCommand() { DistributionInformationId = disInfoId });
 
             if (response.IsFailed)
-                return BadRequest();
+                return BadRequest(response.Errors.FirstOrDefault());
 
             return Ok();
         }

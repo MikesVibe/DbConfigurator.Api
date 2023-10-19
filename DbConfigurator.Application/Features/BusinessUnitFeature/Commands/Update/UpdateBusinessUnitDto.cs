@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Application.Features.AreaFeature.Commands.Update
+namespace DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Update
 {
-    public class UpdateAreaDto
+    public class UpdateBusinessUnitDto
     {
         [Required]
         public int Id { get; set; }
         [Required]
-        [MaxLength(50)]
+        [MaxLength(250)]
         public string Name { get; set; } = string.Empty;
     }
 }

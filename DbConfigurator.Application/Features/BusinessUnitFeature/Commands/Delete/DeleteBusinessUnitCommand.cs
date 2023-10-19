@@ -11,6 +11,6 @@ namespace DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Delet
 {
     public class DeleteBusinessUnitCommand : IRequest<Result<BusinessUnitDto>>
     {
-        public BusinessUnitDto BusinessUnit { get; set; } = new BusinessUnitDto();
+        public int BusinessUnitId { get; set; } 
     }
 }

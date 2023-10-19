@@ -5,14 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Application.Features.AreaFeature.Commands.Update
+namespace DbConfigurator.Application.Features.PriorityFeature.Commands.Create
 {
-    public class UpdateAreaDto
+    public class CreatePriorityDto
     {
         [Required]
-        public int Id { get; set; }
-        [Required]
-        [MaxLength(50)]
+        [MaxLength(6)]
         public string Name { get; set; } = string.Empty;
     }
 }

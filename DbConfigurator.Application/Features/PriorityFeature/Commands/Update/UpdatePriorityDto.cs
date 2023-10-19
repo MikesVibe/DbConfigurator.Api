@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Application.Features.AreaFeature.Commands.Update
+namespace DbConfigurator.Application.Features.PriorityFeature.Commands.Update
 {
-    public class UpdateAreaDto
+    public class UpdatePriorityDto
     {
         [Required]
         public int Id { get; set; }
         [Required]
-        [MaxLength(50)]
+        [MaxLength(6)]
         public string Name { get; set; } = string.Empty;
     }
 }

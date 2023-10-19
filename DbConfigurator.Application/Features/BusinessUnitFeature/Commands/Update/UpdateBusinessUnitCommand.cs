@@ -11,6 +11,6 @@ namespace DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Updat
 {
     public class UpdateBusinessUnitCommand : IRequest<Result<BusinessUnitDto>>
     {
-        public BusinessUnitDto BusinessUnit { get; set; } = new BusinessUnitDto();
+        public UpdateBusinessUnitDto BusinessUnit { get; set; } = new UpdateBusinessUnitDto();
     }
 }

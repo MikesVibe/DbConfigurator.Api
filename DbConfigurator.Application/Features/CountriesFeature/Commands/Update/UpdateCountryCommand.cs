@@ -11,6 +11,6 @@ namespace DbConfigurator.Application.Features.CountriesFeature.Commands.Update
 {
     public class UpdateCountryCommand : IRequest<Result<CountryDto>>
     {
-        public CountryDto Country { get; set; } = new CountryDto();
+        public UpdateCountryDto Country { get; set; } = new UpdateCountryDto();
     }
 }

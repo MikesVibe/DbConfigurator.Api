@@ -11,6 +11,6 @@ namespace DbConfigurator.Application.Features.CountriesFeature.Commands.Delete
 {
     public class DeleteCountryCommand : IRequest<Result<CountryDto>>
     {
-        public CountryDto Country { get; set; } = new CountryDto();
+        public int CountryId { get; set; } 
     }
 }

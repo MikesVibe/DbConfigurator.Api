@@ -6,6 +6,6 @@ namespace DbConfigurator.Application.Features.CountriesFeature.Commands.Create
 {
     public class CreateCountryCommand : IRequest<Result<CountryDto>>
     {
-        public CountryDto Country { get; set; } = new CountryDto();
+        public CreateCountryDto Country { get; set; } = new CreateCountryDto();
     }
 }

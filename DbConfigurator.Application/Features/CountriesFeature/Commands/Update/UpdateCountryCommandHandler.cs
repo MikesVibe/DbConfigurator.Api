@@ -1,4 +1,7 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using AutoMapper;
+using DbConfigurator.Application.Contracts.Persistence;
+using DbConfigurator.Application.Dtos;
+using DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Update;
 using FluentResults;
 using MediatR;
 using System;
@@ -11,9 +14,29 @@ namespace DbConfigurator.Application.Features.CountriesFeature.Commands.Update
 {
     public class UpdateCountryCommandHandler : IRequestHandler<UpdateCountryCommand, Result<CountryDto>>
     {
+        private readonly ICountryRepository _countryRepository;
+        private readonly IMapper _mapper;
+
+        public UpdateCountryCommandHandler(
+            ICountryRepository countryRepository,
+            IMapper mapper)
+        {
+            _countryRepository = countryRepository;
+            _mapper = mapper;
+        }
+
         public async Task<Result<CountryDto>> Handle(UpdateCountryCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var entity = await _countryRepository.GetByIdAsync(request.Country.Id);
+            if (entity == null)
+            {
+                return Result.Fail("No istnace of country object with specified Id is present in database.");
+            }
+
+            _mapper.Map(request.Country, entity);
+
+            await _countryRepository.UpdateAsync(entity);
+            return Result.Ok();
         }
     }
 }

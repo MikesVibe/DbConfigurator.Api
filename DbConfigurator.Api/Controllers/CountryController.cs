@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using Azure;
+using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.CountriesFeature.Commands.Create;
 using DbConfigurator.Application.Features.CountriesFeature.Commands.Delete;
 using DbConfigurator.Application.Features.CountriesFeature.Commands.Update;
@@ -30,12 +31,15 @@ namespace DbConfigurator.Api.Controllers
         [HttpGet("{countryId}", Name = "GetCountryById")]
         public async Task<ActionResult<CountryDto>> GetCountryById(int countryId)
         {
-            var country = await _mediator.Send(new GetCountryDetailsQuery() { CountryId = countryId });
-            return Ok(country);
+            var response = await _mediator.Send(new GetCountryDetailsQuery() { CountryId = countryId });
+            if (response.IsFailed)
+                return BadRequest();
+
+            return Ok(response.Value);
         }
 
         [HttpPost(Name = "AddCountry")]
-        public async Task<IActionResult> AddCountry([FromBody] CountryDto country)
+        public async Task<IActionResult> AddCountry([FromBody] CreateCountryDto country)
         {
             var response = await _mediator.Send(new CreateCountryCommand() { Country = country });
 
@@ -45,9 +49,9 @@ namespace DbConfigurator.Api.Controllers
             return Ok();
         }
         [HttpDelete]
-        public async Task<IActionResult> DeleteCountry([FromBody] CountryDto country)
+        public async Task<IActionResult> DeleteCountry(int countryId)
         {
-            var response = await _mediator.Send(new DeleteCountryCommand() { Country = country });
+            var response = await _mediator.Send(new DeleteCountryCommand() { CountryId = countryId });
 
             if (response.IsFailed)
                 return BadRequest();
@@ -55,7 +59,7 @@ namespace DbConfigurator.Api.Controllers
             return Ok();
         }
         [HttpPut]
-        public async Task<IActionResult> UpdateCountry([FromBody] CountryDto country)
+        public async Task<IActionResult> UpdateCountry([FromBody] UpdateCountryDto country)
         {
             var response = await _mediator.Send(new UpdateCountryCommand() { Country = country });
 

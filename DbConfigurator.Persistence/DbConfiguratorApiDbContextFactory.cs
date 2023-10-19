@@ -11,6 +11,13 @@ namespace DbConfigurator.Persistence
 {
     public class DbConfiguratorApiDbContextFactory : IDesignTimeDbContextFactory<DbConfiguratorApiDbContext>
     {
+        private readonly IConfiguration _configuration;
+
+        public DbConfiguratorApiDbContextFactory(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public DbConfiguratorApiDbContext CreateDbContext(string[] args)
         {
             var basePath = Directory.GetParent(Directory.GetCurrentDirectory())
@@ -21,15 +28,8 @@ namespace DbConfigurator.Persistence
                 throw new InvalidOperationException("Could not find the directory of the DbConfigurator.Api project.");
             }
 
-
-            // Build configuration
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(basePath)
-                .AddNewtonsoftJsonFile("appsettings.json")
-                .Build();
-
             // Get connection string
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            var connectionString = _configuration.GetConnectionString("DefaultConnection");
 
             var optionsBuilder = new DbContextOptionsBuilder<DbConfiguratorApiDbContext>();
             optionsBuilder.UseSqlServer(connectionString);  // Adjust for your database provider

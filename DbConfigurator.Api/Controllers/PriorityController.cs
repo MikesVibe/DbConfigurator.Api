@@ -6,12 +6,14 @@ using DbConfigurator.Application.Features.PriorityFeature.Commands.Update;
 using DbConfigurator.Application.Features.PriorityFeature.Queries.GetDetails;
 using DbConfigurator.Application.Features.PriorityFeature.Queries.GetList;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DbConfigurator.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+    [Route("api/[controller]")]
     public class PriorityController : ControllerBase
     {
         private readonly IMediator _mediator;

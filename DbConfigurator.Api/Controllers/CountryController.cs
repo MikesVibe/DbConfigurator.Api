@@ -5,12 +5,14 @@ using DbConfigurator.Application.Features.CountriesFeature.Commands.Update;
 using DbConfigurator.Application.Features.CountriesFeature.Queries.GetDetails;
 using DbConfigurator.Application.Features.CountriesFeature.Queries.GetList;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DbConfigurator.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+    [Route("api/[controller]")]
     public class CountryController : ControllerBase
     {
         private readonly IMediator _mediator;

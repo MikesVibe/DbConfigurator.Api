@@ -6,12 +6,14 @@ using DbConfigurator.Application.Features.DistributionInformationFeature.Command
 using DbConfigurator.Application.Features.DistributionInformationFeature.Queries.GetDistributionInformationDetails;
 using DbConfigurator.Application.Features.DistributionInformationFeature.Queries.GetDistributionInformationList;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DbConfigurator.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+    [Route("api/[controller]")]
     public class DistributionInformationController : ControllerBase
     {
         private readonly IMediator _mediator;

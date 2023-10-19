@@ -5,12 +5,14 @@ using DbConfigurator.Application.Features.AreaFeature.Commands.Update;
 using DbConfigurator.Application.Features.AreaFeature.Queries.GetAreaDetails;
 using DbConfigurator.Application.Features.AreaFeature.Queries.GetAreaList;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DbConfigurator.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+    [Route("api/[controller]")]
     public class AreaController : ControllerBase
     {
         private readonly IMediator _mediator;

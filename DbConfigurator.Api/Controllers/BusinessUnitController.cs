@@ -6,12 +6,14 @@ using DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Update;
 using DbConfigurator.Application.Features.BusinessUnitFeature.Queries.GetDetails;
 using DbConfigurator.Application.Features.BusinessUnitFeature.Queries.GetList;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DbConfigurator.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+    [Route("api/[controller]")]
     public class BusinessUnitController : ControllerBase
     {
         private readonly IMediator _mediator;

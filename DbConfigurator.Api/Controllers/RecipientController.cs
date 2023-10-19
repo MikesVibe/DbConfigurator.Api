@@ -6,12 +6,14 @@ using DbConfigurator.Application.Features.RecipientFeature.Commands.Update;
 using DbConfigurator.Application.Features.RecipientFeature.Queries.GetDetails;
 using DbConfigurator.Application.Features.RecipientFeature.Queries.GetList;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DbConfigurator.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+    [Route("api/[controller]")]
     public class RecipientController : ControllerBase
     {
         private readonly IMediator _mediator;

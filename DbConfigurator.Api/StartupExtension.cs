@@ -3,6 +3,9 @@ using DbConfigurator.Application;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
 
 namespace DbConfigurator.Api
 {
@@ -11,7 +14,37 @@ namespace DbConfigurator.Api
         public static WebApplication ConfigureServices(
             this WebApplicationBuilder builder)
         {
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Title = "DbConfiguration_API",
+                    Version = "v1",
+                });
+                c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+                    Description = "Here Enter JWT Token with bearer format:"
+                });
+                c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+                {
+                    {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    new string[]{ }
+                    }
+                });
+            });
 
             builder.Services.AddApplicationServices();
             builder.Services.AddPersistenceServices(builder.Configuration);
@@ -24,6 +57,22 @@ namespace DbConfigurator.Api
             {
                 options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
+
+            builder.Services.AddAuthentication("Bearer")
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new()
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = builder.Configuration["Authentication:Issuer"],
+                        ValidAudience = builder.Configuration["Authentication:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes(builder.Configuration["Authentication:SecretForKey"]))
+                    };
+                });
+
 
             return builder.Build();
 

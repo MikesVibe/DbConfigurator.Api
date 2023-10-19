@@ -6,6 +6,6 @@ namespace DbConfigurator.Application.Features.PriorityFeature.Commands.Create
 {
     public class CreatePriorityCommand : IRequest<Result<PriorityDto>>
     {
-        public PriorityDto Priority { get; set; } = new PriorityDto();
+        public CreatePriorityDto Priority { get; set; } = new CreatePriorityDto();
     }
 }

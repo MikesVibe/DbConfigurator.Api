@@ -11,6 +11,6 @@ namespace DbConfigurator.Application.Features.PriorityFeature.Commands.Delete
 {
     public class DeletePriorityCommand : IRequest<Result<PriorityDto>>
     {
-        public PriorityDto Priority { get; set; } = new PriorityDto();
+        public int PriorityId{ get; set; } 
     }
 }

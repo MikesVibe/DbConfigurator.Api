@@ -31,12 +31,15 @@ namespace DbConfigurator.Api.Controllers
         [HttpGet("{priorityId}", Name = "GetPriorityById")]
         public async Task<ActionResult<PriorityDto>> GetPriorityById(int priorityId)
         {
-            var priority = await _mediator.Send(new GetPriorityDetailsQuery() { PriorityId = priorityId });
-            return Ok(priority);
+            var result = await _mediator.Send(new GetPriorityDetailsQuery() { PriorityId = priorityId });
+            if(result.IsFailed)
+                return BadRequest();
+
+            return Ok(result.Value);
         }
 
         [HttpPost(Name = "AddPriority")]
-        public async Task<IActionResult> AddPriority([FromBody] PriorityDto priority)
+        public async Task<IActionResult> AddPriority([FromBody] CreatePriorityDto priority)
         {
             var response = await _mediator.Send(new CreatePriorityCommand() { Priority = priority });
 
@@ -46,9 +49,9 @@ namespace DbConfigurator.Api.Controllers
             return Ok();
         }
         [HttpDelete]
-        public async Task<IActionResult> DeletePriority([FromBody] PriorityDto priority)
+        public async Task<IActionResult> DeletePriority(int priorityId)
         {
-            var response = await _mediator.Send(new DeletePriorityCommand() { Priority = priority });
+            var response = await _mediator.Send(new DeletePriorityCommand() { PriorityId = priorityId });
 
             if (response.IsFailed)
                 return BadRequest();
@@ -56,7 +59,7 @@ namespace DbConfigurator.Api.Controllers
             return Ok();
         }
         [HttpPut]
-        public async Task<IActionResult> UpdatePriority([FromBody] PriorityDto priority)
+        public async Task<IActionResult> UpdatePriority([FromBody] UpdatePriorityDto priority)
         {
             var response = await _mediator.Send(new UpdatePriorityCommand() { Priority = priority });
 

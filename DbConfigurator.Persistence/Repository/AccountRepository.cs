@@ -2,10 +2,12 @@
 using DbConfigurator.Domain.SecurityEntities;
 using DbConfigurator.Persistence.DatabaseContext;
 using FluentResults;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,27 +15,26 @@ namespace DbConfigurator.Persistence.Repository
 {
     public class AccountRepository : IAccountRepository
     {
-        private readonly DbConfiguratorApiDbContext _dbContext;
+        private readonly UserManager<AppUser> _userManager;
 
-        public AccountRepository(DbConfiguratorApiDbContext dbContext)
+        public AccountRepository(UserManager<AppUser> userManager)
         {
-            _dbContext = dbContext;
+            _userManager = userManager;
         }
 
-        public async Task<Result<AppUser>> AddAsync(AppUser user)
+        public async Task<Result<AppUser>> CreateAsync(AppUser user, string password)
         {
-            var userToReturn = await _dbContext.User.AddAsync(user);
-            var result = await _dbContext.SaveChangesAsync();
+            var result = await _userManager.CreateAsync(user, password);
 
-            if (result > 0)
+            if (result.Succeeded)
                 return Result.Ok(user);
             else
-                return Result.Fail("Adding user failed.");
+                return Result.Fail($"{result.Errors.First()}");
         }
 
         public async Task<Result<AppUser>> GetUserAsync(string userName)
         {
-            var user = await _dbContext.User.SingleOrDefaultAsync(u => u.UserName == userName.ToLower());
+            var user = await _userManager.Users.SingleOrDefaultAsync(u => u.UserName == userName.ToLower());
             if(user is null)
             {
                 return Result.Fail("No such user in database.");
@@ -46,7 +47,12 @@ namespace DbConfigurator.Persistence.Repository
 
         public async Task<bool> UserExists(string userName)
         {
-            return await _dbContext.User.AnyAsync(u => u.UserName == userName.ToLower());
+            return await _userManager.Users.AnyAsync(u => u.UserName == userName.ToLower());
+        }
+
+        public async Task<bool> CheckPasswordAsync(AppUser user, string password)
+        {
+            return await _userManager.CheckPasswordAsync(user, password);
         }
     }
 }

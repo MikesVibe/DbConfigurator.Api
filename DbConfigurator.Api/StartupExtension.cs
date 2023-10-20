@@ -17,6 +17,8 @@ namespace DbConfigurator.Api
         public static WebApplication ConfigureServices(
             this WebApplicationBuilder builder)
         {
+
+
             builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
@@ -53,13 +55,6 @@ namespace DbConfigurator.Api
             builder.Services.AddPersistenceServices(builder.Configuration);
 
             builder.Services.AddHttpContextAccessor();
-            builder.Services.AddIdentityCore<AppUser>(opt =>
-            {
-                opt.Password.RequireNonAlphanumeric = false;
-            })
-                .AddRoles<AppRole>()
-                .AddRoleManager<RoleManager<AppRole>>()
-                .AddEntityFrameworkStores<DbConfiguratorApiDbContext>();
 
             //builder.Services.AddIdentity<AppUser, IdentityRole>() 
             //    .AddEntityFrameworkStores<SecurityContext>() 
@@ -86,7 +81,16 @@ namespace DbConfigurator.Api
                             Encoding.UTF8.GetBytes(builder.Configuration["Authentication:SecretForKey"]))
                     };
                 });
-
+            builder.Services.AddIdentityCore<AppUser>(opt =>
+            {
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequireDigit = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequiredLength = 3;
+            })
+    .AddRoles<AppRole>()
+    .AddRoleManager<RoleManager<AppRole>>()
+    .AddEntityFrameworkStores<DbConfiguratorApiDbContext>();
 
             return builder.Build();
 

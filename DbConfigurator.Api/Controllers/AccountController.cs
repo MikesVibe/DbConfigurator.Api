@@ -3,6 +3,7 @@ using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Features.AccountFeature;
 using DbConfigurator.Domain.SecurityEntities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
 using System.Text;
@@ -13,15 +14,18 @@ namespace DbConfigurator.Api.Controllers
     [Route("api/[controller]")]
     public class AccountController : ControllerBase
     {
+        private readonly UserManager<AppUser> _userManager;
         private readonly IAccountRepository _accountRepository;
         private readonly ITokenService _tokenService;
         private readonly IMapper _mapper;
 
         public AccountController(
+            UserManager<AppUser> userManager,
             IAccountRepository accountRepository,
             ITokenService tokenService,
             IMapper mapper)
         {
+            _userManager = userManager;
             _accountRepository = accountRepository;
             _tokenService = tokenService;
             _mapper = mapper;
@@ -29,23 +33,23 @@ namespace DbConfigurator.Api.Controllers
 
 
         [HttpPost("register")]
-        public async Task<ActionResult<UserDto>> Register([FromBody] RegisterDto registerData)
+        public async Task<ActionResult<UserDto>> Register([FromBody] RegisterDto registerDto)
         {
-            if(await _accountRepository.UserExists(registerData.UserName))
+            if(await _accountRepository.UserExists(registerDto.UserName))
             {
                 return BadRequest("Username is taken.");
             }
 
             var user = new AppUser
             {
-                DisplayName = registerData.UserName,
-                UserName = registerData.UserName.ToLower(),
+                DisplayName = registerDto.UserName,
+                UserName = registerDto.UserName.ToLower(),
             };
 
-            var result = await _accountRepository.AddAsync(user);
+            var result = await _accountRepository.CreateAsync(user, registerDto.Password);
             if(result.IsFailed)
             {
-                return BadRequest();
+                return BadRequest("Invalid password.");
             }
             else
             {
@@ -61,14 +65,19 @@ namespace DbConfigurator.Api.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto login)
         {
-            var result = await _accountRepository.GetUserAsync(login.UserName);
+            var resultUser = await _accountRepository.GetUserAsync(login.UserName);
         
-            if(result.IsFailed)
+            if(resultUser.IsFailed)
             {
                 return Unauthorized("Invalid username.");
             }
-            var user = result.Value;
+            var user = resultUser.Value;
 
+            var resultPassword = await _accountRepository.CheckPasswordAsync(user, login.Password);
+            if(!resultPassword)
+            {
+                return Unauthorized("Invalid Password.");
+            }
 
             return new UserDto
             {

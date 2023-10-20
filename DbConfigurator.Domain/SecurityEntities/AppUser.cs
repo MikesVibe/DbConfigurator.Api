@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,17 +8,11 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Domain.SecurityEntities
 {
-    public class AppUser
+    public class AppUser : IdentityUser<int>
     {
         [Required]
-        public int Id { get; set; }
-        [Required]
         public string DisplayName { get; set; }
-        [Required]
-        public string UserName { get; set; }
-        [Required]
-        public byte[] PasswordHash { get; set; }
-        [Required]
-        public byte[] PasswordSalt { get; set; }
+
+        public ICollection<AppUserRole> UserRoles { get; set; }
     }
 }

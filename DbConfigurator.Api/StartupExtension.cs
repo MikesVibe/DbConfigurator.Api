@@ -1,7 +1,9 @@
 ﻿using DbConfigurator.API.DataAccess;
 using DbConfigurator.Application;
 using DbConfigurator.Application.Contracts.Persistence;
+using DbConfigurator.Domain.SecurityEntities;
 using DbConfigurator.Persistence;
+using DbConfigurator.Persistence.DatabaseContext;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -51,8 +53,16 @@ namespace DbConfigurator.Api
             builder.Services.AddPersistenceServices(builder.Configuration);
 
             builder.Services.AddHttpContextAccessor();
-            //builder.Services.AddIdentity<DbInfoUser, IdentityRole>() // Add IdentityRole if you intend to use roles
-            //    .AddEntityFrameworkStores<DbConfiguratorApiDbContext>() // Register EF stores if you're using Entity Framework
+            builder.Services.AddIdentityCore<AppUser>(opt =>
+            {
+                opt.Password.RequireNonAlphanumeric = false;
+            })
+                .AddRoles<AppRole>()
+                .AddRoleManager<RoleManager<AppRole>>()
+                .AddEntityFrameworkStores<DbConfiguratorApiDbContext>();
+
+            //builder.Services.AddIdentity<AppUser, IdentityRole>() 
+            //    .AddEntityFrameworkStores<SecurityContext>() 
             //    .AddDefaultTokenProviders();
 
             builder.Services.AddControllers();
@@ -93,13 +103,10 @@ namespace DbConfigurator.Api
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "GloboTicket Ticket Management API");
                 });
             }
-
             app.UseHttpsRedirection();
 
-            app.UseAuthentication();
-
             app.UseCors("Open");
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();

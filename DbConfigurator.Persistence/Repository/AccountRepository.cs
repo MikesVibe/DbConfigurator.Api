@@ -1,5 +1,6 @@
 ﻿using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Domain.SecurityEntities;
+using DbConfigurator.Persistence.DatabaseContext;
 using FluentResults;
 using Microsoft.EntityFrameworkCore;
 using System;

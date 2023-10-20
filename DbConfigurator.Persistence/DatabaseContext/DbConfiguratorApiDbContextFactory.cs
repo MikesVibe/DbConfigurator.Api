@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Persistence
+namespace DbConfigurator.Persistence.DatabaseContext
 {
     public class DbConfiguratorApiDbContextFactory : IDesignTimeDbContextFactory<DbConfiguratorApiDbContext>
     {

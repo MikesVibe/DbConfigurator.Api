@@ -35,14 +35,11 @@ namespace DbConfigurator.Api.Controllers
             {
                 return BadRequest("Username is taken.");
             }
-            using var hmac = new HMACSHA512();
 
             var user = new AppUser
             {
                 DisplayName = registerData.UserName,
                 UserName = registerData.UserName.ToLower(),
-                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerData.Password)),
-                PasswordSalt = hmac.Key
             };
 
             var result = await _accountRepository.AddAsync(user);
@@ -68,19 +65,10 @@ namespace DbConfigurator.Api.Controllers
         
             if(result.IsFailed)
             {
-                return Unauthorized("Invalid user.");
+                return Unauthorized("Invalid username.");
             }
-
             var user = result.Value;
-            using var hmac = new HMACSHA512(user.PasswordSalt);
 
-            var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(login.Password));
-
-            for(int i = 0; i < computedHash.Length; i++)
-            {
-                if (computedHash[i] != user.PasswordHash[i])
-                    return Unauthorized("Invalid password.");
-            }
 
             return new UserDto
             {

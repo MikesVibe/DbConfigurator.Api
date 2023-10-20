@@ -1,12 +1,22 @@
 ﻿using DbConfigurator.Domain.Model.Entities;
 using DbConfigurator.Domain.SecurityEntities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Reflection.Emit;
 
-namespace DbConfigurator.Persistence
+namespace DbConfigurator.Persistence.DatabaseContext
 {
-    public class DbConfiguratorApiDbContext : DbContext
+    public class DbConfiguratorApiDbContext : IdentityDbContext<
+        AppUser,
+        AppRole,
+        int,
+        IdentityUserClaim<int>,
+        AppUserRole,
+        IdentityUserLogin<int>,
+        IdentityRoleClaim<int>,
+        IdentityUserToken<int>>
     {
         public DbConfiguratorApiDbContext(DbContextOptions<DbConfiguratorApiDbContext> options)
         : base(options)
@@ -27,6 +37,8 @@ namespace DbConfigurator.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             //Setting up joining table for Recipients Groups
             modelBuilder.Entity<DistributionInformation>()
                 .HasMany(g => g.RecipientsTo)
@@ -38,6 +50,17 @@ namespace DbConfigurator.Persistence
                 .WithMany(r => r.RecipientGroupCc)
                 .UsingEntity<RecipientGroupCc>();
 
+            modelBuilder.Entity<AppUser>()
+                .HasMany(ur => ur.UserRoles)
+                .WithOne(u => u.User)
+                .HasForeignKey(ur => ur.UserId)
+                .IsRequired();
+
+            modelBuilder.Entity<AppRole>()
+                .HasMany(ur => ur.UserRoles)
+                .WithOne(u => u.Role)
+                .HasForeignKey(ur => ur.RoleId)
+                .IsRequired();
 
             modelBuilder.HasDataFromFileAsync<Area>("Area.json");
             modelBuilder.HasDataFromFileAsync<BusinessUnit>("BusinessUnit.json");

@@ -2,6 +2,7 @@
 using DbConfigurator.API.DataAccess.Repository;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Domain.Model.Entities;
+using DbConfigurator.Persistence.DatabaseContext;
 using DbConfigurator.Persistence.Repository;
 using DbConfigurator.Persistence.Seeding;
 using Microsoft.EntityFrameworkCore;

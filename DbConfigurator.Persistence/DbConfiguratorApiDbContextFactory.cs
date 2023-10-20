@@ -13,6 +13,10 @@ namespace DbConfigurator.Persistence
     {
         private readonly IConfiguration _configuration;
 
+        public DbConfiguratorApiDbContextFactory()
+        {
+            
+        }
         public DbConfiguratorApiDbContextFactory(IConfiguration configuration)
         {
             _configuration = configuration;

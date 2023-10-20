@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.AuthenticationFeature
 {
-    public class DbInfoUser
+    public class DbInfoUser : IdentityUser
     {
+        public DbInfoUser()
+        {
+            
+        }
         public DbInfoUser(int userId, string userName, string firstName, string lastName)
         {
             UserId = userId;

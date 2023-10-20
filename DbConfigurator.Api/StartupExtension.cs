@@ -1,7 +1,9 @@
 ﻿using DbConfigurator.API.DataAccess;
 using DbConfigurator.Application;
 using DbConfigurator.Application.Contracts.Persistence;
+using DbConfigurator.Application.Features.AuthenticationFeature;
 using DbConfigurator.Persistence;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -50,6 +52,9 @@ namespace DbConfigurator.Api
             builder.Services.AddPersistenceServices(builder.Configuration);
 
             builder.Services.AddHttpContextAccessor();
+            builder.Services.AddIdentity<DbInfoUser, IdentityRole>() // Add IdentityRole if you intend to use roles
+                .AddEntityFrameworkStores<DbConfiguratorApiDbContext>() // Register EF stores if you're using Entity Framework
+                .AddDefaultTokenProviders();
 
             builder.Services.AddControllers();
 
@@ -112,8 +117,8 @@ namespace DbConfigurator.Api
             if (context is null)
                 return;
 
-            if (await context.Database.CanConnectAsync())
-                return;
+            //if (await context.Database.CanConnectAsync())
+            //    return;
 
             await context.Database.EnsureDeletedAsync();
             await context.Database.MigrateAsync();

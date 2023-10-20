@@ -1,4 +1,5 @@
 ﻿using DbConfigurator.Domain.Model.Entities;
+using DbConfigurator.Domain.SecurityEntities;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Reflection.Emit;
@@ -22,6 +23,7 @@ namespace DbConfigurator.Persistence
         public DbSet<RecipientGroupCc> RecipientGroupCc { get; set; }
         public DbSet<RecipientGroupTo> RecipientGroupTo { get; set; }
         public DbSet<Recipient> Recipient { get; set; }
+        public DbSet<AppUser> User { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -43,8 +45,6 @@ namespace DbConfigurator.Persistence
             modelBuilder.HasDataFromFileAsync<Priority>("Priority.json");
             modelBuilder.HasDataFromFileAsync<Recipient>("Recipient.json");
         }
-
-
     }
     public static class Test
     {

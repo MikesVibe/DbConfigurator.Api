@@ -28,6 +28,8 @@ namespace DbConfigurator.Persistence
             services.AddScoped<IRecipientRepository, RecipientRepository>();
             services.AddScoped<IRegionRepository, RegionRepository>();
             services.AddScoped<IPriorityRepository, PriorityRepository>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<ITokenService, TokenService>();
 
 
             services.AddScoped<ISeeder, Seeder>();

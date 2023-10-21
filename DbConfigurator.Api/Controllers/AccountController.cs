@@ -40,11 +40,14 @@ namespace DbConfigurator.Api.Controllers
                 return BadRequest("Username is taken.");
             }
 
-            var user = new AppUser
-            {
-                DisplayName = registerDto.UserName,
-                UserName = registerDto.UserName.ToLower(),
-            };
+            var user = _mapper.Map<AppUser>(registerDto);
+
+
+            //var user = new AppUser
+            //{
+            //    DisplayName = registerDto.UserName,
+            //    UserName = registerDto.UserName.ToLower(),
+            //};
 
             var result = await _accountRepository.CreateAsync(user, registerDto.Password);
             if(result.IsFailed)
@@ -56,7 +59,6 @@ namespace DbConfigurator.Api.Controllers
                 return new UserDto
                 {
                     UserName = user.UserName,
-                    DisplayName = user.DisplayName,
                     Token = _tokenService.CreateToken(user)
                 };
             }
@@ -82,7 +84,7 @@ namespace DbConfigurator.Api.Controllers
             return new UserDto
             {
                 UserName = user.UserName,
-                DisplayName = user.DisplayName,
+                //DisplayName = user.DisplayName,
                 Token = _tokenService.CreateToken(user)
             };
         }

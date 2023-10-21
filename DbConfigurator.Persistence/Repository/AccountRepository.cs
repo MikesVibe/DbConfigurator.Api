@@ -34,8 +34,9 @@ namespace DbConfigurator.Persistence.Repository
 
         public async Task<Result<AppUser>> GetUserAsync(string userName)
         {
-            var user = await _userManager.Users.SingleOrDefaultAsync(u => u.UserName == userName.ToLower());
-            if(user is null)
+            //var user = await _userManager.Users.SingleOrDefaultAsync(u => u.UserName == userName.ToLower());
+            var user = await _userManager.Users.SingleOrDefaultAsync(u => u.UserName == userName);
+            if (user is null)
             {
                 return Result.Fail("No such user in database.");
             }
@@ -52,7 +53,12 @@ namespace DbConfigurator.Persistence.Repository
 
         public async Task<bool> CheckPasswordAsync(AppUser user, string password)
         {
-            return await _userManager.CheckPasswordAsync(user, password);
+            var result = await _userManager.CheckPasswordAsync(user, password);
+            if (result == false)
+            {
+                await _userManager.AccessFailedAsync(user);
+            }
+            return result;
         }
     }
 }

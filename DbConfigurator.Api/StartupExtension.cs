@@ -127,8 +127,8 @@ namespace DbConfigurator.Api
             if (context is null)
                 return;
 
-            if (await context.Database.CanConnectAsync())
-                return;
+            //if (await context.Database.CanConnectAsync())
+            //    return;
 
             await context.Database.EnsureDeletedAsync();
             await context.Database.MigrateAsync();

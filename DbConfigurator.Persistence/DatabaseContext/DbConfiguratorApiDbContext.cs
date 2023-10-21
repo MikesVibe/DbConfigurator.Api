@@ -33,7 +33,6 @@ namespace DbConfigurator.Persistence.DatabaseContext
         public DbSet<RecipientGroupCc> RecipientGroupCc { get; set; }
         public DbSet<RecipientGroupTo> RecipientGroupTo { get; set; }
         public DbSet<Recipient> Recipient { get; set; }
-        public DbSet<AppUser> User { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -10,9 +10,6 @@ namespace DbConfigurator.Domain.SecurityEntities
 {
     public class AppUser : IdentityUser<int>
     {
-        [Required]
-        public string DisplayName { get; set; }
-
         public ICollection<AppUserRole> UserRoles { get; set; }
     }
 }

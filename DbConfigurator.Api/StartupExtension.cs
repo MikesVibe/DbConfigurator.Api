@@ -98,6 +98,7 @@ namespace DbConfigurator.Api
 
         public static WebApplication ConfigurePipeline(this WebApplication app)
         {
+            app.UseHttpsRedirection();
 
             if (app.Environment.IsDevelopment())
             {
@@ -107,12 +108,11 @@ namespace DbConfigurator.Api
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "GloboTicket Ticket Management API");
                 });
             }
-            app.UseHttpsRedirection();
+
 
             app.UseCors("Open");
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.MapControllers();
 
             return app;

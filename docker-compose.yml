@@ -1,0 +1,27 @@
+version: '3.4'
+
+networks:
+  dbconfigurator:
+
+services:
+  db:
+    container_name: app-db
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    ports:
+      - "8002:1433"
+    environment:
+      SA_PASSWORD: "YourSAPassword1"
+      ACCEPT_EULA: "Y"
+    networks: 
+       - dbconfigurator
+
+  dbconfigurator.api:
+    container_name: dbconfiguratorapi
+    image: ${DOCKER_REGISTRY-}dbconfiguratorapi
+    build:
+      context: .
+      dockerfile: DbConfigurator.Api/Dockerfile
+    ports:
+        - 8001:80
+    depends_on: 
+        - db

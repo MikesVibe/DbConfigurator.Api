@@ -127,27 +127,29 @@ namespace DbConfigurator.Api
             if (context is null)
                 return;
 
-            //if (await context.Database.CanConnectAsync())
-            //    return;
-
-            await context.Database.EnsureDeletedAsync();
-            await context.Database.MigrateAsync();
-
-            var seeder = scope.ServiceProvider.GetService<ISeeder>();
-            if (seeder is null)
-                return;
-
-            await seeder.SeedAsync();
-
-            try
+            if(!await context.Database.CanConnectAsync())
             {
+                await context.Database.EnsureDeletedAsync();
+                await context.Database.MigrateAsync();
 
+                var seeder = scope.ServiceProvider.GetService<ISeeder>();
+                if (seeder is null)
+                    return;
+
+                await seeder.SeedAsync();
             }
-            catch (Exception ex)
-            {
-                //var logger = scope.ServiceProvider.GetRequiredService<ILogger>();
-                //logger.LogError(ex, "An error occurred while migrating the database.");
-            }
+
+
+
+            //try
+            //{
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    //var logger = scope.ServiceProvider.GetRequiredService<ILogger>();
+            //    //logger.LogError(ex, "An error occurred while migrating the database.");
+            //}
         }
     }
 }

@@ -11,10 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DbConfigurator.Api.Controllers
 {
-    [ApiController]
-    [Authorize]
-    [Route("api/[controller]")]
-    public class RecipientController : ControllerBase
+    public class RecipientController : AuthorizingController
     {
         private readonly IMediator _mediator;
 

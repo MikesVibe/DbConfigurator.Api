@@ -88,9 +88,9 @@ namespace DbConfigurator.Api
                 opt.Password.RequireUppercase = false;
                 opt.Password.RequiredLength = 3;
             })
-    .AddRoles<AppRole>()
-    .AddRoleManager<RoleManager<AppRole>>()
-    .AddEntityFrameworkStores<DbConfiguratorApiDbContext>();
+                .AddRoles<AppRole>()
+                .AddRoleManager<RoleManager<AppRole>>()
+                .AddEntityFrameworkStores<DbConfiguratorApiDbContext>();
 
             return builder.Build();
 
@@ -121,35 +121,32 @@ namespace DbConfigurator.Api
 
         public static async Task CreateDatabaseAsync(this WebApplication app)
         {
-            using var scope = app.Services.CreateScope();
-
-            var context = scope.ServiceProvider.GetService<DbConfiguratorApiDbContext>();
-            if (context is null)
-                return;
-
-            if(!await context.Database.CanConnectAsync())
+            try
             {
-                await context.Database.EnsureDeletedAsync();
-                await context.Database.MigrateAsync();
+                Thread.Sleep(100);
+                using var scope = app.Services.CreateScope();
 
-                var seeder = scope.ServiceProvider.GetService<ISeeder>();
-                if (seeder is null)
+                var context = scope.ServiceProvider.GetService<DbConfiguratorApiDbContext>();
+                if (context is null)
                     return;
 
-                await seeder.SeedAsync();
+                if (!await context.Database.CanConnectAsync())
+                {
+                    await context.Database.EnsureDeletedAsync();
+                    await context.Database.MigrateAsync();
+
+                    var seeder = scope.ServiceProvider.GetService<ISeeder>();
+                    if (seeder is null)
+                        return;
+
+                    await seeder.SeedAsync();
+                }
             }
-
-
-
-            //try
-            //{
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    //var logger = scope.ServiceProvider.GetRequiredService<ILogger>();
-            //    //logger.LogError(ex, "An error occurred while migrating the database.");
-            //}
+            catch (Exception ex)
+            {
+                //var logger = scope.ServiceProvider.GetRequiredService<ILogger>();
+                //logger.LogError(ex, "An error occurred while migrating the database.");
+            }
         }
     }
 }

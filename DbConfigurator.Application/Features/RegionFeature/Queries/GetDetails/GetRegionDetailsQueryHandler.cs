@@ -32,7 +32,7 @@ namespace DbConfigurator.Application.Features.RegionFeature.Queries.GetDetails
             {
                 return Result.Fail("Region with specified Id is no longer present in database.");
             }
-            return _mapper.Map<RegionDto>(entity);
+            return Result.Ok(_mapper.Map<RegionDto>(entity));
         }
     }
 }

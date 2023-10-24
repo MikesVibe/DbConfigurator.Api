@@ -6,6 +6,6 @@ namespace DbConfigurator.Application.Features.RegionFeature.Commands.Create
 {
     public class CreateRegionCommand : IRequest<Result<RegionDto>>
     {
-        public RegionDto Region { get; set; } = new RegionDto();
+        public CreateRegionDto Region { get; set; } = new CreateRegionDto();
     }
 }

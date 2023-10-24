@@ -11,6 +11,6 @@ namespace DbConfigurator.Application.Features.RegionFeature.Commands.Delete
 {
     public class DeleteRegionCommand : IRequest<Result<RegionDto>>
     {
-        public RegionDto Region { get; set; } = new RegionDto();
+        public int RegionId { get; set; }
     }
 }

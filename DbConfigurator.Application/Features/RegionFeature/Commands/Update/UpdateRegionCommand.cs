@@ -11,6 +11,6 @@ namespace DbConfigurator.Application.Features.RegionFeature.Commands.Update
 {
     public class UpdateRegionCommand : IRequest<Result<RegionDto>>
     {
-        public RegionDto Region { get; set; } = new RegionDto();
+        public UpdateRegionDto Region { get; set; } = new UpdateRegionDto();
     }
 }

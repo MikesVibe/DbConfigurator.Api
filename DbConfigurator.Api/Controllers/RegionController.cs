@@ -33,12 +33,17 @@ namespace DbConfigurator.Api.Controllers
         [HttpGet("{regionId}", Name = "GetRegionById")]
         public async Task<ActionResult<RegionDto>> GetRegionById(int regionId)
         {
-            var region = await _mediator.Send(new GetRegionDetailsQuery() { RegionId = regionId });
-            return Ok(region);
+            var result = await _mediator.Send(new GetRegionDetailsQuery() { RegionId = regionId });
+            if (result.IsFailed)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result.Value);
         }
 
         [HttpPost(Name = "AddRegion")]
-        public async Task<IActionResult> AddRegion([FromBody] RegionDto region)
+        public async Task<IActionResult> AddRegion([FromBody] CreateRegionDto region)
         {
             var response = await _mediator.Send(new CreateRegionCommand() { Region = region });
 
@@ -48,9 +53,9 @@ namespace DbConfigurator.Api.Controllers
             return Ok();
         }
         [HttpDelete]
-        public async Task<IActionResult> DeleteRegion([FromBody] RegionDto region)
+        public async Task<IActionResult> DeleteRegion(int regionId)
         {
-            var response = await _mediator.Send(new DeleteRegionCommand() { Region = region });
+            var response = await _mediator.Send(new DeleteRegionCommand() { RegionId = regionId });
 
             if (response.IsFailed)
                 return BadRequest();
@@ -58,7 +63,7 @@ namespace DbConfigurator.Api.Controllers
             return Ok();
         }
         [HttpPut]
-        public async Task<IActionResult> UpdateRegion([FromBody] RegionDto region)
+        public async Task<IActionResult> UpdateRegion([FromBody] UpdateRegionDto region)
         {
             var response = await _mediator.Send(new UpdateRegionCommand() { Region = region });
 

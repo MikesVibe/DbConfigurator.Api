@@ -33,12 +33,15 @@ namespace DbConfigurator.Api.Controllers
         [HttpGet("{recipientId}", Name = "GetRecipientById")]
         public async Task<ActionResult<RecipientDto>> GetRecipientById(int recipientId)
         {
-            var recipient = await _mediator.Send(new GetRecipientDetailsQuery() { RecipientId = recipientId });
-            return Ok(recipient);
+            var result = await _mediator.Send(new GetRecipientDetailsQuery() { RecipientId = recipientId });
+            if (result.IsFailed)
+                return BadRequest();
+
+            return Ok(result.Value);
         }
 
         [HttpPost(Name = "AddRecipient")]
-        public async Task<IActionResult> AddRecipient([FromBody] RecipientDto recipient)
+        public async Task<IActionResult> AddRecipient([FromBody] CreateRecipientDto recipient)
         {
             var response = await _mediator.Send(new CreateRecipientCommand() { Recipient = recipient });
 
@@ -48,9 +51,9 @@ namespace DbConfigurator.Api.Controllers
             return Ok();
         }
         [HttpDelete]
-        public async Task<IActionResult> DeleteRecipient([FromBody] RecipientDto recipient)
+        public async Task<IActionResult> DeleteRecipient(int recipientId)
         {
-            var response = await _mediator.Send(new DeleteRecipientCommand() { Recipient = recipient });
+            var response = await _mediator.Send(new DeleteRecipientCommand() { RecipientId = recipientId });
 
             if (response.IsFailed)
                 return BadRequest();
@@ -58,7 +61,7 @@ namespace DbConfigurator.Api.Controllers
             return Ok();
         }
         [HttpPut]
-        public async Task<IActionResult> UpdateRecipient([FromBody] RecipientDto recipient)
+        public async Task<IActionResult> UpdateRecipient([FromBody] UpdateRecipientDto recipient)
         {
             var response = await _mediator.Send(new UpdateRecipientCommand() { Recipient = recipient });
 

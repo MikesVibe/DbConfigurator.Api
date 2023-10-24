@@ -11,6 +11,6 @@ namespace DbConfigurator.Application.Features.RecipientFeature.Commands.Update
 {
     public class UpdateRecipientCommand : IRequest<Result<RecipientDto>>
     {
-        public RecipientDto Recipient { get; set; } = new RecipientDto();
+        public UpdateRecipientDto Recipient { get; set; } = new UpdateRecipientDto();
     }
 }

@@ -11,6 +11,6 @@ namespace DbConfigurator.Application.Features.RecipientFeature.Commands.Delete
 {
     public class DeleteRecipientCommand : IRequest<Result<RecipientDto>>
     {
-        public RecipientDto Recipient { get; set; } = new RecipientDto();
+        public int RecipientId { get; set; }
     }
 }

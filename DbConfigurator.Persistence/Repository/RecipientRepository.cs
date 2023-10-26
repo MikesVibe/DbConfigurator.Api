@@ -2,7 +2,7 @@
 using DbConfigurator.API.DataAccess;
 using DbConfigurator.API.DataAccess.Repository;
 using DbConfigurator.Application.Contracts.Persistence;
-using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Update;
+using DbConfigurator.Application.Features.DistributionInformationFeature;
 using DbConfigurator.Domain.Model.Entities;
 using DbConfigurator.Persistence.DatabaseContext;
 using Microsoft.EntityFrameworkCore;

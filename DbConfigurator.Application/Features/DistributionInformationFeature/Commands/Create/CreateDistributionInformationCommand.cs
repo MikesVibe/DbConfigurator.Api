@@ -6,6 +6,6 @@ namespace DbConfigurator.Application.Features.DistributionInformationFeature.Com
 {
     public class CreateDistributionInformationCommand : IRequest<Result<DistributionInformationDto>>
     {
-        public DistributionInformationDto DistributionInformation { get; set; } = new DistributionInformationDto();
+        public CreateDistributionInformationDto DistributionInformation { get; set; } = new CreateDistributionInformationDto();
     }
 }

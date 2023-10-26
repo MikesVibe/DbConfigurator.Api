@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Update
+namespace DbConfigurator.Application.Features.DistributionInformationFeature
 {
     public class RecipientIdDto
     {

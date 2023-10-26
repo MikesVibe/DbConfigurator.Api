@@ -36,7 +36,7 @@ namespace DbConfigurator.Api.Controllers
         }
 
         [HttpPost(Name = "AddDistributionInformation")]
-        public async Task<IActionResult> AddDistributionInformation([FromBody] DistributionInformationDto distributionInfo)
+        public async Task<IActionResult> AddDistributionInformation([FromBody] CreateDistributionInformationDto distributionInfo)
         {
             var response = await _mediator.Send(new CreateDistributionInformationCommand() { DistributionInformation = distributionInfo });
 

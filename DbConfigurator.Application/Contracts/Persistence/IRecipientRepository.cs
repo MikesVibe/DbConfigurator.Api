@@ -1,4 +1,4 @@
-﻿using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Update;
+﻿using DbConfigurator.Application.Features.DistributionInformationFeature;
 using DbConfigurator.Domain.Model.Entities;
 using System;
 using System.Collections.Generic;

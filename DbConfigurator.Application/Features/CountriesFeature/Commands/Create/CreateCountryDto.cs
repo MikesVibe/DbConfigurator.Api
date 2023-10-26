@@ -11,9 +11,9 @@ namespace DbConfigurator.Application.Features.CountriesFeature.Commands.Create
     {
         [Required]
         [MaxLength(50)]
-        public string CountryName { get; set; } = string.Empty;
-        [Required]
-        [MaxLength(3)]
-        public string CountryCode { get; set; } = string.Empty;
+            public string CountryName { get; set; } = string.Empty;
+            [Required]
+            [MaxLength(3)]
+            public string CountryCode { get; set; } = string.Empty;
     }
 }

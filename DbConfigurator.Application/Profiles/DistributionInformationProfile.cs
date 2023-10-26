@@ -4,6 +4,7 @@ using DbConfigurator.Application.Features.DistributionInformationFeature.Command
 using DbConfigurator.Domain.Model.Entities;
 using DbConfigurator.Application.Features.DistributionInformationFeature.Queries.GetDistributionInformationDetails;
 using DbConfigurator.Application.Features.DistributionInformationFeature.Queries.GetDistributionInformationList;
+using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Create;
 
 namespace DbConfigurator.Application.Profiles
 {
@@ -15,6 +16,7 @@ namespace DbConfigurator.Application.Profiles
             CreateMap<DistributionInformation, DistributionInformationDetails>();
             CreateMap<DistributionInformationDto, DistributionInformation>().ReverseMap();
             CreateMap<UpdateDistributionInformationDto, DistributionInformation>();
+            CreateMap<CreateDistributionInformationDto, DistributionInformation>();
         }
     }
 }

@@ -35,8 +35,16 @@ namespace DbConfigurator.Application.Features.CountriesFeature.Commands.Update
 
             _mapper.Map(request.Country, entity);
 
-            await _countryRepository.UpdateAsync(entity);
-            return Result.Ok();
+            var result = await _countryRepository.UpdateAsync(entity);
+            if (result)
+            {
+                var mapped = _mapper.Map<CountryDto>(entity);
+                return Result.Ok(mapped);
+            }
+            else
+            {
+                return Result.Fail("No istnace of country object with specified Id is present in database.");
+            }
         }
     }
 }

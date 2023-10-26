@@ -33,10 +33,18 @@ namespace DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Updat
                 return Result.Fail("No istnace of business unit object with specified Id is present in database.");
             }
 
-            _mapper.Map(request.BusinessUnit.Id, entity);
+            _mapper.Map(request.BusinessUnit, entity);
 
-            await _businessUnitRepository.UpdateAsync(entity);
-            return Result.Ok();
+            var result = await _businessUnitRepository.UpdateAsync(entity);
+            if (result)
+            {
+                var mapped = _mapper.Map<BusinessUnitDto>(entity);
+                return Result.Ok(mapped);
+            }
+            else
+            {
+                return Result.Fail("No istnace of country object with specified Id is present in database.");
+            }
         }
     }
 }

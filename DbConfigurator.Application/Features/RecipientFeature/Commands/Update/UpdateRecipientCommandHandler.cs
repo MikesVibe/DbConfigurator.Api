@@ -35,8 +35,15 @@ namespace DbConfigurator.Application.Features.RecipientFeature.Commands.Update
 
             _mapper.Map(request.Recipient, entity);
 
-            await _recipientRepository.UpdateAsync(entity);
-            return Result.Ok();
+            var result = await _recipientRepository.UpdateAsync(entity);
+            if (result)
+            {
+                return Result.Ok();
+            }
+            else
+            {
+                return Result.Fail("Update of recipient failed.");
+            }
         }
     }
 }

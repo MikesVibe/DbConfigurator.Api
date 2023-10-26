@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.PriorityFeature.Commands.Update
 {
-    public class UpdatePriorityCommand : IRequest<Result<PriorityDto>>
+    public class UpdatePriorityCommand : IRequest<Result>
     {
         public UpdatePriorityDto Priority { get; set; } = new UpdatePriorityDto();
     }

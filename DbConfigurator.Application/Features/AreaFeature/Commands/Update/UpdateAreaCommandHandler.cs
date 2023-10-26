@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.AreaFeature.Commands.Update
 {
-    public class UpdateAreaCommandHandler : IRequestHandler<UpdateAreaCommand, Result<AreaDto>>
+    public class UpdateAreaCommandHandler : IRequestHandler<UpdateAreaCommand, Result>
     {
         private readonly IAreaRepository _areaRepository;
         private readonly IMapper _mapper;
@@ -24,7 +24,7 @@ namespace DbConfigurator.Application.Features.AreaFeature.Commands.Update
             _mapper = mapper;
         }
 
-        public async Task<Result<AreaDto>> Handle(UpdateAreaCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(UpdateAreaCommand request, CancellationToken cancellationToken)
         {
             var entity = await _areaRepository.GetByIdAsync(request.Area.Id);
             if (entity == null)
@@ -34,8 +34,15 @@ namespace DbConfigurator.Application.Features.AreaFeature.Commands.Update
 
             _mapper.Map(request.Area, entity);
 
-            await _areaRepository.UpdateAsync(entity);
-            return Result.Ok();
+            var result = await _areaRepository.UpdateAsync(entity);
+            if (result)
+            {
+                return Result.Ok();
+            }
+            else
+            {
+                return Result.Fail("Update of area failed.");
+            }
         }
     }
 }

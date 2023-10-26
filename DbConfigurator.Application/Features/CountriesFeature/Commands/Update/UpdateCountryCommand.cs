@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.CountriesFeature.Commands.Update
 {
-    public class UpdateCountryCommand : IRequest<Result<CountryDto>>
+    public class UpdateCountryCommand : IRequest<Result>
     {
         public UpdateCountryDto Country { get; set; } = new UpdateCountryDto();
     }

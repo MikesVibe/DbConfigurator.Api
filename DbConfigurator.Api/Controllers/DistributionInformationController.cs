@@ -28,10 +28,10 @@ namespace DbConfigurator.Api.Controllers
             return Ok(distributionInformation);
         }
 
-        [HttpGet("{disInfoId}", Name = "GetDistributionInformationById")]
-        public async Task<ActionResult<DistributionInformationItem>> GetDistributionInformationById(int disInfoId)
+        [HttpGet("{id}", Name = "GetDistributionInformationById")]
+        public async Task<ActionResult<DistributionInformationItem>> GetDistributionInformationById(int id)
         {
-            var distributionInformation = await _mediator.Send(new GetDistributionInformationDetailsQuery() { Id = disInfoId });
+            var distributionInformation = await _mediator.Send(new GetDistributionInformationDetailsQuery() { Id = id });
             return Ok(distributionInformation);
         }
 
@@ -46,9 +46,9 @@ namespace DbConfigurator.Api.Controllers
             return Ok();
         }
         [HttpDelete]
-        public async Task<IActionResult> DeleteDistributionInformation(int disInfoId)
+        public async Task<IActionResult> DeleteDistributionInformation(int id)
         {
-            var response = await _mediator.Send(new DeleteDistributionInfomationCommand() { DistributionInformationId = disInfoId });
+            var response = await _mediator.Send(new DeleteDistributionInfomationCommand() { DistributionInformationId = id });
 
             if (response.IsFailed)
                 return BadRequest(response.Errors.FirstOrDefault());

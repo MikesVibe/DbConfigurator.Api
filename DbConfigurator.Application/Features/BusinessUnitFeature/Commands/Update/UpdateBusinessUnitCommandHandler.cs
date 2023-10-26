@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Update
 {
-    public class UpdateBusinessUnitCommandHandler : IRequestHandler<UpdateBusinessUnitCommand, Result<BusinessUnitDto>>
+    public class UpdateBusinessUnitCommandHandler : IRequestHandler<UpdateBusinessUnitCommand, Result>
     {
         private readonly IBusinessUnitRepository _businessUnitRepository;
         private readonly IMapper _mapper;
@@ -25,7 +25,7 @@ namespace DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Updat
             _mapper = mapper;
         }
 
-        public async Task<Result<BusinessUnitDto>> Handle(UpdateBusinessUnitCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(UpdateBusinessUnitCommand request, CancellationToken cancellationToken)
         {
             var entity = await _businessUnitRepository.GetByIdAsync(request.BusinessUnit.Id);
             if (entity == null)
@@ -38,12 +38,11 @@ namespace DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Updat
             var result = await _businessUnitRepository.UpdateAsync(entity);
             if (result)
             {
-                var mapped = _mapper.Map<BusinessUnitDto>(entity);
-                return Result.Ok(mapped);
+                return Result.Ok();
             }
             else
             {
-                return Result.Fail("No istnace of country object with specified Id is present in database.");
+                return Result.Fail("Update of businessUnit failed.");
             }
         }
     }

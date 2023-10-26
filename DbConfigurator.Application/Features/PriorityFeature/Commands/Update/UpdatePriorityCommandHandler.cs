@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.PriorityFeature.Commands.Update
 {
-    public class UpdatePriorityCommandHandler : IRequestHandler<UpdatePriorityCommand, Result<PriorityDto>>
+    public class UpdatePriorityCommandHandler : IRequestHandler<UpdatePriorityCommand, Result>
     {
         private readonly IPriorityRepository _priorityRepository;
         private readonly IMapper _mapper;
@@ -25,7 +25,7 @@ namespace DbConfigurator.Application.Features.PriorityFeature.Commands.Update
             _mapper = mapper;
         }
 
-        public async Task<Result<PriorityDto>> Handle(UpdatePriorityCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(UpdatePriorityCommand request, CancellationToken cancellationToken)
         {
             var entity = await _priorityRepository.GetByIdAsync(request.Priority.Id);
             if (entity == null)
@@ -35,8 +35,15 @@ namespace DbConfigurator.Application.Features.PriorityFeature.Commands.Update
 
             _mapper.Map(request.Priority, entity);
 
-            await _priorityRepository.UpdateAsync(entity);
-            return Result.Ok();
+            var result = await _priorityRepository.UpdateAsync(entity);
+            if (result)
+            {
+                return Result.Ok();
+            }
+            else
+            {
+                return Result.Fail("Update of distribution information failed.");
+            }
         }
     }
 }

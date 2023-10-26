@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.CountriesFeature.Commands.Update
 {
-    public class UpdateCountryCommandHandler : IRequestHandler<UpdateCountryCommand, Result<CountryDto>>
+    public class UpdateCountryCommandHandler : IRequestHandler<UpdateCountryCommand, Result>
     {
         private readonly ICountryRepository _countryRepository;
         private readonly IMapper _mapper;
@@ -25,7 +25,7 @@ namespace DbConfigurator.Application.Features.CountriesFeature.Commands.Update
             _mapper = mapper;
         }
 
-        public async Task<Result<CountryDto>> Handle(UpdateCountryCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(UpdateCountryCommand request, CancellationToken cancellationToken)
         {
             var entity = await _countryRepository.GetByIdAsync(request.Country.Id);
             if (entity == null)
@@ -38,12 +38,11 @@ namespace DbConfigurator.Application.Features.CountriesFeature.Commands.Update
             var result = await _countryRepository.UpdateAsync(entity);
             if (result)
             {
-                var mapped = _mapper.Map<CountryDto>(entity);
-                return Result.Ok(mapped);
+                return Result.Ok();
             }
             else
             {
-                return Result.Fail("No istnace of country object with specified Id is present in database.");
+                return Result.Fail("Update of country failed.");
             }
         }
     }

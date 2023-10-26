@@ -26,10 +26,10 @@ namespace DbConfigurator.Api.Controllers
             return Ok(Area);
         }
 
-        [HttpGet("{areaId}", Name = "GetAreaById")]
-        public async Task<ActionResult<AreaDto>> GetAreaById(int areaId)
+        [HttpGet("{id}", Name = "GetAreaById")]
+        public async Task<ActionResult<AreaDto>> GetAreaById(int id)
         {
-            var area = await _mediator.Send(new GetAreaDetailsQuery() { AreaId = areaId });
+            var area = await _mediator.Send(new GetAreaDetailsQuery() { AreaId = id });
             if (area.IsFailed)
                 return BadRequest(area.Errors.Single());
 
@@ -47,9 +47,9 @@ namespace DbConfigurator.Api.Controllers
             return Ok();
         }
         [HttpDelete]
-        public async Task<IActionResult> DeleteArea(int areaId)
+        public async Task<IActionResult> DeleteArea(int id)
         {
-            var response = await _mediator.Send(new DeleteAreaCommand() { AreaId = areaId });
+            var response = await _mediator.Send(new DeleteAreaCommand() { AreaId = id });
 
             if (response.IsFailed)
                 return BadRequest(response.Errors.Single());

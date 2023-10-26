@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Update
 {
-    public class UpdateBusinessUnitCommand : IRequest<Result<BusinessUnitDto>>
+    public class UpdateBusinessUnitCommand : IRequest<Result>
     {
         public UpdateBusinessUnitDto BusinessUnit { get; set; } = new UpdateBusinessUnitDto();
     }

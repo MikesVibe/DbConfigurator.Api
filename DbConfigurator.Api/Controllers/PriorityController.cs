@@ -27,10 +27,10 @@ namespace DbConfigurator.Api.Controllers
             return Ok(priority);
         }
 
-        [HttpGet("{priorityId}", Name = "GetPriorityById")]
-        public async Task<ActionResult<PriorityDto>> GetPriorityById(int priorityId)
+        [HttpGet("{id}", Name = "GetPriorityById")]
+        public async Task<ActionResult<PriorityDto>> GetPriorityById(int id)
         {
-            var result = await _mediator.Send(new GetPriorityDetailsQuery() { PriorityId = priorityId });
+            var result = await _mediator.Send(new GetPriorityDetailsQuery() { PriorityId = id });
             if(result.IsFailed)
                 return BadRequest();
 
@@ -48,9 +48,9 @@ namespace DbConfigurator.Api.Controllers
             return Ok();
         }
         [HttpDelete]
-        public async Task<IActionResult> DeletePriority(int priorityId)
+        public async Task<IActionResult> DeletePriority(int id)
         {
-            var response = await _mediator.Send(new DeletePriorityCommand() { PriorityId = priorityId });
+            var response = await _mediator.Send(new DeletePriorityCommand() { PriorityId = id });
 
             if (response.IsFailed)
                 return BadRequest();

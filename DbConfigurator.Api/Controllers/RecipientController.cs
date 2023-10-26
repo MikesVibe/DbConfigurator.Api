@@ -27,10 +27,10 @@ namespace DbConfigurator.Api.Controllers
             return Ok(recipient);
         }
 
-        [HttpGet("{recipientId}", Name = "GetRecipientById")]
-        public async Task<ActionResult<RecipientDto>> GetRecipientById(int recipientId)
+        [HttpGet("{id}", Name = "GetRecipientById")]
+        public async Task<ActionResult<RecipientDto>> GetRecipientById(int id)
         {
-            var result = await _mediator.Send(new GetRecipientDetailsQuery() { RecipientId = recipientId });
+            var result = await _mediator.Send(new GetRecipientDetailsQuery() { RecipientId = id });
             if (result.IsFailed)
                 return BadRequest();
 
@@ -48,9 +48,9 @@ namespace DbConfigurator.Api.Controllers
             return Ok();
         }
         [HttpDelete]
-        public async Task<IActionResult> DeleteRecipient(int recipientId)
+        public async Task<IActionResult> DeleteRecipient(int id)
         {
-            var response = await _mediator.Send(new DeleteRecipientCommand() { RecipientId = recipientId });
+            var response = await _mediator.Send(new DeleteRecipientCommand() { RecipientId = id });
 
             if (response.IsFailed)
                 return BadRequest();

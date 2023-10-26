@@ -64,8 +64,15 @@ namespace DbConfigurator.Application.Features.DistributionInformationFeature.Com
             entity.RecipientsTo = await _recipientRepository.GetRecipientsAsync(request.DistributionInformation.RecipientsTo);
             entity.RecipientsCc = await _recipientRepository.GetRecipientsAsync(request.DistributionInformation.RecipientsCc);
 
-            await _distributionInformationRepository.UpdateAsync(entity);
-            return Result.Ok();
+            var result = await _distributionInformationRepository.UpdateAsync(entity);
+            if (result)
+            {
+                return Result.Ok();
+            }
+            else
+            {
+                return Result.Fail("Update of distributionInformation failed.");
+            }
         }
     }
 }

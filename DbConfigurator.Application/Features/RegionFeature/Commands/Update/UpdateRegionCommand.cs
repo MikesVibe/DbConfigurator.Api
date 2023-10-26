@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.RegionFeature.Commands.Update
 {
-    public class UpdateRegionCommand : IRequest<Result<RegionDto>>
+    public class UpdateRegionCommand : IRequest<Result>
     {
         public UpdateRegionDto Region { get; set; } = new UpdateRegionDto();
     }

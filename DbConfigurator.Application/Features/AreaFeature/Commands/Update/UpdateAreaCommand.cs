@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.AreaFeature.Commands.Update
 {
-    public class UpdateAreaCommand : IRequest<Result<AreaDto>>
+    public class UpdateAreaCommand : IRequest<Result>
     {
         public UpdateAreaDto Area { get; set; } = new UpdateAreaDto();
     }

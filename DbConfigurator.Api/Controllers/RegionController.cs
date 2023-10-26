@@ -27,10 +27,10 @@ namespace DbConfigurator.Api.Controllers
             return Ok(region);
         }
 
-        [HttpGet("{regionId}", Name = "GetRegionById")]
-        public async Task<ActionResult<RegionDto>> GetRegionById(int regionId)
+        [HttpGet("{id}", Name = "GetRegionById")]
+        public async Task<ActionResult<RegionDto>> GetRegionById(int id)
         {
-            var result = await _mediator.Send(new GetRegionDetailsQuery() { RegionId = regionId });
+            var result = await _mediator.Send(new GetRegionDetailsQuery() { RegionId = id });
             if (result.IsFailed)
             {
                 return BadRequest();
@@ -50,9 +50,9 @@ namespace DbConfigurator.Api.Controllers
             return Ok();
         }
         [HttpDelete]
-        public async Task<IActionResult> DeleteRegion(int regionId)
+        public async Task<IActionResult> DeleteRegion(int id)
         {
-            var response = await _mediator.Send(new DeleteRegionCommand() { RegionId = regionId });
+            var response = await _mediator.Send(new DeleteRegionCommand() { RegionId = id });
 
             if (response.IsFailed)
                 return BadRequest();

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.RegionFeature.Commands.Update
 {
-    public class UpdateRegionCommandHandler : IRequestHandler<UpdateRegionCommand, Result<RegionDto>>
+    public class UpdateRegionCommandHandler : IRequestHandler<UpdateRegionCommand, Result>
     {
         private readonly IAreaRepository _areaRepository;
         private readonly ICountryRepository _countryRepository;
@@ -35,11 +35,10 @@ namespace DbConfigurator.Application.Features.RegionFeature.Commands.Update
             _mapper = mapper;
         }
 
-        public async Task<Result<RegionDto>> Handle(UpdateRegionCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(UpdateRegionCommand request, CancellationToken cancellationToken)
         {
             var region = request.Region;
             var regionEntity = _mapper.Map<Region>(region);
-
 
             var result = await _regionRepository.UpdateAsync(regionEntity);
             if(result == false)
@@ -47,9 +46,7 @@ namespace DbConfigurator.Application.Features.RegionFeature.Commands.Update
                 return Result.Fail("Failed to update region.");
             }
 
-            var mappedRegion = _mapper.Map<RegionDto>(regionEntity);
-
-            return Result.Ok(mappedRegion);
+            return Result.Ok();
         }
     }
 }

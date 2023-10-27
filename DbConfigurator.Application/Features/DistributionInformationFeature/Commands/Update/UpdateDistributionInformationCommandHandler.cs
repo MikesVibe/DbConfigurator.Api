@@ -51,7 +51,7 @@ namespace DbConfigurator.Application.Features.DistributionInformationFeature.Com
             {
                 return Result.Fail("Priority with specified Id is no longer present in database.");
             }
-            var regionExists = await _regionRepository.ExistsAsync(request.DistributionInformation.PriorityId);
+            var regionExists = await _regionRepository.ExistsAsync(request.DistributionInformation.RegionId);
             if (regionExists == false)
             {
                 return Result.Fail("Region with specified Id is no longer present in database.");

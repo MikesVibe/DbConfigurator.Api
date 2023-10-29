@@ -14,6 +14,14 @@ services:
       ACCEPT_EULA: "Y"
     networks: 
        - dbconfigurator
+    volumes:
+       - dbdata:/var/opt/mssql
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "$$SA_PASSWORD" -Q "SELECT 1" || exit 1
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
 
   dbconfigurator.api:
     container_name: dbconfiguratorapi
@@ -26,5 +34,12 @@ services:
         - 8443:443
     depends_on: 
         - db
+    environment:
+      Authentication_Issuer: "https://localhost:8443"
+      Authentication_Audience: "dbconfiguratorapi"
+      Authentication_SecretForKey: "thisisthesecretforgeneratingakey(mustbeatleast64bitlong)thisisthesecretforgeneratingakey(mustbeatleast64bitlong)"
     networks: 
        - dbconfigurator
+
+volumes:
+  dbdata:

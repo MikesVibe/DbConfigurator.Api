@@ -67,18 +67,33 @@ namespace DbConfigurator.Api
                 options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
 
+            //builder.Services.AddAuthentication("Bearer")
+            //    .AddJwtBearer(options =>
+            //    {
+            //        options.TokenValidationParameters = new()
+            //        {
+            //            ValidateIssuer = true,
+            //            ValidateAudience = true,
+            //            ValidateIssuerSigningKey = true,
+            //            ValidIssuer = builder.Configuration["Authentication:Issuer"],
+            //            ValidAudience = builder.Configuration["Authentication:Audience"],
+            //            IssuerSigningKey = new SymmetricSecurityKey(
+            //                Encoding.UTF8.GetBytes(builder.Configuration["Authentication:SecretForKey"]))
+            //        };
+            //    });
+
             builder.Services.AddAuthentication("Bearer")
                 .AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = new()
                     {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = builder.Configuration["Authentication:Issuer"],
-                        ValidAudience = builder.Configuration["Authentication:Audience"],
                         IssuerSigningKey = new SymmetricSecurityKey(
-                            Encoding.UTF8.GetBytes(builder.Configuration["Authentication:SecretForKey"]))
+                            Encoding.UTF8.GetBytes(
+                                Environment.GetEnvironmentVariable("Authentication_SecretForKey") ??
+                               throw new ArgumentNullException("Authentication_SecretForKey")))
                     };
                 });
             builder.Services.AddIdentityCore<AppUser>(opt =>
@@ -123,7 +138,6 @@ namespace DbConfigurator.Api
         {
             try
             {
-                Thread.Sleep(100);
                 using var scope = app.Services.CreateScope();
 
                 var context = scope.ServiceProvider.GetService<DbConfiguratorApiDbContext>();

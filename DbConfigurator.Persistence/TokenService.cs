@@ -31,8 +31,8 @@ namespace DbConfigurator.Persistence
             //_userManager = userManager;
 
             _key = new SymmetricSecurityKey(
-                Encoding.ASCII.GetBytes(_configuration["Authentication:SecretForKey"]
-                ?? throw new ArgumentNullException("Authentication:SecretForKey")));
+                Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("Authentication_SecretForKey")
+                ?? throw new ArgumentNullException("Authentication_SecretForKey")));
         
         }
         public string CreateToken(AppUser user)
@@ -59,9 +59,17 @@ namespace DbConfigurator.Persistence
             var signingCredentials = new SigningCredentials(
                 _key, SecurityAlgorithms.HmacSha512);
 
+            //var jwtSecurityToken = new JwtSecurityToken(
+            //    _configuration["Authentication:Issuer"],
+            //    _configuration["Authentication:Audience"],
+            //    claimsForToken,
+            //    DateTime.UtcNow,
+            //    DateTime.UtcNow.AddDays(1),
+            //    signingCredentials);
             var jwtSecurityToken = new JwtSecurityToken(
-                _configuration["Authentication:Issuer"],
-                _configuration["Authentication:Audience"],
+                null,null,
+                //_configuration["Authentication:Issuer"],
+                //_configuration["Authentication:Audience"],
                 claimsForToken,
                 DateTime.UtcNow,
                 DateTime.UtcNow.AddDays(1),

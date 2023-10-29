@@ -35,6 +35,8 @@ services:
     depends_on: 
         - db
     environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_URLS: "https://+:443;http://+:80"
       Authentication_Issuer: "https://localhost:8443"
       Authentication_Audience: "dbconfiguratorapi"
       Authentication_SecretForKey: "thisisthesecretforgeneratingakey(mustbeatleast64bitlong)thisisthesecretforgeneratingakey(mustbeatleast64bitlong)"

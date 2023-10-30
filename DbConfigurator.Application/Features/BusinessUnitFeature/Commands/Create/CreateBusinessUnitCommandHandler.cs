@@ -8,7 +8,7 @@ using MediatR;
 namespace DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Create
 {
     public class CreateBusinessUnitCommandHandler : IRequestHandler<CreateBusinessUnitCommand, Result<BusinessUnitDto>>
-    {
+    {           
         private readonly IBusinessUnitRepository _businessUnitRepository;
         private readonly IMapper _mapper;
 

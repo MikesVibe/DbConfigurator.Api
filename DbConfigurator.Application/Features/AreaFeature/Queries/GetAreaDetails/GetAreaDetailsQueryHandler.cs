@@ -20,6 +20,7 @@ namespace DbConfigurator.Application.Features.AreaFeature.Queries.GetAreaDetails
             IAreaRepository areaRepository,
             IMapper mapper)
         {
+            
             _areaRepository = areaRepository;
             _mapper = mapper;
         }

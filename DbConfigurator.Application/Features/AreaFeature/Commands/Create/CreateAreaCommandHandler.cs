@@ -7,12 +7,12 @@ using MediatR;
 
 namespace DbConfigurator.Application.Features.AreaFeature.Commands.Create
 {
-    public class CreateBusinessUnitCommandHandler : IRequestHandler<CreateAreaCommand, Result<AreaDto>>
+    public class CreateAreaCommandHandler : IRequestHandler<CreateAreaCommand, Result<AreaDto>>
     {
         private readonly IAreaRepository _areaRepository;
         private readonly IMapper _mapper;
 
-        public CreateBusinessUnitCommandHandler(
+        public CreateAreaCommandHandler(
             IAreaRepository areaRepository,
             IMapper mapper)
         {

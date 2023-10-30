@@ -33,15 +33,21 @@ services:
         - 8001:80
         - 8443:443
     depends_on: 
-        - db
+        db:
+            condition: service_healthy
     environment:
-      ASPNETCORE_ENVIRONMENT: "Development"
-      ASPNETCORE_URLS: "https://+:443;http://+:80"
-      Authentication_Issuer: "https://localhost:8443"
-      Authentication_Audience: "dbconfiguratorapi"
-      Authentication_SecretForKey: "thisisthesecretforgeneratingakey(mustbeatleast64bitlong)thisisthesecretforgeneratingakey(mustbeatleast64bitlong)"
+        -   ASPNETCORE_ENVIRONMENT=Development
+        -   ASPNETCORE_URLS=https://+:443;http://+:80
+        -   Authentication_Issuer=https://localhost:8443
+        -   ASPNETCORE_Kestrel__Certificates__Default__Password=44aa7ace-9764-4397-89af-be854abd0148 
+        -   ASPNETCORE_Kestrel__Certificates__Default__Path=/root/.aspnet/https/DbConfigurator.Api.pfx
+        -   Authentication_Audience=dbconfiguratorapi
+        -   Authentication_SecretForKey=thisisthesecretforgeneratingakey(mustbeatleast64bitlong)thisisthesecretforgeneratingakey(mustbeatleast64bitlong)
     networks: 
        - dbconfigurator
+    volumes:
+        -   ${APPDATA}\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+        -   ${APPDATA}\ASP.NET\Https:/root/.aspnet/https:ro
 
 volumes:
   dbdata:

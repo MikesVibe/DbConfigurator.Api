@@ -2,6 +2,7 @@
 using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Delete;
 using DbConfigurator.Application.UnitTests.Common.Repositories;
 using FluentAssertions;
+using NSubstitute;
 
 namespace DbConfigurator.Application.UnitTests.DistibutionInformationTests.Commands
 {
@@ -18,13 +19,13 @@ namespace DbConfigurator.Application.UnitTests.DistibutionInformationTests.Comma
         public async Task Handle_Should_ReturnFailedResult_When_NoInstanceOfDistributionInformationWithSpecifiedIdIsPresentInDatabase()
         {
             // Arrange
-            var handler = new DeleteDistributionInfomationCommandHandler(
-                _distributionInfromationRepository);
+            var handler = Substitute.For<DeleteDistributionInfomationCommandHandler>(_distributionInfromationRepository);
 
-            var _deleteCommand = new DeleteDistributionInfomationCommand() { DistributionInformationId = 90 };
+            var deleteCommand = Substitute.For<DeleteDistributionInfomationCommand>();
+            deleteCommand.DistributionInformationId = 90;
 
             // Act
-            var result = await handler.Handle(_deleteCommand, new CancellationToken());
+            var result = await handler.Handle(deleteCommand, new CancellationToken());
 
             // Assert
             result.IsFailed.Should().BeTrue();

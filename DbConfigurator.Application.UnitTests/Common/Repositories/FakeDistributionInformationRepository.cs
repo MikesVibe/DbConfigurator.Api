@@ -3,22 +3,11 @@ using DbConfigurator.Domain.Model.Entities;
 
 namespace DbConfigurator.Application.UnitTests.Common.Repositories
 {
-    internal class FakeDistributionInformationRepository : IDistributionInformationRepository
+    internal class FakeDistributionInformationRepository : FakeBaseRepository<DistributionInformation>, IDistributionInformationRepository
     {
         public FakeDistributionInformationRepository()
         {
-            InitializeDistributionInformation();
-        }
-
-
-        public IEnumerable<DistributionInformation> DistributionInformation { get; set; } = new List<DistributionInformation>();
-
-        public bool ExistsAsyncReturnValue { get; private set; }
-
-        public async Task<DistributionInformation> AddAsync(DistributionInformation entity)
-        {
-            await Task.Delay(0);
-            return entity;
+            InitializeEntities();
         }
 
         public Task AddRecipients(int disInfoId, IEnumerable<int> recipientIds)
@@ -26,38 +15,9 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(DistributionInformation value)
+        protected override IEnumerable<DistributionInformation> InitializeEntities()
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<bool> ExistsAsync(int id)
-        {
-            await Task.Delay(0);
-            return ExistsAsyncReturnValue;
-        }
-
-        public async Task<IEnumerable<DistributionInformation>> GetAllAsync()
-        {
-            await Task.Delay(0);
-            return DistributionInformation;
-        }
-
-        public async Task<DistributionInformation?> GetByIdAsync(int id)
-        {
-            var list = await GetAllAsync();
-            return list.FirstOrDefault(d => d.Id == id);
-        }
-
-        public Task<bool> UpdateAsync(DistributionInformation entity)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        private void InitializeDistributionInformation()
-        {
-            DistributionInformation = new List<DistributionInformation>
+            return new List<DistributionInformation>
             {
                 new DistributionInformation()
                 {
@@ -147,12 +107,6 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
                     }
                 }
             };
-        }
-
-
-        public void ExistsAsyncReturns(bool retrunValue)
-        {
-            ExistsAsyncReturnValue = retrunValue;
         }
     }
 }

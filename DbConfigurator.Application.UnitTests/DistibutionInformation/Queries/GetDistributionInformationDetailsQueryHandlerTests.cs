@@ -10,7 +10,7 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformationTests.Quer
         [Fact]
         public async void Handle_Should_ReturnDistribiutionInformationDetails()
         {
-            // Arragne
+            // Arrange
             var getCommand = new GetDistributionInformationDetailsQuery()
             {
                 Id = 1

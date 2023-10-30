@@ -36,7 +36,7 @@ services:
         db:
             condition: service_healthy
     environment:
-        -   ASPNETCORE_ENVIRONMENT=Development
+        -   ASPNETCORE_ENVIRONMENT=Production
         -   ASPNETCORE_URLS=https://+:443;http://+:80
         -   Authentication_Issuer=https://localhost:8443
         -   ASPNETCORE_Kestrel__Certificates__Default__Password=44aa7ace-9764-4397-89af-be854abd0148 

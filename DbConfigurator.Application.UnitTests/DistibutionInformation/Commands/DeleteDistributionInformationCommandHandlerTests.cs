@@ -17,7 +17,7 @@ namespace DbConfigurator.Application.UnitTests.DistibutionInformationTests.Comma
         [Fact]
         public async Task Handle_Should_ReturnFailedResult_When_NoInstanceOfDistributionInformationWithSpecifiedIdIsPresentInDatabase()
         {
-            // Arragne
+            // Arrange
             var handler = new DeleteDistributionInfomationCommandHandler(
                 _distributionInfromationRepository);
 

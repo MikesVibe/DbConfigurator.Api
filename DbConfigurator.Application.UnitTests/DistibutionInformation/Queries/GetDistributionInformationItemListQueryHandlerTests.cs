@@ -19,7 +19,7 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformationTests
         [Fact]
         public async void Handle_Should_ReturnDistribiutionInformationItemList()
         {
-            // Arragne
+            // Arrange
             var getCommand = new GetDistributionInformationItemListQuery();
 
             var handler = new GetDistributionInformationItemListQueryHandler(

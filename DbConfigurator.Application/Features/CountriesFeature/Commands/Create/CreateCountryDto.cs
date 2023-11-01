@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DbConfigurator.Application.Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.CountriesFeature.Commands.Create
 {
-    public class CreateCountryDto
+    public class CreateCountryDto : ICreateEntityDto
     {
         [Required]
         [MaxLength(50)]
-            public string CountryName { get; set; } = string.Empty;
-            [Required]
-            [MaxLength(3)]
-            public string CountryCode { get; set; } = string.Empty;
+        public string CountryName { get; set; } = string.Empty;
+        [Required]
+        [MaxLength(3)]
+        public string CountryCode { get; set; } = string.Empty;
     }
 }

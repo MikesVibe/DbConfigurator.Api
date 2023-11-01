@@ -40,7 +40,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpPost(Name = "AddCountry")]
         public async Task<IActionResult> AddCountry([FromBody] CreateCountryDto country)
         {
-            var response = await _mediator.Send(new CreateCountryCommand() { Country = country });
+            var response = await _mediator.Send(new CreateCountryCommand() { CreateEntityDto = country });
 
             if (response.IsFailed)
                 return BadRequest();

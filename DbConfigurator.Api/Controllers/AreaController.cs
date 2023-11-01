@@ -49,7 +49,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteArea(int id)
         {
-            var response = await _mediator.Send(new DeleteAreaCommand() { AreaId = id });
+            var response = await _mediator.Send(new DeleteAreaCommand() { Id = id });
 
             if (response.IsFailed)
                 return BadRequest(response.Errors.Single());

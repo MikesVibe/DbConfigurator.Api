@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using DbConfigurator.Application.Common;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.PriorityFeature.Commands.Delete;
+using DbConfigurator.Domain.Model.Entities;
 using FluentResults;
 using MediatR;
 using System;
@@ -12,29 +14,13 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.RecipientFeature.Commands.Delete
 {
-    public class DeleteRecipientCommandHandler : IRequestHandler<DeleteRecipientCommand, Result<RecipientDto>>
+    public class DeleteRecipientCommandHandler : DeleteCommandHandlerBase<Recipient, RecipientDto, DeleteRecipientCommand>,
+        IRequestHandler<DeleteRecipientCommand, Result>
     {
-        private readonly IRecipientRepository _recipientRepository;
-        private readonly IMapper _mapper;
-
         public DeleteRecipientCommandHandler(
-            IRecipientRepository recipientRepository,
-            IMapper mapper)
+            IRecipientRepository recipientRepository) 
+            : base(recipientRepository)
         {
-            _recipientRepository = recipientRepository;
-            _mapper = mapper;
-        }
-
-        public async Task<Result<RecipientDto>> Handle(DeleteRecipientCommand request, CancellationToken cancellationToken)
-        {
-            var entity = await _recipientRepository.GetByIdAsync(request.RecipientId);
-            if (entity == null)
-            {
-                return Result.Fail("No instance of recipient object with specified Id is present in database.");
-            }
-
-            await _recipientRepository.DeleteAsync(entity);
-            return Result.Ok();
         }
     }
 }

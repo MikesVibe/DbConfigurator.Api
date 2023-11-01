@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using DbConfigurator.Application.Common;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.AreaFeature.Commands.Delete;
+using DbConfigurator.Domain.Model.Entities;
 using FluentResults;
 using MediatR;
 using System;
@@ -12,29 +14,13 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Delete
 {
-    public class DeleteBusinessUnitCommandHandler : IRequestHandler<DeleteBusinessUnitCommand, Result<BusinessUnitDto>>
+    public class DeleteBusinessUnitCommandHandler : DeleteCommandHandlerBase<BusinessUnit, BusinessUnitDto, DeleteBusinessUnitCommand>,
+        IRequestHandler<DeleteBusinessUnitCommand, Result>
     {
-        private readonly IBusinessUnitRepository _businessUnitRepository;
-        private readonly IMapper _mapper;
-
         public DeleteBusinessUnitCommandHandler(
-            IBusinessUnitRepository businessUnitRepository,
-            IMapper mapper)
+            IBusinessUnitRepository businessUnitRepository)
+            : base(businessUnitRepository)
         {
-            _businessUnitRepository = businessUnitRepository;
-            _mapper = mapper;
-        }
-
-        public async Task<Result<BusinessUnitDto>> Handle(DeleteBusinessUnitCommand request, CancellationToken cancellationToken)
-        {
-            var entity = await _businessUnitRepository.GetByIdAsync(request.BusinessUnitId);
-            if (entity == null)
-            {
-                return Result.Fail("No instance of business unit object with specified Id is present in database.");
-            }
-
-            await _businessUnitRepository.DeleteAsync(entity);
-            return Result.Ok();
         }
     }
 }

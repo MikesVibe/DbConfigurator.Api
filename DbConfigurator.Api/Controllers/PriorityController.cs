@@ -50,7 +50,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeletePriority(int id)
         {
-            var response = await _mediator.Send(new DeletePriorityCommand() { PriorityId = id });
+            var response = await _mediator.Send(new DeletePriorityCommand() { Id = id });
 
             if (response.IsFailed)
                 return BadRequest();

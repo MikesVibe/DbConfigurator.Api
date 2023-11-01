@@ -50,7 +50,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteRecipient(int id)
         {
-            var response = await _mediator.Send(new DeleteRecipientCommand() { RecipientId = id });
+            var response = await _mediator.Send(new DeleteRecipientCommand() { Id = id });
 
             if (response.IsFailed)
                 return BadRequest();

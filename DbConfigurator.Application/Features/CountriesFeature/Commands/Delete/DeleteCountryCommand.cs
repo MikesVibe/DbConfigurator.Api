@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using DbConfigurator.Application.Contracts;
+using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
 using System;
@@ -9,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.CountriesFeature.Commands.Delete
 {
-    public class DeleteCountryCommand : IRequest<Result<CountryDto>>
+    public class DeleteCountryCommand : IRequest<Result>, IDeleteCommand
     {
-        public int CountryId { get; set; } 
+        public int Id { get; set; } 
     }
 }

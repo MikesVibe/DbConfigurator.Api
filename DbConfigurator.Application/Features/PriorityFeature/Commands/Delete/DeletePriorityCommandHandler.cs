@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using DbConfigurator.Application.Common;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.CountriesFeature.Commands.Delete;
+using DbConfigurator.Domain.Model.Entities;
 using FluentResults;
 using MediatR;
 using System;
@@ -12,29 +14,15 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.PriorityFeature.Commands.Delete
 {
-    public class DeletePriorityCommandHandler : IRequestHandler<DeletePriorityCommand, Result<PriorityDto>>
+    public class DeletePriorityCommandHandler : DeleteCommandHandlerBase<Priority, PriorityDto, DeletePriorityCommand>,
+        IRequestHandler<DeletePriorityCommand, Result>
     {
         private readonly IPriorityRepository _priorityRepository;
-        private readonly IMapper _mapper;
 
         public DeletePriorityCommandHandler(
-            IPriorityRepository priorityRepository,
-            IMapper mapper)
+            IPriorityRepository priorityRepository)
+            :base(priorityRepository)
         {
-            _priorityRepository = priorityRepository;
-            _mapper = mapper;
-        }
-
-        public async Task<Result<PriorityDto>> Handle(DeletePriorityCommand request, CancellationToken cancellationToken)
-        {
-            var entity = await _priorityRepository.GetByIdAsync(request.PriorityId);
-            if (entity == null)
-            {
-                return Result.Fail("No instance of priority object with specified Id is present in database.");
-            }
-
-            await _priorityRepository.DeleteAsync(entity);
-            return Result.Ok();
         }
     }
 }

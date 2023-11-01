@@ -48,7 +48,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteDistributionInformation(int id)
         {
-            var response = await _mediator.Send(new DeleteDistributionInfomationCommand() { DistributionInformationId = id });
+            var response = await _mediator.Send(new DeleteDistributionInfomationCommand() { Id = id });
 
             if (response.IsFailed)
                 return BadRequest(response.Errors.FirstOrDefault());

@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using DbConfigurator.Application.Contracts;
+using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
 using System;
@@ -9,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.AreaFeature.Commands.Delete
 {
-    public class DeleteAreaCommand : IRequest<Result>
+    public class DeleteAreaCommand : IRequest<Result>, IDeleteCommand
     {
-        public int AreaId { get; set; }
+        public int Id { get; set; }
     }
 }

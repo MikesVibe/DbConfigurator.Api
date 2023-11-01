@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using DbConfigurator.Application.Common;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Delete;
+using DbConfigurator.Domain.Model.Entities;
 using FluentResults;
 using MediatR;
 using System;
@@ -12,29 +14,13 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.CountriesFeature.Commands.Delete
 {
-    public class DeleteCountryCommandHandler : IRequestHandler<DeleteCountryCommand, Result<CountryDto>>
+    public class DeleteCountryCommandHandler : DeleteCommandHandlerBase<Country, CountryDto, DeleteCountryCommand>,
+        IRequestHandler<DeleteCountryCommand, Result>
     {
-        private readonly ICountryRepository _countryRepository;
-        private readonly IMapper _mapper;
-
         public DeleteCountryCommandHandler(
-            ICountryRepository countryRepository,
-            IMapper mapper)
+            ICountryRepository countryRepository)
+            : base(countryRepository)
         {
-            _countryRepository = countryRepository;
-            _mapper = mapper;
-        }
-
-        public async Task<Result<CountryDto>> Handle(DeleteCountryCommand request, CancellationToken cancellationToken)
-        {
-            var entity = await _countryRepository.GetByIdAsync(request.CountryId);
-            if (entity == null)
-            {
-                return Result.Fail("No instance of country object with specified Id is present in database.");
-            }
-
-            await _countryRepository.DeleteAsync(entity);
-            return Result.Ok();
         }
     }
 }

@@ -8,6 +8,6 @@ namespace DbConfigurator.Application.Contracts
 {
     public interface ICreateCommand
     {
-        public ICreateEntityDto CreateEntityDto { get; }
+        public ICreateEntityDto CreateEntityDto { get; set; }
     }
 }

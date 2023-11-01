@@ -10,13 +10,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DbConfigurator.Api.Controllers
 {
-    public class AreaController : AuthorizingController
+    [ApiController]
+    //[Authorize]
+    [Route("api/[controller]")]
+    public class AreaController : GenericController<
+        CreateAreaCommand, UpdateAreaCommand, DeleteAreaCommand,
+        CreateAreaDto, UpdateAreaDto,
+        AreaDto>
     {
-        private readonly IMediator _mediator;
-
         public AreaController(IMediator mediator)
+            : base(mediator)
         {
-            _mediator = mediator;
         }
 
         [HttpGet("all", Name = "GetArea")]
@@ -34,37 +38,6 @@ namespace DbConfigurator.Api.Controllers
                 return BadRequest(area.Errors.Single());
 
             return Ok(area.Value);
-        }
-
-        [HttpPost(Name = "AddArea")]
-        public async Task<IActionResult> AddArea([FromBody] CreateAreaDto area)
-        {
-            var response = await _mediator.Send(new CreateAreaCommand() { CreateEntityDto = area });
-
-            if (response.IsFailed)
-                return BadRequest(response.Errors.Single());
-
-            return Ok();
-        }
-        [HttpDelete]
-        public async Task<IActionResult> DeleteArea(int id)
-        {
-            var response = await _mediator.Send(new DeleteAreaCommand() { Id = id });
-
-            if (response.IsFailed)
-                return BadRequest(response.Errors.Single());
-
-            return Ok();
-        }
-        [HttpPut]
-        public async Task<IActionResult> UpdateArea([FromBody] UpdateAreaDto area)
-        {
-            var response = await _mediator.Send(new UpdateAreaCommand() { UpdateEntityDto = area });
-
-            if (response.IsFailed)
-                return BadRequest(response.Errors.Single());
-
-            return Ok();
         }
     }
 }

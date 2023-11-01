@@ -8,6 +8,6 @@ namespace DbConfigurator.Application.Contracts
 {
     public interface IUpdateCommand
     {
-        public IUpdateEntityDto UpdateEntityDto { get; }
+        public IUpdateEntityDto UpdateEntityDto { get; set; }
     }
 }

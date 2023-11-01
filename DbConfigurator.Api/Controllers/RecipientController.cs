@@ -40,7 +40,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpPost(Name = "AddRecipient")]
         public async Task<IActionResult> AddRecipient([FromBody] CreateRecipientDto recipient)
         {
-            var response = await _mediator.Send(new CreateRecipientCommand() { Recipient = recipient });
+            var response = await _mediator.Send(new CreateRecipientCommand() { CreateEntityDto = recipient });
 
             if (response.IsFailed)
                 return BadRequest();

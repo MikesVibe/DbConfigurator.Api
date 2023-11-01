@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DbConfigurator.Application.Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.RecipientFeature.Commands.Create
 {
-    public class CreateRecipientDto
+    public class CreateRecipientDto : ICreateEntityDto
     {
         [Required]
         public string FirstName { get; set; } = string.Empty;

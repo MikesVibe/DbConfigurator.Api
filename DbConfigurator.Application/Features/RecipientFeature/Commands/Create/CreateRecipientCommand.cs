@@ -1,11 +1,12 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using DbConfigurator.Application.Contracts;
+using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
 
 namespace DbConfigurator.Application.Features.RecipientFeature.Commands.Create
 {
-    public class CreateRecipientCommand : IRequest<Result<RecipientDto>>
+    public class CreateRecipientCommand : IRequest<Result<RecipientDto>>, ICreateCommand
     {
-        public CreateRecipientDto Recipient { get; set; } = new CreateRecipientDto();
+        public ICreateEntityDto CreateEntityDto { get; set; }
     }
 }

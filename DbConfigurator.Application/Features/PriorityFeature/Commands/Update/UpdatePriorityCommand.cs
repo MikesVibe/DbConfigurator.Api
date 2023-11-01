@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using DbConfigurator.Application.Contracts;
+using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
 using System;
@@ -9,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.PriorityFeature.Commands.Update
 {
-    public class UpdatePriorityCommand : IRequest<Result>
+    public class UpdatePriorityCommand : IRequest<Result>, IUpdateCommand
     {
-        public UpdatePriorityDto Priority { get; set; } = new UpdatePriorityDto();
+        public IUpdateEntityDto UpdateEntityDto { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using DbConfigurator.Application.Contracts;
+using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
 using System;
@@ -9,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Update
 {
-    public class UpdateBusinessUnitCommand : IRequest<Result>
+    public class UpdateBusinessUnitCommand : IRequest<Result>, IUpdateCommand
     {
-        public UpdateBusinessUnitDto BusinessUnit { get; set; } = new UpdateBusinessUnitDto();
+        public IUpdateEntityDto UpdateEntityDto { get; set; }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using DbConfigurator.Application.Common;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.AreaFeature.Commands.Update;
+using DbConfigurator.Domain.Model.Entities;
 using FluentResults;
 using MediatR;
 using System;
@@ -12,38 +14,13 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Update
 {
-    public class UpdateBusinessUnitCommandHandler : IRequestHandler<UpdateBusinessUnitCommand, Result>
+    public class UpdateBusinessUnitCommandHandler : UpdateCommandHandlerBase<BusinessUnit, BusinessUnitDto, UpdateBusinessUnitCommand>,
+        IRequestHandler<UpdateBusinessUnitCommand, Result>
     {
-        private readonly IBusinessUnitRepository _businessUnitRepository;
-        private readonly IMapper _mapper;
-
         public UpdateBusinessUnitCommandHandler(
             IBusinessUnitRepository businessUnitRepository,
-            IMapper mapper)
+            IMapper mapper) : base(businessUnitRepository, mapper)
         {
-            _businessUnitRepository = businessUnitRepository;
-            _mapper = mapper;
-        }
-
-        public async Task<Result> Handle(UpdateBusinessUnitCommand request, CancellationToken cancellationToken)
-        {
-            var entity = await _businessUnitRepository.GetByIdAsync(request.BusinessUnit.Id);
-            if (entity == null)
-            {
-                return Result.Fail("No istnace of business unit object with specified Id is present in database.");
-            }
-
-            _mapper.Map(request.BusinessUnit, entity);
-
-            var result = await _businessUnitRepository.UpdateAsync(entity);
-            if (result)
-            {
-                return Result.Ok();
-            }
-            else
-            {
-                return Result.Fail("Update of businessUnit failed.");
-            }
         }
     }
 }

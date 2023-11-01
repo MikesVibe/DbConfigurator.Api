@@ -60,7 +60,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateCountry([FromBody] UpdateCountryDto country)
         {
-            var response = await _mediator.Send(new UpdateCountryCommand() { Country = country });
+            var response = await _mediator.Send(new UpdateCountryCommand() { UpdateEntityDto = country });
 
             if (response.IsFailed)
                 return BadRequest();

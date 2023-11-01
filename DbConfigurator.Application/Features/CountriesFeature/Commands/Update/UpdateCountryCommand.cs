@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using DbConfigurator.Application.Contracts;
+using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
 using System;
@@ -9,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.CountriesFeature.Commands.Update
 {
-    public class UpdateCountryCommand : IRequest<Result>
+    public class UpdateCountryCommand : IRequest<Result>, IUpdateCommand
     {
-        public UpdateCountryDto Country { get; set; } = new UpdateCountryDto();
+        public IUpdateEntityDto UpdateEntityDto { get; set; }
     }
 }

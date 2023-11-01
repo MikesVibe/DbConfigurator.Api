@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DbConfigurator.Api.Controllers
 {
     [ApiController]
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     public class AuthorizingController : ControllerBase
     {

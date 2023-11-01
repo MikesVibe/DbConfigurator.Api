@@ -60,7 +60,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateRecipient([FromBody] UpdateRecipientDto recipient)
         {
-            var response = await _mediator.Send(new UpdateRecipientCommand() { Recipient = recipient });
+            var response = await _mediator.Send(new UpdateRecipientCommand() { UpdateEntityDto = recipient });
 
             if (response.IsFailed)
                 return BadRequest();

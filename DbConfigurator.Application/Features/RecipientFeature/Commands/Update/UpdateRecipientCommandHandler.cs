@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using DbConfigurator.Application.Common;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.PriorityFeature.Commands.Update;
+using DbConfigurator.Domain.Model.Entities;
 using FluentResults;
 using MediatR;
 using System;
@@ -12,38 +14,13 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.RecipientFeature.Commands.Update
 {
-    public class UpdateRecipientCommandHandler : IRequestHandler<UpdateRecipientCommand, Result<RecipientDto>>
+    public class UpdateRecipientCommandHandler : UpdateCommandHandlerBase<Recipient, RecipientDto, UpdateRecipientCommand>,
+        IRequestHandler<UpdateRecipientCommand, Result>
     {
-        private readonly IRecipientRepository _recipientRepository;
-        private readonly IMapper _mapper;
-
         public UpdateRecipientCommandHandler(
             IRecipientRepository recipientRepository,
-            IMapper mapper)
+            IMapper mapper) : base(recipientRepository, mapper)
         {
-            _recipientRepository = recipientRepository;
-            _mapper = mapper;
-        }
-
-        public async Task<Result<RecipientDto>> Handle(UpdateRecipientCommand request, CancellationToken cancellationToken)
-        {
-            var entity = await _recipientRepository.GetByIdAsync(request.Recipient.Id);
-            if (entity == null)
-            {
-                return Result.Fail("No istnace of recipient object with specified Id is present in database.");
-            }
-
-            _mapper.Map(request.Recipient, entity);
-
-            var result = await _recipientRepository.UpdateAsync(entity);
-            if (result)
-            {
-                return Result.Ok();
-            }
-            else
-            {
-                return Result.Fail("Update of recipient failed.");
-            }
         }
     }
 }

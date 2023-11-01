@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using DbConfigurator.Application.Contracts;
+using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
 using System;
@@ -9,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.RecipientFeature.Commands.Update
 {
-    public class UpdateRecipientCommand : IRequest<Result<RecipientDto>>
+    public class UpdateRecipientCommand : IRequest<Result>, IUpdateCommand
     {
-        public UpdateRecipientDto Recipient { get; set; } = new UpdateRecipientDto();
+        public IUpdateEntityDto UpdateEntityDto { get; set; }
     }
 }

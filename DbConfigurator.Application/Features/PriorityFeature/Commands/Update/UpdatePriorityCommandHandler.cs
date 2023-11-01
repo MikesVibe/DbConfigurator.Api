@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using DbConfigurator.Application.Common;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.CountriesFeature.Commands.Update;
+using DbConfigurator.Domain.Model.Entities;
 using FluentResults;
 using MediatR;
 using System;
@@ -12,38 +14,13 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.PriorityFeature.Commands.Update
 {
-    public class UpdatePriorityCommandHandler : IRequestHandler<UpdatePriorityCommand, Result>
+    public class UpdatePriorityCommandHandler : UpdateCommandHandlerBase<Priority, PriorityDto, UpdatePriorityCommand>,
+        IRequestHandler<UpdatePriorityCommand, Result>
     {
-        private readonly IPriorityRepository _priorityRepository;
-        private readonly IMapper _mapper;
-
         public UpdatePriorityCommandHandler(
             IPriorityRepository priorityRepository,
-            IMapper mapper)
+            IMapper mapper) : base(priorityRepository, mapper)
         {
-            _priorityRepository = priorityRepository;
-            _mapper = mapper;
-        }
-
-        public async Task<Result> Handle(UpdatePriorityCommand request, CancellationToken cancellationToken)
-        {
-            var entity = await _priorityRepository.GetByIdAsync(request.Priority.Id);
-            if (entity == null)
-            {
-                return Result.Fail("No istnace of priority object with specified Id is present in database.");
-            }
-
-            _mapper.Map(request.Priority, entity);
-
-            var result = await _priorityRepository.UpdateAsync(entity);
-            if (result)
-            {
-                return Result.Ok();
-            }
-            else
-            {
-                return Result.Fail("Update of distribution information failed.");
-            }
         }
     }
 }

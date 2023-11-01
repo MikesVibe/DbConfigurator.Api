@@ -60,7 +60,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdatePriority([FromBody] UpdatePriorityDto priority)
         {
-            var response = await _mediator.Send(new UpdatePriorityCommand() { Priority = priority });
+            var response = await _mediator.Send(new UpdatePriorityCommand() { UpdateEntityDto = priority });
 
             if (response.IsFailed)
                 return BadRequest();

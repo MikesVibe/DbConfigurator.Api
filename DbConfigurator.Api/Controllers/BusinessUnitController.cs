@@ -57,7 +57,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateBusinessUnit([FromBody] UpdateBusinessUnitDto businessUnit)
         {
-            var response = await _mediator.Send(new UpdateBusinessUnitCommand() { BusinessUnit = businessUnit });
+            var response = await _mediator.Send(new UpdateBusinessUnitCommand() { UpdateEntityDto = businessUnit });
 
             if (response.IsFailed)
                 return BadRequest();

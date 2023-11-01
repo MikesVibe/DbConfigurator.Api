@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using DbConfigurator.Application.Contracts;
+using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
 using System;
@@ -9,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.AreaFeature.Commands.Update
 {
-    public class UpdateAreaCommand : IRequest<Result>
+    public class UpdateAreaCommand : IRequest<Result>, IUpdateCommand
     {
-        public UpdateAreaDto Area { get; set; } = new UpdateAreaDto();
+        public IUpdateEntityDto UpdateEntityDto { get; set; }
     }
 }

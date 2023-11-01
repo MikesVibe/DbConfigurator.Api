@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using DbConfigurator.Application.Common;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Update;
+using DbConfigurator.Domain.Model.Entities;
 using FluentResults;
 using MediatR;
 using System;
@@ -12,38 +14,13 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.CountriesFeature.Commands.Update
 {
-    public class UpdateCountryCommandHandler : IRequestHandler<UpdateCountryCommand, Result>
+    public class UpdateCountryCommandHandler : UpdateCommandHandlerBase<Country, CountryDto, UpdateCountryCommand>,
+        IRequestHandler<UpdateCountryCommand, Result>
     {
-        private readonly ICountryRepository _countryRepository;
-        private readonly IMapper _mapper;
-
         public UpdateCountryCommandHandler(
             ICountryRepository countryRepository,
-            IMapper mapper)
+            IMapper mapper) :base(countryRepository, mapper) 
         {
-            _countryRepository = countryRepository;
-            _mapper = mapper;
-        }
-
-        public async Task<Result> Handle(UpdateCountryCommand request, CancellationToken cancellationToken)
-        {
-            var entity = await _countryRepository.GetByIdAsync(request.Country.Id);
-            if (entity == null)
-            {
-                return Result.Fail("No istnace of country object with specified Id is present in database.");
-            }
-
-            _mapper.Map(request.Country, entity);
-
-            var result = await _countryRepository.UpdateAsync(entity);
-            if (result)
-            {
-                return Result.Ok();
-            }
-            else
-            {
-                return Result.Fail("Update of country failed.");
-            }
-        }
+        }   
     }
 }

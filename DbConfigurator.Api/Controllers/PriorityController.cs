@@ -40,7 +40,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpPost(Name = "AddPriority")]
         public async Task<IActionResult> AddPriority([FromBody] CreatePriorityDto priority)
         {
-            var response = await _mediator.Send(new CreatePriorityCommand() { Priority = priority });
+            var response = await _mediator.Send(new CreatePriorityCommand() { CreateEntityDto = priority });
 
             if (response.IsFailed)
                 return BadRequest();

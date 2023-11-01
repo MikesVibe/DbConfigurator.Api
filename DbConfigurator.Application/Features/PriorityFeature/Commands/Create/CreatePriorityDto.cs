@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DbConfigurator.Application.Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.PriorityFeature.Commands.Create
 {
-    public class CreatePriorityDto
+    public class CreatePriorityDto : ICreateEntityDto
     {
         [Required]
         [MaxLength(6)]

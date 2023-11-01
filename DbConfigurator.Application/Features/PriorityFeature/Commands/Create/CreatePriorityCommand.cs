@@ -1,11 +1,12 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using DbConfigurator.Application.Contracts;
+using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
 
 namespace DbConfigurator.Application.Features.PriorityFeature.Commands.Create
 {
-    public class CreatePriorityCommand : IRequest<Result<PriorityDto>>
+    public class CreatePriorityCommand : IRequest<Result<PriorityDto>>, ICreateCommand
     {
-        public CreatePriorityDto Priority { get; set; } = new CreatePriorityDto();
+        public ICreateEntityDto CreateEntityDto { get; set; }
     }
 }

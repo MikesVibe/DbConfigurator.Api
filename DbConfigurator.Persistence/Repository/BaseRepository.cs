@@ -1,6 +1,7 @@
 ﻿using DbConfigurator.Api.Services;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Persistence.DatabaseContext;
+using FluentResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace DbConfigurator.API.DataAccess.Repository
@@ -16,11 +17,18 @@ namespace DbConfigurator.API.DataAccess.Repository
             _dbContext = dbContext;
         }
 
-        public virtual async Task<T> AddAsync(T entity)
+        public virtual async Task<Result<T>> AddAsync(T entity)
         {
             await _dbContext.Set<T>().AddAsync(entity);
-            await _dbContext.SaveChangesAsync();
-            return entity;
+            var result = await _dbContext.SaveChangesAsync();
+            if (result > 0)
+            {
+                return entity;
+            }
+            else
+            {
+                return Result.Fail("Fail while trying to add entity.");
+            }
         }
         public virtual async Task DeleteAsync(T entity)
         {

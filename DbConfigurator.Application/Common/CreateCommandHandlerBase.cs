@@ -28,12 +28,14 @@ namespace DbConfigurator.Application.Common
         public virtual async Task<Result<TEntityDto>> Handle(TCreateCommand command, CancellationToken cancellationToken)
         {
             var entityToAdd = _mapper.Map<TEntity>(command.CreateEntityDto);
-            var createdEntity = await _repository.AddAsync(entityToAdd);
-            if (createdEntity is null)
+            var result = await _repository.AddAsync(entityToAdd);
+            if (result.IsFailed)
+            {
                 return Result.Fail($"Failed to create {nameof(TEntity)}.");
+            }
 
-            var result = _mapper.Map<TEntityDto>(createdEntity);
-            return result;
+            var dto = _mapper.Map<TEntityDto>(result);
+            return dto;
         }
     }
 }

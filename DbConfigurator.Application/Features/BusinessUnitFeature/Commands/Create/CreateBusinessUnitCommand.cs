@@ -1,11 +1,12 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using DbConfigurator.Application.Contracts;
+using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
 
 namespace DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Create
 {
-    public class CreateBusinessUnitCommand : IRequest<Result<BusinessUnitDto>>
+    public class CreateBusinessUnitCommand : IRequest<Result<BusinessUnitDto>>, ICreateCommand
     {
-        public CreateBusinessUnitDto BusinessUnit { get; set; } = new CreateBusinessUnitDto();
+        public ICreateEntityDto CreateEntityDto { get; set; }
     }
 }

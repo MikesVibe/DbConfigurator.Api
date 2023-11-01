@@ -39,7 +39,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpPost(Name = "AddArea")]
         public async Task<IActionResult> AddArea([FromBody] CreateAreaDto area)
         {
-            var response = await _mediator.Send(new CreateAreaCommand() { Area = area });
+            var response = await _mediator.Send(new CreateAreaCommand() { CreateEntityDto = area });
 
             if (response.IsFailed)
                 return BadRequest(response.Errors.Single());

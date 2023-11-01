@@ -1,11 +1,12 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using DbConfigurator.Application.Contracts;
+using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
 
 namespace DbConfigurator.Application.Features.AreaFeature.Commands.Create
 {
-    public class CreateAreaCommand : IRequest<Result<AreaDto>>
+    public class CreateAreaCommand : IRequest<Result<AreaDto>>, ICreateCommand
     {
-        public CreateAreaDto Area { get; set; } = new CreateAreaDto();
+        public ICreateEntityDto CreateEntityDto { get; set; }
     }
 }

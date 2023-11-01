@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DbConfigurator.Application.Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.AreaFeature.Commands.Create
 {
-    public class CreateAreaDto
+    public class CreateAreaDto : ICreateEntityDto
     {
         [Required]
         [MaxLength(50)]

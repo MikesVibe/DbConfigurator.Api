@@ -42,7 +42,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpPost(Name = "AddRegion")]
         public async Task<IActionResult> AddRegion([FromBody] CreateRegionDto region)
         {
-            var response = await _mediator.Send(new CreateRegionCommand() { Region = region });
+            var response = await _mediator.Send(new CreateRegionCommand() { CreateEntityDto = region });
 
             if (response.IsFailed)
                 return BadRequest();

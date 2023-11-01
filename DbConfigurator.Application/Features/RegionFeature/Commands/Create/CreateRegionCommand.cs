@@ -1,11 +1,12 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using DbConfigurator.Application.Contracts;
+using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
 
 namespace DbConfigurator.Application.Features.RegionFeature.Commands.Create
 {
-    public class CreateRegionCommand : IRequest<Result<RegionDto>>
+    public class CreateRegionCommand : IRequest<Result<RegionDto>>, ICreateCommand
     {
-        public CreateRegionDto Region { get; set; } = new CreateRegionDto();
+        public ICreateEntityDto CreateEntityDto { get; set; }
     }
 }

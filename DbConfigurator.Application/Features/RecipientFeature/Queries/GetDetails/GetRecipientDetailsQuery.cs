@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using DbConfigurator.Application.Contracts.Features.GetDetail;
+using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
 using System;
@@ -9,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.RecipientFeature.Queries.GetDetails
 {
-    public class GetRecipientDetailsQuery : IRequest<Result<RecipientDto>>
+    public class GetRecipientDetailsQuery : IRequest<Result<RecipientDto>>, IGetDetailQuery
     {
-        public int RecipientId { get; set; }
+        public int Id { get; set; }
     }
 }

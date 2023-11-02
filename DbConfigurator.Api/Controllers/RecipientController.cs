@@ -30,7 +30,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpGet("{id}", Name = "GetRecipientById")]
         public async Task<ActionResult<RecipientDto>> GetRecipientById(int id)
         {
-            var result = await _mediator.Send(new GetRecipientDetailsQuery() { RecipientId = id });
+            var result = await _mediator.Send(new GetRecipientDetailsQuery() { Id = id });
             if (result.IsFailed)
                 return BadRequest();
 

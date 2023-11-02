@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using DbConfigurator.Application.Contracts.Features.GetDetail;
+using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
 using System;
@@ -9,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.CountriesFeature.Queries.GetDetails
 {
-    public class GetCountryDetailsQuery : IRequest<Result<CountryDto>>
+    public class GetCountryDetailsQuery : IRequest<Result<CountryDto>>, IGetDetailQuery
     {
-        public int CountryId { get; set; }
+        public int Id { get; set; }
     }
 }

@@ -28,10 +28,10 @@ namespace DbConfigurator.Application.Common
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<AreaDto>> Handle(TGetListQuery query, CancellationToken cancellationToken)
+        public async Task<IEnumerable<TEntityDto>> Handle(TGetListQuery query, CancellationToken cancellationToken)
         {
             var list = await _repository.GetAllAsync();
-            return _mapper.Map<IEnumerable<AreaDto>>(list);
+            return _mapper.Map<IEnumerable<TEntityDto>>(list);
         }
     }
 }

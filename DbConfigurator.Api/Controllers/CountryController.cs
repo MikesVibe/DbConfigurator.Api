@@ -30,7 +30,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpGet("{id}", Name = "GetCountryById")]
         public async Task<ActionResult<CountryDto>> GetCountryById(int id)
         {
-            var response = await _mediator.Send(new GetCountryDetailsQuery() { CountryId = id });
+            var response = await _mediator.Send(new GetCountryDetailsQuery() { Id = id });
             if (response.IsFailed)
                 return BadRequest();
 

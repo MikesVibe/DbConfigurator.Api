@@ -16,28 +16,12 @@ namespace DbConfigurator.Api.Controllers
     public class AreaController : GenericController<
         CreateAreaCommand, UpdateAreaCommand, DeleteAreaCommand,
         CreateAreaDto, UpdateAreaDto,
+        GetAreaDetailsQuery, GetAreaItemListQuery,
         AreaDto>
     {
         public AreaController(IMediator mediator)
             : base(mediator)
         {
-        }
-
-        [HttpGet("all", Name = "GetArea")]
-        public async Task<ActionResult<IEnumerable<AreaDto>>> GetArea()
-        {
-            var Area = await _mediator.Send(new GetAreaItemListQuery());
-            return Ok(Area);
-        }
-
-        [HttpGet("{id}", Name = "GetAreaById")]
-        public async Task<ActionResult<AreaDto>> GetAreaById(int id)
-        {
-            var area = await _mediator.Send(new GetAreaDetailsQuery() { Id = id });
-            if (area.IsFailed)
-                return BadRequest(area.Errors.Single());
-
-            return Ok(area.Value);
         }
     }
 }

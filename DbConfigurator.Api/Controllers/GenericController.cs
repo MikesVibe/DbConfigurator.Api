@@ -1,9 +1,14 @@
 ﻿using DbConfigurator.Application.Contracts.Features.Create;
 using DbConfigurator.Application.Contracts.Features.Delete;
+using DbConfigurator.Application.Contracts.Features.GetDetail;
+using DbConfigurator.Application.Contracts.Features.GetList;
 using DbConfigurator.Application.Contracts.Features.Update;
+using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.AreaFeature.Commands.Create;
 using DbConfigurator.Application.Features.AreaFeature.Commands.Delete;
 using DbConfigurator.Application.Features.AreaFeature.Commands.Update;
+using DbConfigurator.Application.Features.AreaFeature.Queries.GetAreaDetails;
+using DbConfigurator.Application.Features.AreaFeature.Queries.GetAreaList;
 using FluentResults;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +19,13 @@ namespace DbConfigurator.Api.Controllers
     public class GenericController<
         TCreateCommand, TUpdateCommand, TDeleteCommand,
         TCreateDto, TUpdateDto,
+        TGetDetailsQuery, TGetListQuery, 
         TEntiyDto> : ControllerBase
         where TCreateCommand : ICreateCommand, IRequest<Result<TEntiyDto>>, new()
         where TUpdateCommand : IUpdateCommand, IRequest<Result>, new()
         where TDeleteCommand : IDeleteCommand, IRequest<Result>, new()
+        where TGetDetailsQuery : IGetDetailQuery, IRequest<Result<TEntiyDto>>, new()
+        where TGetListQuery : IGetListQuery, IRequest<IEnumerable<TEntiyDto>>, new()
         where TCreateDto : ICreateEntityDto
         where TUpdateDto : IUpdateEntityDto
 
@@ -58,6 +66,22 @@ namespace DbConfigurator.Api.Controllers
                 return BadRequest(response.Errors.Single());
 
             return Ok();
+        }
+        [HttpGet("all")]
+        public async Task<ActionResult<IEnumerable<TEntiyDto>>> GetArea()
+        {
+            var Area = await _mediator.Send(new TGetListQuery());
+            return Ok(Area);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<TEntiyDto>> GetAreaById(int id)
+        {
+            var area = await _mediator.Send(new TGetDetailsQuery() { Id = id });
+            if (area.IsFailed)
+                return BadRequest(area.Errors.Single());
+
+            return Ok(area.Value);
         }
     }
 }

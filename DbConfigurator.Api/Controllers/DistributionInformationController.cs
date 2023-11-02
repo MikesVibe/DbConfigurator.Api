@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using Azure;
+using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.DistributionInformationFeature;
 using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Create;
 using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Delete;
@@ -25,14 +26,19 @@ namespace DbConfigurator.Api.Controllers
         public async Task<ActionResult<IEnumerable<DistributionInformationItem>>> GetDistributionInformation()
         {
             var distributionInformation = await _mediator.Send(new GetDistributionInformationItemListQuery());
+
             return Ok(distributionInformation);
         }
 
         [HttpGet("{id}", Name = "GetDistributionInformationById")]
         public async Task<ActionResult<DistributionInformationItem>> GetDistributionInformationById(int id)
         {
-            var distributionInformation = await _mediator.Send(new GetDistributionInformationDetailsQuery() { Id = id });
-            return Ok(distributionInformation);
+            var response = await _mediator.Send(new GetDistributionInformationDetailsQuery() { Id = id });
+
+            if (response.IsFailed)
+                return BadRequest();
+
+            return Ok(response.Value);
         }
 
         [HttpPost(Name = "AddDistributionInformation")]

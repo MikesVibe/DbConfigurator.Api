@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using DbConfigurator.Application.Contracts.Features.GetList;
+using DbConfigurator.Application.Dtos;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.RegionFeature.Queries.GetList
 {
-    public class GetRegionListQuery : IRequest<IEnumerable<RegionDto>>
+    public class GetRegionListQuery : IRequest<IEnumerable<RegionDto>>, IGetListQuery
     {
     }
 }

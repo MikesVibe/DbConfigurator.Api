@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using DbConfigurator.Application.Common;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
+using DbConfigurator.Domain.Model.Entities;
 using FluentResults;
 using MediatR;
 using System;
@@ -11,23 +13,14 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.RegionFeature.Queries.GetList
 {
-    public class GetRegionListQueryHandler : IRequestHandler<GetRegionListQuery, IEnumerable<RegionDto>>
+    public class GetRegionListQueryHandler : GetListQueryHandlerBase<Region, RegionDto, GetRegionListQuery>,
+        IRequestHandler<GetRegionListQuery, IEnumerable<RegionDto>>
     {
-        private readonly IRegionRepository _regionRepository;
-        private readonly IMapper _mapper;
 
         public GetRegionListQueryHandler(
             IRegionRepository regionRepository,
-            IMapper mapper)
+            IMapper mapper) : base(regionRepository, mapper) 
         {
-            _regionRepository = regionRepository;
-            _mapper = mapper;
-        }
-
-        public async Task<IEnumerable<RegionDto>> Handle(GetRegionListQuery request, CancellationToken cancellationToken)
-        {
-            var entity = await _regionRepository.GetAllAsync();
-            return _mapper.Map<IEnumerable<RegionDto>>(entity);
         }
     }
 }

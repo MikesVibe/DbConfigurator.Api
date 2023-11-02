@@ -1,4 +1,6 @@
-﻿using DbConfigurator.Application.Contracts;
+﻿using DbConfigurator.Application.Contracts.Features.Create;
+using DbConfigurator.Application.Contracts.Features.Delete;
+using DbConfigurator.Application.Contracts.Features.Update;
 using DbConfigurator.Application.Features.AreaFeature.Commands.Create;
 using DbConfigurator.Application.Features.AreaFeature.Commands.Delete;
 using DbConfigurator.Application.Features.AreaFeature.Commands.Update;

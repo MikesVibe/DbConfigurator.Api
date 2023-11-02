@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using DbConfigurator.Application.Common;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
+using DbConfigurator.Domain.Model.Entities;
 using FluentResults;
 using MediatR;
 using System;
@@ -11,28 +13,13 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.AreaFeature.Queries.GetAreaDetails
 {
-    public class GetAreaDetailsQueryHandler : IRequestHandler<GetAreaDetailsQuery, Result<AreaDto>>
+    public class GetAreaDetailsQueryHandler : GetDetailQueryHandlerBase<Area, AreaDto, GetAreaDetailsQuery>,
+        IRequestHandler<GetAreaDetailsQuery, Result<AreaDto>>
     {
-        private readonly IAreaRepository _areaRepository;
-        private readonly IMapper _mapper;
-
         public GetAreaDetailsQueryHandler(
             IAreaRepository areaRepository,
-            IMapper mapper)
+            IMapper mapper) : base(areaRepository, mapper)
         {
-            
-            _areaRepository = areaRepository;
-            _mapper = mapper;
-        }
-
-        public async Task<Result<AreaDto>> Handle(GetAreaDetailsQuery request, CancellationToken cancellationToken)
-        {
-            var area = await _areaRepository.GetByIdAsync(request.AreaId);
-            if (area is null)
-            {
-                return Result.Fail("Area with specified Id is no longer present in database.");
-            }
-            return _mapper.Map<AreaDto>(area);
         }
     }
 }

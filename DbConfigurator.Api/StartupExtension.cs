@@ -93,7 +93,9 @@ namespace DbConfigurator.Api
                         IssuerSigningKey = new SymmetricSecurityKey(
                             Encoding.UTF8.GetBytes(
                                 Environment.GetEnvironmentVariable("Authentication_SecretForKey") ??
-                               throw new ArgumentNullException("Authentication_SecretForKey")))
+                                builder.Configuration["Authentication:SecretForKey"] ??
+                                throw new ArgumentNullException("Authentication_SecretForKey")))
+
                     };
                 });
             builder.Services.AddIdentityCore<AppUser>(opt =>

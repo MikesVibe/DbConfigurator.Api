@@ -33,7 +33,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpGet("{id}", Name = "GetAreaById")]
         public async Task<ActionResult<AreaDto>> GetAreaById(int id)
         {
-            var area = await _mediator.Send(new GetAreaDetailsQuery() { AreaId = id });
+            var area = await _mediator.Send(new GetAreaDetailsQuery() { Id = id });
             if (area.IsFailed)
                 return BadRequest(area.Errors.Single());
 

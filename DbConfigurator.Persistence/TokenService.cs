@@ -31,9 +31,11 @@ namespace DbConfigurator.Persistence
             //_userManager = userManager;
 
             _key = new SymmetricSecurityKey(
-                Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("Authentication_SecretForKey")
-                ?? throw new ArgumentNullException("Authentication_SecretForKey")));
-        
+                Encoding.ASCII.GetBytes(
+                    Environment.GetEnvironmentVariable("Authentication_SecretForKey") ??
+                    configuration["Authentication:SecretForKey"] ??
+                    throw new ArgumentNullException("Authentication_SecretForKey")));
+
         }
         public string CreateToken(AppUser user)
         {
@@ -67,7 +69,7 @@ namespace DbConfigurator.Persistence
             //    DateTime.UtcNow.AddDays(1),
             //    signingCredentials);
             var jwtSecurityToken = new JwtSecurityToken(
-                null,null,
+                null, null,
                 //_configuration["Authentication:Issuer"],
                 //_configuration["Authentication:Audience"],
                 claimsForToken,

@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using DbConfigurator.Application.Contracts.Features.GetDetail;
+using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
 using System;
@@ -9,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.AreaFeature.Queries.GetAreaDetails
 {
-    public class GetAreaDetailsQuery : IRequest<Result<AreaDto>>
+    public class GetAreaDetailsQuery : IRequest<Result<AreaDto>>, IGetDetailQuery
     {
-        public int AreaId { get; set; }
+        public int Id { get; set; }
     }
 }

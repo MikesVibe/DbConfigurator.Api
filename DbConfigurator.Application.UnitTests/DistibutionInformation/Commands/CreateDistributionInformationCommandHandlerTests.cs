@@ -29,7 +29,7 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformationTests.Comm
             _distributionInformationToCreate = CreateDistributionInformationDto();
             _createCommand = new CreateDistributionInformationCommand()
             {
-                DistributionInformation = _distributionInformationToCreate
+                CreateEntityDto = _distributionInformationToCreate
             };
         }
 

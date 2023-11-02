@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DbConfigurator.Application.Contracts.Features.Create;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Create
 {
-    public class CreateDistributionInformationDto
+    public class CreateDistributionInformationDto : ICreateEntityDto
     {
         public int RegionId { get; set; }
         public int PriorityId { get; set; }

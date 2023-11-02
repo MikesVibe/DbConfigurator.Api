@@ -1,4 +1,9 @@
 ﻿using DbConfigurator.Application.Dtos;
+using DbConfigurator.Application.Features.PriorityFeature.Commands.Create;
+using DbConfigurator.Application.Features.PriorityFeature.Commands.Delete;
+using DbConfigurator.Application.Features.PriorityFeature.Commands.Update;
+using DbConfigurator.Application.Features.PriorityFeature.Queries.GetDetails;
+using DbConfigurator.Application.Features.PriorityFeature.Queries.GetList;
 using DbConfigurator.Application.Features.RecipientFeature;
 using DbConfigurator.Application.Features.RecipientFeature.Commands.Create;
 using DbConfigurator.Application.Features.RecipientFeature.Commands.Delete;
@@ -11,61 +16,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DbConfigurator.Api.Controllers
 {
-    public class RecipientController : AuthorizingController
+    public class RecipientController : GenericController<
+        CreateRecipientCommand, UpdateRecipientCommand, DeleteRecipientCommand,
+        CreateRecipientDto, UpdateRecipientDto,
+        GetRecipientDetailsQuery, GetRecipientListQuery,
+        RecipientDto>
     {
-        private readonly IMediator _mediator;
-
-        public RecipientController(IMediator mediator)
+        public RecipientController(IMediator mediator) 
+            : base(mediator) 
         {
-            _mediator = mediator;
-        }
-
-        [HttpGet("all", Name = "GetRecipient")]
-        public async Task<ActionResult<IEnumerable<RecipientDto>>> GetRecipient()
-        {
-            var recipient = await _mediator.Send(new GetRecipientListQuery());
-            return Ok(recipient);
-        }
-
-        [HttpGet("{id}", Name = "GetRecipientById")]
-        public async Task<ActionResult<RecipientDto>> GetRecipientById(int id)
-        {
-            var result = await _mediator.Send(new GetRecipientDetailsQuery() { Id = id });
-            if (result.IsFailed)
-                return BadRequest();
-
-            return Ok(result.Value);
-        }
-
-        [HttpPost(Name = "AddRecipient")]
-        public async Task<IActionResult> AddRecipient([FromBody] CreateRecipientDto recipient)
-        {
-            var response = await _mediator.Send(new CreateRecipientCommand() { CreateEntityDto = recipient });
-
-            if (response.IsFailed)
-                return BadRequest();
-
-            return Ok();
-        }
-        [HttpDelete]
-        public async Task<IActionResult> DeleteRecipient(int id)
-        {
-            var response = await _mediator.Send(new DeleteRecipientCommand() { Id = id });
-
-            if (response.IsFailed)
-                return BadRequest();
-
-            return Ok();
-        }
-        [HttpPut]
-        public async Task<IActionResult> UpdateRecipient([FromBody] UpdateRecipientDto recipient)
-        {
-            var response = await _mediator.Send(new UpdateRecipientCommand() { UpdateEntityDto = recipient });
-
-            if (response.IsFailed)
-                return BadRequest();
-
-            return Ok();
         }
     }
 }

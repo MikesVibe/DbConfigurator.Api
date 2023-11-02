@@ -30,39 +30,40 @@ namespace DbConfigurator.Application.Features.DistributionInformationFeature.Com
         }
         public async Task<Result> Handle(UpdateDistributionInformationCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _distributionInformationRepository.GetByIdAsync(request.DistributionInformation.Id);
+            var requestDto = request.UpdateEntityDto as UpdateDistributionInformationDto;
+            var entity = await _distributionInformationRepository.GetByIdAsync(requestDto.Id);
             if (entity == null)
             {
                 return Result.Fail("No istnace of distribution information object with specified Id is present in database.");
             }
             bool everyRecipientExists;
-            everyRecipientExists = await _recipientRepository.ExistsRangeAsync(request.DistributionInformation.RecipientsTo);
+            everyRecipientExists = await _recipientRepository.ExistsRangeAsync(requestDto.RecipientsTo);
             if (everyRecipientExists == false)
             {
                 return Result.Fail("Some recipients are no longer present in database.");
             }
-            everyRecipientExists = await _recipientRepository.ExistsRangeAsync(request.DistributionInformation.RecipientsCc);
+            everyRecipientExists = await _recipientRepository.ExistsRangeAsync(requestDto.RecipientsCc);
             if (everyRecipientExists == false)
             {
                 return Result.Fail("Some recipients are no longer present in database.");
             }
-            var priorityExists = await _priorityRepository.ExistsAsync(request.DistributionInformation.PriorityId);
+            var priorityExists = await _priorityRepository.ExistsAsync(requestDto.PriorityId);
             if (priorityExists == false)
             {
                 return Result.Fail("Priority with specified Id is no longer present in database.");
             }
-            var regionExists = await _regionRepository.ExistsAsync(request.DistributionInformation.RegionId);
+            var regionExists = await _regionRepository.ExistsAsync(requestDto.RegionId);
             if (regionExists == false)
             {
                 return Result.Fail("Region with specified Id is no longer present in database.");
             }
 
 
-            _mapper.Map(request.DistributionInformation, entity);
+            _mapper.Map(requestDto, entity);
 
             // Manually handle the relationships. Get real entities from database with Ids specified in request
-            entity.RecipientsTo = await _recipientRepository.GetRecipientsAsync(request.DistributionInformation.RecipientsTo);
-            entity.RecipientsCc = await _recipientRepository.GetRecipientsAsync(request.DistributionInformation.RecipientsCc);
+            entity.RecipientsTo = await _recipientRepository.GetRecipientsAsync(requestDto.RecipientsTo);
+            entity.RecipientsCc = await _recipientRepository.GetRecipientsAsync(requestDto.RecipientsCc);
 
             var result = await _distributionInformationRepository.UpdateAsync(entity);
             if (result)

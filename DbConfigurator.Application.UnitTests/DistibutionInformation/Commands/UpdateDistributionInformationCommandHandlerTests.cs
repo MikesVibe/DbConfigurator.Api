@@ -35,7 +35,7 @@ namespace DbConfigurator.Application.UnitTests.DistibutionInformationTests.Comma
                 _regionRepository,
                 _mapper);
 
-            var _updateCommand = new UpdateDistributionInformationCommand() { DistributionInformation = CreateUpdateDistributionInformationDto() };
+            var _updateCommand = new UpdateDistributionInformationCommand() { UpdateEntityDto = CreateUpdateDistributionInformationDto() };
 
             _distributionInfromationRepository.ExistsAsyncReturns(false);
             _regionRepository.ExistsAsyncReturns(true);

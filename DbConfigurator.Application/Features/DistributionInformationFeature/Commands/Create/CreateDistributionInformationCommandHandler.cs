@@ -33,7 +33,7 @@ namespace DbConfigurator.Application.Features.DistributionInformationFeature.Com
 
         public async Task<Result<DistributionInformationDto>> Handle(CreateDistributionInformationCommand request, CancellationToken cancellationToken)
         {
-            var disInfo = request.DistributionInformation;
+            var disInfo = request.CreateEntityDto as CreateDistributionInformationDto;
             var regionExists = await _regionRecpository.ExistsAsync(disInfo.RegionId);
             if (regionExists == false)
             {
@@ -46,10 +46,10 @@ namespace DbConfigurator.Application.Features.DistributionInformationFeature.Com
                 return Result.Fail("No istnace of priority object with specified Id is present in database.");
             }
 
-            var entity = _mapper.Map<DistributionInformation>(request.DistributionInformation);
+            var entity = _mapper.Map<DistributionInformation>(request.CreateEntityDto);
             // Manually handle the relationships. Get real entities from database with Ids specified in request
-            entity.RecipientsTo = await _recipientRepository.GetRecipientsAsync(request.DistributionInformation.RecipientsTo);
-            entity.RecipientsCc = await _recipientRepository.GetRecipientsAsync(request.DistributionInformation.RecipientsCc);
+            entity.RecipientsTo = await _recipientRepository.GetRecipientsAsync(disInfo.RecipientsTo);
+            entity.RecipientsCc = await _recipientRepository.GetRecipientsAsync(disInfo.RecipientsCc);
 
             var result = await _distributionInformationRepository.AddAsync(entity);
             if (result.IsFailed)

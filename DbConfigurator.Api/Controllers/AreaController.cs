@@ -10,9 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DbConfigurator.Api.Controllers
 {
-    [ApiController]
-    //[Authorize]
-    [Route("api/[controller]")]
     public class AreaController : GenericController<
         CreateAreaCommand, UpdateAreaCommand, DeleteAreaCommand,
         CreateAreaDto, UpdateAreaDto,

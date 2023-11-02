@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Domain.Model.Entities;
+﻿using DbConfigurator.Application.Contracts.Features.Update;
+using DbConfigurator.Domain.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Update
 {
-    public class UpdateDistributionInformationDto
+    public class UpdateDistributionInformationDto : IUpdateEntityDto
     {
         public int Id { get; set; }
         public int RegionId { get; set; }

@@ -4,18 +4,15 @@ using DbConfigurator.Application.Contracts.Features.GetDetail;
 using DbConfigurator.Application.Contracts.Features.GetList;
 using DbConfigurator.Application.Contracts.Features.Update;
 using DbConfigurator.Application.Dtos;
-using DbConfigurator.Application.Features.AreaFeature.Commands.Create;
-using DbConfigurator.Application.Features.AreaFeature.Commands.Delete;
-using DbConfigurator.Application.Features.AreaFeature.Commands.Update;
-using DbConfigurator.Application.Features.AreaFeature.Queries.GetAreaDetails;
-using DbConfigurator.Application.Features.AreaFeature.Queries.GetAreaList;
 using FluentResults;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DbConfigurator.Api.Controllers
 {
-
+    [ApiController]
+    //[Authorize]
+    [Route("api/[controller]")]
     public class GenericController<
         TCreateCommand, TUpdateCommand, TDeleteCommand,
         TCreateDto, TUpdateDto,
@@ -48,7 +45,8 @@ namespace DbConfigurator.Api.Controllers
             return Ok();
         }
         [HttpDelete]
-        public async Task<IActionResult> DeleteArea(int id)
+        public async Task<IActionResult> DeleteArea(int id
+            )
         {
             var response = await _mediator.Send(new TDeleteCommand() { Id = id });
 

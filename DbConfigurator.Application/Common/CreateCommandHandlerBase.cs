@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using DbConfigurator.Application.Contracts;
+using DbConfigurator.Application.Contracts.Features.Create;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.AreaFeature.Commands.Create;

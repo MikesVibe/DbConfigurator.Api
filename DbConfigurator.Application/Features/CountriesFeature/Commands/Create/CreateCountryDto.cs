@@ -1,4 +1,4 @@
-﻿using DbConfigurator.Application.Contracts;
+﻿using DbConfigurator.Application.Contracts.Features.Create;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

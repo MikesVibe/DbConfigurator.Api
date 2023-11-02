@@ -1,4 +1,4 @@
-﻿using DbConfigurator.Application.Contracts;
+﻿using DbConfigurator.Application.Contracts.Features.Delete;
 using FluentResults;
 using MediatR;
 

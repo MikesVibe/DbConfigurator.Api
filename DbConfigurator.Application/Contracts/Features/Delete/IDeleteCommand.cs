@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Application.Contracts
+namespace DbConfigurator.Application.Contracts.Features.Delete
 {
-    public interface IUpdateEntityDto
+    public interface IDeleteCommand
     {
-        public int Id { get; }
+        public int Id { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbConfigurator.Application.Contracts
+namespace DbConfigurator.Application.Contracts.Features.Create
 {
     public interface ICreateEntityDto
     {

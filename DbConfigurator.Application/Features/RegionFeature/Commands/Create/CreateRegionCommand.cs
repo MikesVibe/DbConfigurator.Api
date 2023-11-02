@@ -1,4 +1,4 @@
-﻿using DbConfigurator.Application.Contracts;
+﻿using DbConfigurator.Application.Contracts.Features.Create;
 using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;

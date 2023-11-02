@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using DbConfigurator.Application.Contracts.Persistence;
-using DbConfigurator.Application.Contracts;
 using FluentResults;
 using System;
 using System.Collections.Generic;
@@ -9,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MediatR;
 using DbConfigurator.Application.Features.AreaFeature.Commands.Update;
+using DbConfigurator.Application.Contracts.Features.Update;
 
 namespace DbConfigurator.Application.Common
 {

@@ -28,14 +28,14 @@ namespace DbConfigurator.Application.Common
             _mapper = mapper;
         }
 
-        public async Task<Result<AreaDto>> Handle(TGetDetailQuery query, CancellationToken cancellationToken)
+        public async Task<Result<TEntityDto>> Handle(TGetDetailQuery query, CancellationToken cancellationToken)
         {
             var entity = await _repository.GetByIdAsync(query.Id);
             if (entity is null)
             {
                 return Result.Fail($"{nameof(TEntity)} with specified Id is no longer present in database.");
             }
-            return _mapper.Map<AreaDto>(entity);
+            return _mapper.Map<TEntityDto>(entity);
         }
     }
 }

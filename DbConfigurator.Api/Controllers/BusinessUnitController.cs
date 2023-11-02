@@ -1,4 +1,5 @@
-﻿using DbConfigurator.Application.Dtos;
+﻿using Azure;
+using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.BusinessUnitFeature;
 using DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Create;
 using DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Delete;
@@ -30,8 +31,12 @@ namespace DbConfigurator.Api.Controllers
         [HttpGet("{id}", Name = "GetBusinessUnitById")]
         public async Task<ActionResult<BusinessUnitDto>> GetBusinessUnitById(int id)
         {
-            var businessUnit = await _mediator.Send(new GetBusinessUnitDetailsQuery() { BusinessUnitId = id });
-            return Ok(businessUnit);
+            var response = await _mediator.Send(new GetBusinessUnitDetailsQuery() { Id = id });
+
+            if (response.IsFailed)
+                return BadRequest();
+
+            return Ok(response.Value);
         }
 
         [HttpPost(Name = "AddBusinessUnit")]

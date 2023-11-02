@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using DbConfigurator.Application.Common;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
+using DbConfigurator.Domain.Model.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,23 +12,13 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.AreaFeature.Queries.GetAreaList
 {
-    public class GetAreaItemListQueryHandler : IRequestHandler<GetAreaItemListQuery, IEnumerable<AreaDto>>
+    public class GetAreaItemListQueryHandler : GetListQueryHandlerBase<Area, AreaDto, GetAreaItemListQuery>,
+        IRequestHandler<GetAreaItemListQuery, IEnumerable<AreaDto>>
     {
-        private readonly IAreaRepository _areaRepository;
-        private readonly IMapper _mapper;
-
         public GetAreaItemListQueryHandler(
             IAreaRepository areaRepository,
-            IMapper mapper)
+            IMapper mapper) : base(areaRepository, mapper)
         {
-            _areaRepository = areaRepository;
-            _mapper = mapper;
-        }
-
-        public async Task<IEnumerable<AreaDto>> Handle(GetAreaItemListQuery request, CancellationToken cancellationToken)
-        {
-            var areaList = await _areaRepository.GetAllAsync();
-            return _mapper.Map<IEnumerable<AreaDto>>(areaList);
         }
     }
 }

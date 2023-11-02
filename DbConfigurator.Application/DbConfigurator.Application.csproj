@@ -17,8 +17,4 @@
     <ProjectReference Include="..\DbConfigurator.Domain\DbConfigurator.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Contracts\Features\GetList\" />
-  </ItemGroup>
-
 </Project>

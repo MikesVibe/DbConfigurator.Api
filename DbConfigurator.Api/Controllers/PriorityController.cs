@@ -30,7 +30,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpGet("{id}", Name = "GetPriorityById")]
         public async Task<ActionResult<PriorityDto>> GetPriorityById(int id)
         {
-            var result = await _mediator.Send(new GetPriorityDetailsQuery() { PriorityId = id });
+            var result = await _mediator.Send(new GetPriorityDetailsQuery() { Id = id });
             if(result.IsFailed)
                 return BadRequest();
 

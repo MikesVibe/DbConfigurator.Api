@@ -22,14 +22,14 @@ namespace DbConfigurator.Application.UnitTests.DistibutionInformationTests.Comma
             var handler = Substitute.For<DeleteDistributionInfomationCommandHandler>(_distributionInfromationRepository);
 
             var deleteCommand = Substitute.For<DeleteDistributionInfomationCommand>();
-            deleteCommand.DistributionInformationId = 90;
+            deleteCommand.Id = 90;
 
             // Act
             var result = await handler.Handle(deleteCommand, new CancellationToken());
 
             // Assert
             result.IsFailed.Should().BeTrue();
-            result.Errors.First().Message.Should().Be("No istnace of distribution information object with specified Id is present in database.");
+            result.Errors.First().Message.Should().Be("No instance of object with specified Id is present in database.");
         }
     }
 }

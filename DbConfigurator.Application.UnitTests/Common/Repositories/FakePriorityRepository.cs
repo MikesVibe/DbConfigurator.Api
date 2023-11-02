@@ -14,7 +14,7 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
         public IEnumerable<Priority> Priorities { get; set; } = Enumerable.Empty<Priority>();
 
 
-        public Task<Priority> AddAsync(Priority entity)
+        public Task<FluentResults.Result<Priority>> AddAsync(Priority entity)
         {
             throw new NotImplementedException();
         }

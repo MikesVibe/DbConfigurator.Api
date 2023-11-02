@@ -1,6 +1,7 @@
 ﻿using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Features.DistributionInformationFeature;
 using DbConfigurator.Domain.Model.Entities;
+using FluentResults;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
                 new Recipient { Id=5, FirstName = "Sean", LastName = "Nguyen", Email = "Sean.Nguyen@company.net" }
             };
         }
-        public Task<Recipient> AddAsync(Recipient entity)
+        public Task<Result<Recipient>> AddAsync(Recipient entity)
         {
             throw new NotImplementedException();
         }

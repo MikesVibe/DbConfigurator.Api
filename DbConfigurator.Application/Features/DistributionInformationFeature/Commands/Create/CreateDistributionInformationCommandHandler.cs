@@ -57,7 +57,7 @@ namespace DbConfigurator.Application.Features.DistributionInformationFeature.Com
                 return Result.Fail("Failed to create DistributionInformation.");
             }
 
-            var dto = _mapper.Map<DistributionInformationDto>(result);
+            var dto = _mapper.Map<DistributionInformationDto>(result.Value);
 
             return dto;
         }

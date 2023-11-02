@@ -27,7 +27,7 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformationTests
                 _mapper);
 
             // Act
-            var result = await handler.Handle(getCommand, new CancellationToken());
+                var result = await handler.Handle(getCommand, new CancellationToken());
             var first = result.First();
 
             // Assert

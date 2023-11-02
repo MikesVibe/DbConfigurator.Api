@@ -5,11 +5,6 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
 {
     internal class FakeDistributionInformationRepository : FakeBaseRepository<DistributionInformation>, IDistributionInformationRepository
     {
-        public FakeDistributionInformationRepository()
-        {
-            InitializeEntities();
-        }
-
         public Task AddRecipients(int disInfoId, IEnumerable<int> recipientIds)
         {
             throw new NotImplementedException();

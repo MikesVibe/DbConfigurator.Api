@@ -1,6 +1,7 @@
 ﻿using DbConfigurator.Api.Services;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Domain.Model.Entities;
+using FluentResults;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,14 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
     public abstract class FakeBaseRepository<TEntity> : IRepository<TEntity>
         where TEntity : class, IEntity
     {
+        public FakeBaseRepository()
+        {
+            Entities = InitializeEntities();
+        }
         public IEnumerable<TEntity> Entities { get; set; } = new List<TEntity>();
         public bool ExistsAsyncReturnValue { get; private set; }
 
-        public async Task<TEntity> AddAsync(TEntity entity)
+        public async Task<Result<TEntity>> AddAsync(TEntity entity)
         {
             await Task.Delay(0);
             return entity;

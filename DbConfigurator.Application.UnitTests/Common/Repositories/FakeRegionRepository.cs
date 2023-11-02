@@ -1,5 +1,6 @@
 ﻿using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Domain.Model.Entities;
+using FluentResults;
 
 namespace DbConfigurator.Application.UnitTests.Common.Repositories
 {
@@ -15,7 +16,7 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
         public IEnumerable<Region> Regions { get; set; } = Enumerable.Empty<Region>();
 
 
-        public Task<Region> AddAsync(Region entity)
+        public Task<Result<Region>> AddAsync(Region entity)
         {
             throw new NotImplementedException();
         }

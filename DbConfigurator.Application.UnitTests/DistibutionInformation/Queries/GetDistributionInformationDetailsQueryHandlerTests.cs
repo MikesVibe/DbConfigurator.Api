@@ -24,13 +24,14 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformationTests.Quer
 
             // Act
             var result = await handler.Handle(getCommand, new CancellationToken());
+            var resultDto = result.Value;
 
             // Assert
-            Assert.Equal("America", result.Region.Area.Name);
-            Assert.Equal("NAO", result.Region.BusinessUnit.Name);
-            Assert.Equal("Canada", result.Region.Country.CountryName);
-            Assert.Equal("CA", result.Region.Country.CountryCode);
-            Assert.Equal("P1", result.Priority.Name);
+            Assert.Equal("America", resultDto.Region.Area.Name);
+            Assert.Equal("NAO", resultDto.Region.BusinessUnit.Name);
+            Assert.Equal("Canada", resultDto.Region.Country.CountryName);
+            Assert.Equal("CA", resultDto.Region.Country.CountryCode);
+            Assert.Equal("P1", resultDto.Priority.Name);
         }
     }
 }

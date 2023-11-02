@@ -26,7 +26,7 @@ namespace DbConfigurator.Application.Common
             var entity = await _repository.GetByIdAsync(command.Id);
             if (entity == null)
             {
-                return Result.Fail($"No instance of {nameof(TEntity)} object with specified Id is present in database.");
+                return Result.Fail($"No instance of object with specified Id is present in database.");
             }
 
             await _repository.DeleteAsync(entity);

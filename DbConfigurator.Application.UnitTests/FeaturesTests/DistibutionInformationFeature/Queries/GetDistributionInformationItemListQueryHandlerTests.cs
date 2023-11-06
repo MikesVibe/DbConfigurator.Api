@@ -4,7 +4,7 @@ using DbConfigurator.Application.Features.DistributionInformationFeature.Queries
 using DbConfigurator.Application.UnitTests.Common;
 using DbConfigurator.Application.UnitTests.Common.Repositories;
 
-namespace DbConfigurator.Application.UnitTests.DistributionInformationTests
+namespace DbConfigurator.Application.UnitTests.FeaturesTests.DistibutionInformation.Queries
 {
     public class GetDistributionInformationItemListQueryHandlerTests
     {
@@ -27,7 +27,7 @@ namespace DbConfigurator.Application.UnitTests.DistributionInformationTests
                 _mapper);
 
             // Act
-                var result = await handler.Handle(getCommand, new CancellationToken());
+            var result = await handler.Handle(getCommand, new CancellationToken());
             var first = result.First();
 
             // Assert

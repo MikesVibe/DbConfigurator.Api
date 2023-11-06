@@ -3,7 +3,7 @@ using DbConfigurator.Application.Features.DistributionInformationFeature.Queries
 using DbConfigurator.Application.UnitTests.Common;
 using DbConfigurator.Application.UnitTests.Common.Repositories;
 
-namespace DbConfigurator.Application.UnitTests.DistributionInformationTests.Queries
+namespace DbConfigurator.Application.UnitTests.FeaturesTests.DistibutionInformation.Queries
 {
     public class GetDistributionInformationDetailsQueryHandlerTests
     {

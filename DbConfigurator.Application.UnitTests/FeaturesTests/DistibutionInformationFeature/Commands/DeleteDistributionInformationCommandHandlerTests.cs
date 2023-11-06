@@ -4,7 +4,7 @@ using DbConfigurator.Application.UnitTests.Common.Repositories;
 using FluentAssertions;
 using NSubstitute;
 
-namespace DbConfigurator.Application.UnitTests.DistibutionInformationTests.Commands
+namespace DbConfigurator.Application.UnitTests.FeaturesTests.DistibutionInformation.Commands
 {
     public class DeleteDistributionInformationCommandHandlerTests
     {

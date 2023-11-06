@@ -6,7 +6,7 @@ using DbConfigurator.Application.UnitTests.Common;
 using DbConfigurator.Application.UnitTests.Common.Repositories;
 using FluentAssertions;
 
-namespace DbConfigurator.Application.UnitTests.DistibutionInformationTests.Commands
+namespace DbConfigurator.Application.UnitTests.FeaturesTests.DistibutionInformation.Commands
 {
     public class UpdateDistributionInformationCommandHandlerTests
     {

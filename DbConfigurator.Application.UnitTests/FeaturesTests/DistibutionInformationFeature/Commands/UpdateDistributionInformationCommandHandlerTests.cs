@@ -47,7 +47,7 @@ namespace DbConfigurator.Application.UnitTests.FeaturesTests.DistibutionInformat
 
             // Assert
             result.IsFailed.Should().BeTrue();
-            result.Errors.First().Message.Should().Be("No istnace of distribution information object with specified Id is present in database.");
+            result.Errors.First().Message.Should().Be("No instance of distribution information object with specified Id is present in database.");
         }
 
         private UpdateDistributionInformationDto CreateUpdateDistributionInformationDto()

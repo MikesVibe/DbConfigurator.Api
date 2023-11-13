@@ -1,4 +1,5 @@
 ﻿using DbConfigurator.Application.Contracts.Persistence;
+using DbConfigurator.Application.Features.NotificationFeature;
 using DbConfigurator.Domain.Model.Entities;
 
 namespace DbConfigurator.Application.UnitTests.Common.Repositories
@@ -6,6 +7,11 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
     internal class FakeDistributionInformationRepository : FakeBaseRepository<DistributionInformation>, IDistributionInformationRepository
     {
         public Task AddRecipients(int disInfoId, IEnumerable<int> recipientIds)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Tuple<IEnumerable<Recipient>, IEnumerable<Recipient>>> GetDistributionList(NotificationDataDto notificationData)
         {
             throw new NotImplementedException();
         }

@@ -30,7 +30,7 @@ namespace DbConfigurator.Application.Common
             var entity = await _repository.GetByIdAsync(command.UpdateEntityDto.Id);
             if (entity == null)
             {
-                return Result.Fail($"No istnace of {nameof(TEntity)} object with specified Id is present in database.");
+                return Result.Fail($"No instance of {nameof(TEntity)} object with specified Id is present in database.");
             }
 
             _mapper.Map(command.UpdateEntityDto, entity);

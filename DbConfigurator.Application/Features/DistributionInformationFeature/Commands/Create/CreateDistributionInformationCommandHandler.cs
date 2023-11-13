@@ -37,13 +37,13 @@ namespace DbConfigurator.Application.Features.DistributionInformationFeature.Com
             var regionExists = await _regionRecpository.ExistsAsync(disInfo.RegionId);
             if (regionExists == false)
             {
-                return Result.Fail("No istnace of region object with specified Id is present in database.");
+                return Result.Fail("No instance of region object with specified Id is present in database.");
             }
 
             var priorityExists = await _priorityRepository.ExistsAsync(disInfo.PriorityId);
             if (priorityExists == false)
             {
-                return Result.Fail("No istnace of priority object with specified Id is present in database.");
+                return Result.Fail("No instance of priority object with specified Id is present in database.");
             }
 
             var entity = _mapper.Map<DistributionInformation>(request.CreateEntityDto);

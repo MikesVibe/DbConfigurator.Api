@@ -1,17 +1,27 @@
-[{
-        "Id": 1,
-        "Name": "P1"
-    }, {
-        "Id": 2,
-        "Name": "P2"
-    }, {
-        "Id": 3,
-        "Name": "P3"
-    }, {
-        "Id": 4,
-        "Name": "P4"
-    }, {
-        "Id": 99,
-        "Name": "ANY"
-    }
+[
+  {
+    "Id": 1,
+    "Name": "P1",
+    "Value": 1
+  },
+  {
+    "Id": 2,
+    "Name": "P2",
+    "Value": 2
+  },
+  {
+    "Id": 3,
+    "Name": "P3",
+    "Value": 3
+  },
+  {
+    "Id": 4,
+    "Name": "P4",
+    "Value": 4
+  },
+  {
+    "Id": 99,
+    "Name": "ANY",
+    "Value": 99
+  }
 ]

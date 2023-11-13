@@ -34,7 +34,7 @@ namespace DbConfigurator.Application.Common
                 return Result.Fail($"Failed to create {nameof(TEntity)}.");
             }
 
-            var dto = _mapper.Map<TEntityDto>(result);
+            var dto = _mapper.Map<TEntityDto>(result.Value);
             return dto;
         }
     }

@@ -13,5 +13,7 @@ namespace DbConfigurator.Application.Features.PriorityFeature.Commands.Create
         [Required]
         [MaxLength(6)]
         public string Name { get; set; } = string.Empty;
+        [Required]
+        public int Value { get; set; }
     }
 }

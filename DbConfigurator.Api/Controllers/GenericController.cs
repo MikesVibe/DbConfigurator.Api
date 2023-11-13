@@ -42,7 +42,7 @@ namespace DbConfigurator.Api.Controllers
             if (response.IsFailed)
                 return BadRequest(response.Errors.Single());
 
-            return Ok();
+            return Ok(response.Value);
         }
         [HttpDelete]
         public async Task<IActionResult> DeleteArea(int id

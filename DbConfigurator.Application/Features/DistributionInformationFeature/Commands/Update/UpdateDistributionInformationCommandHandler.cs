@@ -34,7 +34,7 @@ namespace DbConfigurator.Application.Features.DistributionInformationFeature.Com
             var entity = await _distributionInformationRepository.GetByIdAsync(requestDto.Id);
             if (entity == null)
             {
-                return Result.Fail("No istnace of distribution information object with specified Id is present in database.");
+                return Result.Fail("No instance of distribution information object with specified Id is present in database.");
             }
             bool everyRecipientExists;
             everyRecipientExists = await _recipientRepository.ExistsRangeAsync(requestDto.RecipientsTo);

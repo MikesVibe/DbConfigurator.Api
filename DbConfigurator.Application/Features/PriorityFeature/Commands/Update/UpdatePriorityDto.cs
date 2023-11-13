@@ -15,5 +15,7 @@ namespace DbConfigurator.Application.Features.PriorityFeature.Commands.Update
         [Required]
         [MaxLength(6)]
         public string Name { get; set; } = string.Empty;
+        [Required]
+        public int Value { get; set; }
     }
 }

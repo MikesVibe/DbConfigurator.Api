@@ -1,4 +1,5 @@
 ﻿using DbConfigurator.Application.Contracts.Persistence;
+using DbConfigurator.Application.Features.NotificationFeature;
 using DbConfigurator.Domain.Model.Entities;
 using DbConfigurator.Persistence.DatabaseContext;
 using Microsoft.EntityFrameworkCore;
@@ -25,5 +26,30 @@ namespace DbConfigurator.API.DataAccess.Repository
                 .Include(d => d.Priority)
                 .AsQueryable();
         }
+
+        public async Task<Tuple<IEnumerable<Recipient>, IEnumerable<Recipient>>>
+            GetDistributionList(NotificationDataDto notificationData)
+        {
+            var matchingDisInfo = await GetAllQueryable().Where(d =>
+            d.Priority.Value >= notificationData.PriorityValue && (
+            d.Region.Country.CountryCode == notificationData.RegionName ||
+            d.Region.Country.CountryName == notificationData.RegionName ||
+            d.Region.BusinessUnit.Name == notificationData.RegionName ||
+            d.Region.Area.Name == notificationData.RegionName
+            )).ToListAsync();
+
+            var allRecipientsTo = new List<Recipient>();
+            var allRecipientsCc = new List<Recipient>();
+
+            foreach(var disfInfo in  matchingDisInfo)
+            {
+                allRecipientsTo.AddRange(disfInfo.RecipientsTo);
+                allRecipientsCc.AddRange(disfInfo.RecipientsCc);
+            }
+
+            return new Tuple<IEnumerable<Recipient>, IEnumerable<Recipient>>(allRecipientsTo, allRecipientsCc);
+        }
+
+
     }
 }

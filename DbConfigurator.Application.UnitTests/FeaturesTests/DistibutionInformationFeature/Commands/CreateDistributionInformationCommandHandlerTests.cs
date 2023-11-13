@@ -51,7 +51,7 @@ namespace DbConfigurator.Application.UnitTests.FeaturesTests.DistibutionInformat
 
             // Assert
             result.IsFailed.Should().BeTrue();
-            result.Errors.First().Message.Should().Be("No istnace of region object with specified Id is present in database.");
+            result.Errors.First().Message.Should().Be("No instance of region object with specified Id is present in database.");
         }
         [Fact]
         public async Task Handle_Should_ReturnFailedResult_When_NoInstanceOfPriorityWithSpecifiedIdIsPresentInDatabase()
@@ -71,7 +71,7 @@ namespace DbConfigurator.Application.UnitTests.FeaturesTests.DistibutionInformat
 
             // Assert
             result.IsFailed.Should().BeTrue();
-            result.Errors.First().Message.Should().Be("No istnace of priority object with specified Id is present in database.");
+            result.Errors.First().Message.Should().Be("No instance of priority object with specified Id is present in database.");
         }
         [Fact]
         public async Task Handle_Should_ReturnSuccessfulResult_When_SuccessfullyCreateDistribiutionInformation()

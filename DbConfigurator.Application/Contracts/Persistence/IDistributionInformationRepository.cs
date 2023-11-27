@@ -5,6 +5,6 @@ namespace DbConfigurator.Application.Contracts.Persistence
 {
     public interface IDistributionInformationRepository : IRepository<DistributionInformation>
     {
-        Task<Tuple<IEnumerable<Recipient>, IEnumerable<Recipient>>> GetDistributionList(NotificationDataDto notificationData);
+        Task<Tuple<IEnumerable<Recipient>, IEnumerable<Recipient>>> GetDistributionListBySingleName(NotificationDataDto notificationData);
     }
 }

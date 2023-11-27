@@ -20,7 +20,7 @@ namespace DbConfigurator.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<DistributionList>> GetDistributionList([FromBody] NotificationDataDto dataDto)
+        public async Task<ActionResult<DistributionListDto>> GetDistributionList([FromBody] NotificationDataDto dataDto)
         {
             var response = await _mediator.Send(new GetDistributionListQuery() { NotificationData = dataDto });
             return Ok(response);

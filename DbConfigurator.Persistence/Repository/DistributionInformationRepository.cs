@@ -1,13 +1,22 @@
 ﻿using DbConfigurator.Application.Contracts.Persistence;
+using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.NotificationFeature;
 using DbConfigurator.Domain.Model.Entities;
 using DbConfigurator.Persistence.DatabaseContext;
+using FluentResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace DbConfigurator.API.DataAccess.Repository
 {
     public class DistributionInformationRepository : BaseRepository<DistributionInformation>, IDistributionInformationRepository
     {
+        public enum RegionField
+        {
+            Area = 0,
+            BusinessUnit = 1,
+            CountryName = 2,
+            CountryCode = 3
+        }
         public DistributionInformationRepository(DbConfiguratorApiDbContext dbContext) : base(dbContext)
         {
         }
@@ -27,29 +36,86 @@ namespace DbConfigurator.API.DataAccess.Repository
                 .AsQueryable();
         }
 
-        public async Task<Tuple<IEnumerable<Recipient>, IEnumerable<Recipient>>>
-            GetDistributionList(NotificationDataDto notificationData)
+        public async Task<Result<DistributionList>> GetDistributionListBySingleName(NotificationDataDto notificationData)
         {
-            var matchingDisInfo = await GetAllQueryable().Where(d =>
-            d.Priority.Value >= notificationData.PriorityValue && (
-            d.Region.Country.CountryCode == notificationData.RegionName ||
-            d.Region.Country.CountryName == notificationData.RegionName ||
-            d.Region.BusinessUnit.Name == notificationData.RegionName ||
-            d.Region.Area.Name == notificationData.RegionName
-            )).ToListAsync();
+            var matchinRegionField = DetermineMatchingRegionField(notificationData.GBU);
+
+            var matchingDisInfo = GetDisInfoWithMatchingRegionField(matchinRegionField);
+
+            var matchingDisInfoByPriority = matchingDisInfo.Where(d =>
+            d.Priority.Value >= notificationData.PriorityValue);
 
             var allRecipientsTo = new List<Recipient>();
             var allRecipientsCc = new List<Recipient>();
 
-            foreach(var disfInfo in  matchingDisInfo)
+            foreach (var disfInfo in matchingDisInfoByPriority)
             {
                 allRecipientsTo.AddRange(disfInfo.RecipientsTo);
                 allRecipientsCc.AddRange(disfInfo.RecipientsCc);
             }
 
-            return new Tuple<IEnumerable<Recipient>, IEnumerable<Recipient>>(allRecipientsTo, allRecipientsCc);
+            return new DistributionList { RecipientsTo = allRecipientsTo, RecipientsCc = allRecipientsCc };
         }
 
+        private Result<IQueryable<DistributionInformation>> GetDisInfoWithMatchingRegionField(RegionField matchinRegionField)
+        {
+            switch (matchinRegionField)
+            {
+                case RegionField.Area:
+                    {
 
+                        break;
+                    }
+                case RegionField.BusinessUnit:
+                    {
+
+                        break;
+                    }
+                case RegionField.CountryName:
+                    {
+
+                        break;
+                    }
+                case RegionField.CountryCode:
+                    {
+
+                        break;
+                    }
+                default:
+                    {
+                        return Result.Fail("Fail");
+                    }
+            }
+        }
+
+        private RegionField DetermineMatchingRegionField(string gbu)
+        {
+            var matchingByArea = GetAllQueryable().Where(d =>
+            d.Region.Area.Name == gbu);
+
+            if (matchingByArea.Count() > 0)
+                return RegionField.Area;
+
+            var matchingByBusinessUnit = GetAllQueryable().Where(d =>
+            d.Region.BusinessUnit.Name == gbu);
+
+            if (matchingByBusinessUnit.Count() > 0)
+                return RegionField.BusinessUnit;
+
+            var matchingByCountryName = GetAllQueryable().Where(d =>
+            d.Region.Country.CountryName == gbu);
+
+            if (matchingByCountryName.Count() > 0)
+                return RegionField.CountryName;
+
+
+            var matchingByCountryCode = GetAllQueryable().Where(d =>
+            d.Region.Country.CountryCode == gbu);
+
+            if (matchingByCountryCode.Count() > 0)
+                return RegionField.CountryCode;
+
+            return RegionField.Default;
+        }
     }
 }

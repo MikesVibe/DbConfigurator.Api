@@ -11,7 +11,7 @@ namespace DbConfigurator.Application.UnitTests.Common.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Tuple<IEnumerable<Recipient>, IEnumerable<Recipient>>> GetDistributionList(NotificationDataDto notificationData)
+        public Task<Tuple<IEnumerable<Recipient>, IEnumerable<Recipient>>> GetDistributionListBySingleName(NotificationDataDto notificationData)
         {
             throw new NotImplementedException();
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.NotificationFeature.GetList
 {
-    public class GetDistributionListQuery : IRequest<DistributionList>
+    public class GetDistributionListQuery : IRequest<DistributionListDto>
     {
         public NotificationDataDto NotificationData { get; set; } = new NotificationDataDto();
     }

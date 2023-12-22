@@ -1,4 +1,8 @@
-﻿using Azure;
+﻿using AutoMapper;
+using Azure;
+using DbConfigurator.API.DataAccess.Repository;
+using DbConfigurator.Application.Contracts.Features.GetList;
+using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.CountriesFeature.Commands.Create;
 using DbConfigurator.Application.Features.CountriesFeature.Commands.Delete;
@@ -23,9 +27,22 @@ namespace DbConfigurator.Api.Controllers
         GetDistributionInformationDetailsQuery, GetDistributionInformationItemListQuery,
         DistributionInformationDto>
     {
-        public DistributionInformationController(IMediator mediator)
+        private IDistributionInformationRepository _repository;
+        private readonly IMapper _mapper;
+
+        public DistributionInformationController(IMediator mediator, IDistributionInformationRepository distributionInformationRepository, IMapper mapper)
             :base(mediator) 
         {
+            _repository = distributionInformationRepository;
+            _mapper = mapper;
+        }
+
+        [HttpGet("json")]
+        public async Task<ActionResult<IEnumerable<CreateDistributionInformationDto>>> GetJsonList()
+        {
+            var list = await _repository.GetAllAsync();
+            var mapped =  _mapper.Map<IEnumerable<CreateDistributionInformationDto>>(list);
+            return Ok(mapped);
         }
     }
 }

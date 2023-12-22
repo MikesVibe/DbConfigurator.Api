@@ -1,20 +1,209 @@
-[{
-        "RegionId": 1,
-        "PriorityId": 1
-    }, {
-        "RegionId": 13,
-        "PriorityId": 2
-    }, {
-        "RegionId": 4,
-        "PriorityId": 2
-    }, {
-        "RegionId": 23,
-        "PriorityId": 3
-    }, {
-        "RegionId": 65,
-        "PriorityId": 99
-    }, {
-        "RegionId": 1,
-        "PriorityId": 4
-    }
+[
+  {
+    "regionId": 1,
+    "priorityId": 2,
+    "recipientsTo": [
+      {
+        "id": 2
+      },
+      {
+        "id": 3
+      }
+    ],
+    "recipientsCc": []
+  },
+  {
+    "regionId": 1,
+    "priorityId": 99,
+    "recipientsTo": [
+      {
+        "id": 6
+      },
+      {
+        "id": 7
+      }
+    ],
+    "recipientsCc": [
+      {
+        "id": 2
+      }
+    ]
+  },
+  {
+    "regionId": 82,
+    "priorityId": 99,
+    "recipientsTo": [
+      {
+        "id": 1
+      },
+      {
+        "id": 5
+      }
+    ],
+    "recipientsCc": []
+  },
+  {
+    "regionId": 85,
+    "priorityId": 2,
+    "recipientsTo": [
+      {
+        "id": 10
+      }
+    ],
+    "recipientsCc": []
+  },
+  {
+    "regionId": 23,
+    "priorityId": 2,
+    "recipientsTo": [
+      {
+        "id": 11
+      }
+    ],
+    "recipientsCc": []
+  },
+  {
+    "regionId": 14,
+    "priorityId": 2,
+    "recipientsTo": [
+      {
+        "id": 12
+      }
+    ],
+    "recipientsCc": []
+  },
+  {
+    "regionId": 13,
+    "priorityId": 99,
+    "recipientsTo": [
+      {
+        "id": 12
+      }
+    ],
+    "recipientsCc": [
+      {
+        "id": 7
+      },
+      {
+        "id": 14
+      },
+      {
+        "id": 15
+      }
+    ]
+  },
+  {
+    "regionId": 30,
+    "priorityId": 2,
+    "recipientsTo": [
+      {
+        "id": 28
+      },
+      {
+        "id": 30
+      }
+    ],
+    "recipientsCc": [
+      {
+        "id": 2
+      }
+    ]
+  },
+  {
+    "regionId": 30,
+    "priorityId": 99,
+    "recipientsTo": [
+      {
+        "id": 14
+      },
+      {
+        "id": 16
+      }
+    ],
+    "recipientsCc": []
+  },
+  {
+    "regionId": 86,
+    "priorityId": 99,
+    "recipientsTo": [
+      {
+        "id": 16
+      },
+      {
+        "id": 18
+      }
+    ],
+    "recipientsCc": [
+      {
+        "id": 4
+      }
+    ]
+  },
+  {
+    "regionId": 72,
+    "priorityId": 2,
+    "recipientsTo": [
+      {
+        "id": 19
+      },
+      {
+        "id": 37
+      }
+    ],
+    "recipientsCc": []
+  },
+  {
+    "regionId": 72,
+    "priorityId": 99,
+    "recipientsTo": [
+      {
+        "id": 38
+      }
+    ],
+    "recipientsCc": [
+      {
+        "id": 5
+      },
+      {
+        "id": 12
+      }
+    ]
+  },
+  {
+    "regionId": 64,
+    "priorityId": 2,
+    "recipientsTo": [
+      {
+        "id": 39
+      }
+    ],
+    "recipientsCc": [
+      {
+        "id": 34
+      },
+      {
+        "id": 38
+      }
+    ]
+  },
+  {
+    "regionId": 90,
+    "priorityId": 99,
+    "recipientsTo": [
+      {
+        "id": 40
+      }
+    ],
+    "recipientsCc": [
+      {
+        "id": 41
+      },
+      {
+        "id": 45
+      },
+      {
+        "id": 46
+      }
+    ]
+  }
 ]

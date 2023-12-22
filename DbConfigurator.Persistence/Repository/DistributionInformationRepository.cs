@@ -36,86 +36,91 @@ namespace DbConfigurator.API.DataAccess.Repository
                 .AsQueryable();
         }
 
-        public async Task<Result<DistributionList>> GetDistributionListBySingleName(NotificationDataDto notificationData)
+        public Task<Tuple<IEnumerable<Recipient>, IEnumerable<Recipient>>> GetDistributionListBySingleName(NotificationDataDto notificationData)
         {
-            var matchinRegionField = DetermineMatchingRegionField(notificationData.GBU);
-
-            var matchingDisInfo = GetDisInfoWithMatchingRegionField(matchinRegionField);
-
-            var matchingDisInfoByPriority = matchingDisInfo.Where(d =>
-            d.Priority.Value >= notificationData.PriorityValue);
-
-            var allRecipientsTo = new List<Recipient>();
-            var allRecipientsCc = new List<Recipient>();
-
-            foreach (var disfInfo in matchingDisInfoByPriority)
-            {
-                allRecipientsTo.AddRange(disfInfo.RecipientsTo);
-                allRecipientsCc.AddRange(disfInfo.RecipientsCc);
-            }
-
-            return new DistributionList { RecipientsTo = allRecipientsTo, RecipientsCc = allRecipientsCc };
+            throw new NotImplementedException();
         }
 
-        private Result<IQueryable<DistributionInformation>> GetDisInfoWithMatchingRegionField(RegionField matchinRegionField)
-        {
-            switch (matchinRegionField)
-            {
-                case RegionField.Area:
-                    {
+        //public async Task<Result<DistributionList>> GetDistributionListBySingleName(NotificationDataDto notificationData)
+        //{
+        //    var matchinRegionField = DetermineMatchingRegionField(notificationData.GBU);
 
-                        break;
-                    }
-                case RegionField.BusinessUnit:
-                    {
+        //    var matchingDisInfo = GetDisInfoWithMatchingRegionField(matchinRegionField);
 
-                        break;
-                    }
-                case RegionField.CountryName:
-                    {
+        //    var matchingDisInfoByPriority = matchingDisInfo.Where(d =>
+        //    d.Priority.Value >= notificationData.PriorityValue);
 
-                        break;
-                    }
-                case RegionField.CountryCode:
-                    {
+        //    var allRecipientsTo = new List<Recipient>();
+        //    var allRecipientsCc = new List<Recipient>();
 
-                        break;
-                    }
-                default:
-                    {
-                        return Result.Fail("Fail");
-                    }
-            }
-        }
+        //    foreach (var disfInfo in matchingDisInfoByPriority)
+        //    {
+        //        allRecipientsTo.AddRange(disfInfo.RecipientsTo);
+        //        allRecipientsCc.AddRange(disfInfo.RecipientsCc);
+        //    }
 
-        private RegionField DetermineMatchingRegionField(string gbu)
-        {
-            var matchingByArea = GetAllQueryable().Where(d =>
-            d.Region.Area.Name == gbu);
+        //    return new DistributionList { RecipientsTo = allRecipientsTo, RecipientsCc = allRecipientsCc };
+        //}
 
-            if (matchingByArea.Count() > 0)
-                return RegionField.Area;
+        //private Result<IQueryable<DistributionInformation>> GetDisInfoWithMatchingRegionField(RegionField matchinRegionField)
+        //{
+        //    switch (matchinRegionField)
+        //    {
+        //        case RegionField.Area:
+        //            {
 
-            var matchingByBusinessUnit = GetAllQueryable().Where(d =>
-            d.Region.BusinessUnit.Name == gbu);
+        //                break;
+        //            }
+        //        case RegionField.BusinessUnit:
+        //            {
 
-            if (matchingByBusinessUnit.Count() > 0)
-                return RegionField.BusinessUnit;
+        //                break;
+        //            }
+        //        case RegionField.CountryName:
+        //            {
 
-            var matchingByCountryName = GetAllQueryable().Where(d =>
-            d.Region.Country.CountryName == gbu);
+        //                break;
+        //            }
+        //        case RegionField.CountryCode:
+        //            {
 
-            if (matchingByCountryName.Count() > 0)
-                return RegionField.CountryName;
+        //                break;
+        //            }
+        //        default:
+        //            {
+        //                return Result.Fail("Fail");
+        //            }
+        //    }
+        //}
+
+        //private RegionField DetermineMatchingRegionField(string gbu)
+        //{
+        //    var matchingByArea = GetAllQueryable().Where(d =>
+        //    d.Region.Area.Name == gbu);
+
+        //    if (matchingByArea.Count() > 0)
+        //        return RegionField.Area;
+
+        //    var matchingByBusinessUnit = GetAllQueryable().Where(d =>
+        //    d.Region.BusinessUnit.Name == gbu);
+
+        //    if (matchingByBusinessUnit.Count() > 0)
+        //        return RegionField.BusinessUnit;
+
+        //    var matchingByCountryName = GetAllQueryable().Where(d =>
+        //    d.Region.Country.CountryName == gbu);
+
+        //    if (matchingByCountryName.Count() > 0)
+        //        return RegionField.CountryName;
 
 
-            var matchingByCountryCode = GetAllQueryable().Where(d =>
-            d.Region.Country.CountryCode == gbu);
+        //    var matchingByCountryCode = GetAllQueryable().Where(d =>
+        //    d.Region.Country.CountryCode == gbu);
 
-            if (matchingByCountryCode.Count() > 0)
-                return RegionField.CountryCode;
+        //    if (matchingByCountryCode.Count() > 0)
+        //        return RegionField.CountryCode;
 
-            return RegionField.Default;
-        }
+        //    return RegionField.Default;
+        //}
     }
 }

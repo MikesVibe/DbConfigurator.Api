@@ -146,7 +146,9 @@ namespace DbConfigurator.Api
                 if (context is null)
                     return;
 
-                if (!await context.Database.CanConnectAsync())
+                bool resetDatabase = Convert.ToBoolean(app.Configuration["RecreateDatabase"]);
+
+                if (!await context.Database.CanConnectAsync() || resetDatabase)
                 {
                     await context.Database.EnsureDeletedAsync();
                     await context.Database.MigrateAsync();

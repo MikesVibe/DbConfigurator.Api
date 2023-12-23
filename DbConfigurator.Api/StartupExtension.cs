@@ -113,7 +113,7 @@ namespace DbConfigurator.Api
 
         }
 
-        public static WebApplication ConfigurePipeline(this WebApplication app)
+        public static async Task<WebApplication> ConfigurePipelineAsync(this WebApplication app)
         {
             app.UseHttpsRedirection();
 

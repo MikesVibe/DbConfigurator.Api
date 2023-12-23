@@ -56,11 +56,10 @@ namespace DbConfigurator.Api.Controllers
             }
             else
             {
-                return new UserDto
-                {
-                    UserName = user.UserName,
-                    Token = _tokenService.CreateToken(user)
-                };
+                var userDto = _mapper.Map<UserDto>(result.Value);
+                userDto.Token = _tokenService.CreateToken(result.Value);
+                userDto.UserRoles = (await _accountRepository.GetUserRolesAsync(user)).ToList();
+                return userDto;
             }
         }
 
@@ -81,12 +80,10 @@ namespace DbConfigurator.Api.Controllers
                 return Unauthorized("Invalid Password.");
             }
 
-            return new UserDto
-            {
-                UserName = user.UserName,
-                //DisplayName = user.DisplayName,
-                Token = _tokenService.CreateToken(user)
-            };
+            var userDto = _mapper.Map<UserDto>(user);
+            userDto.Token = _tokenService.CreateToken(user);
+            userDto.UserRoles = (await _accountRepository.GetUserRolesAsync(user)).ToList();
+            return userDto;
         }
     }
 }

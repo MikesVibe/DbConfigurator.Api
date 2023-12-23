@@ -14,5 +14,6 @@ namespace DbConfigurator.Application.Contracts.Persistence
         Task<Result<AppUser>> GetUserAsync(string useName);
         Task<bool> UserExists(string userName);
         Task<bool> CheckPasswordAsync(AppUser user, string password);
+        Task<IList<string>> GetUserRolesAsync(AppUser user);
     }
 }

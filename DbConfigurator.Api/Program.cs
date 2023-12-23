@@ -2,9 +2,9 @@ using DbConfigurator.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var app = builder
+var app = await builder
        .ConfigureServices()
-       .ConfigurePipeline();
+       .ConfigurePipelineAsync();
 
 await app.CreateDatabaseAsync();
 

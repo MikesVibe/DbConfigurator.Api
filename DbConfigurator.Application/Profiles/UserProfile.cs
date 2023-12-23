@@ -18,6 +18,5 @@ namespace DbConfigurator.Application.Profiles
             CreateMap<AppUser, UserDto>();
             CreateMap<RegisterDto, AppUser>();
         }
-
     }
 }

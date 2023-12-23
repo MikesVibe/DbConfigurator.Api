@@ -19,6 +19,7 @@ using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace DbConfigurator.Persistence.Seeding
 {
@@ -26,6 +27,7 @@ namespace DbConfigurator.Persistence.Seeding
     {
         private readonly DbConfiguratorApiDbContext _dbConfiguratorDbContext;
         private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<AppRole> _roleManager;
         private readonly IMapper _mapper;
         private readonly IRecipientRepository _recipientRepository;
         private readonly IDistributionInformationRepository _distributionInformationRepository;
@@ -33,12 +35,14 @@ namespace DbConfigurator.Persistence.Seeding
         public Seeder(
             DbConfiguratorApiDbContext dbConfiguratorDbContext,
             UserManager<AppUser> userManager,
+            RoleManager<AppRole> roleManager,
             IMapper mapper,
             IRecipientRepository recipientRepository,
             IDistributionInformationRepository distributionInformationRepository)
         {
             _dbConfiguratorDbContext = dbConfiguratorDbContext;
             _userManager = userManager;
+            _roleManager = roleManager;
             _mapper = mapper;
             _recipientRepository = recipientRepository;
             _distributionInformationRepository = distributionInformationRepository;
@@ -48,12 +52,31 @@ namespace DbConfigurator.Persistence.Seeding
         {
             await SeedRegionAsync();
             await SeedDistributionInformationAsync();
+            await SeedRoles();
             await SeedUsersAsync();
         }
 
         private async Task SeedUsersAsync()
         {
-            await _userManager.CreateAsync(new AppUser() { UserName = "miki" }, "miki");
+            string[] userNames = { "mikiAdmin", "mikiSA", "mikiDM" };
+            string[] roles = { "Admin", "SecurityAnalyst", "DatabaseManager" };
+
+            for (int i=0; i<3; i++)
+            {
+                var user = new AppUser() { UserName = userNames[i] };
+                await _userManager.CreateAsync(user, "miki");
+                await _userManager.AddToRoleAsync(user, roles[i]);
+            }
+        }
+        private async Task SeedRoles()
+        {
+            var roles = new[] { "Admin", "Security Analyst", "Database Manager" };
+
+            foreach (var role in roles)
+            {
+                if (!await _roleManager.RoleExistsAsync(role))
+                    await _roleManager.CreateAsync(new AppRole(role));
+            }
         }
 
         private async Task SeedRegionAsync()

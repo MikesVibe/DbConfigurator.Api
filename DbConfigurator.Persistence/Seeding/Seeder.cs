@@ -61,9 +61,14 @@ namespace DbConfigurator.Persistence.Seeding
             string[] userNames = { "mikiAdmin", "mikiSA", "mikiDM" };
             string[] roles = { "Admin", "SecurityAnalyst", "DatabaseManager" };
 
-            for (int i=0; i<3; i++)
+            for (int i = 0; i < 3; i++)
             {
-                var user = new AppUser() { UserName = userNames[i] };
+                var user = new AppUser()
+                {
+                    UserName = userNames[i],
+                    FirstName = "Mikołaj",
+                    LastName = roles[i]
+                };
                 await _userManager.CreateAsync(user, "miki");
                 await _userManager.AddToRoleAsync(user, roles[i]);
             }

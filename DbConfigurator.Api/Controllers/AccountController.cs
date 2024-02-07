@@ -58,7 +58,7 @@ namespace DbConfigurator.Api.Controllers
             {
                 var userDto = _mapper.Map<UserDto>(result.Value);
                 userDto.Token = _tokenService.CreateToken(result.Value);
-                userDto.UserRoles = (await _accountRepository.GetUserRolesAsync(user)).ToList();
+                userDto.UserRole = (await _accountRepository.GetUserRoleAsync(user));
                 return userDto;
             }
         }
@@ -82,7 +82,7 @@ namespace DbConfigurator.Api.Controllers
 
             var userDto = _mapper.Map<UserDto>(user);
             userDto.Token = _tokenService.CreateToken(user);
-            userDto.UserRoles = (await _accountRepository.GetUserRolesAsync(user)).ToList();
+            userDto.UserRole = (await _accountRepository.GetUserRoleAsync(user));
             return userDto;
         }
     }

@@ -50,10 +50,10 @@ namespace DbConfigurator.Persistence.Repository
             }
         }
 
-        public async Task<IList<string>> GetUserRolesAsync(AppUser user)
+        public async Task<string> GetUserRoleAsync(AppUser user)
         {
             var roles = await _userManager.GetRolesAsync(user);
-            return roles;
+            return roles.FirstOrDefault() ?? string.Empty;
         }
 
         public async Task<bool> UserExists(string userName)

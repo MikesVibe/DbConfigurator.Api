@@ -6,12 +6,13 @@ using DbConfigurator.Application.Contracts.Features.Update;
 using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DbConfigurator.Api.Controllers
 {
     [ApiController]
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     public class GenericController<
         TCreateCommand, TUpdateCommand, TDeleteCommand,

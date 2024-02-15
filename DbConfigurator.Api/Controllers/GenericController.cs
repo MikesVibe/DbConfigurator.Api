@@ -36,7 +36,7 @@ namespace DbConfigurator.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddArea([FromBody] TCreateDto createDto)
+        public async Task<IActionResult> Add([FromBody] TCreateDto createDto)
         {
             var response = await _mediator.Send(new TCreateCommand() { CreateEntityDto = createDto });
 
@@ -46,7 +46,7 @@ namespace DbConfigurator.Api.Controllers
             return Ok(response.Value);
         }
         [HttpDelete]
-        public async Task<IActionResult> DeleteArea(int id
+        public async Task<IActionResult> Delete(int id
             )
         {
             var response = await _mediator.Send(new TDeleteCommand() { Id = id });
@@ -57,7 +57,7 @@ namespace DbConfigurator.Api.Controllers
             return Ok();
         }
         [HttpPut]
-        public async Task<IActionResult> UpdateArea([FromBody] TUpdateDto updateDto)
+        public async Task<IActionResult> Update([FromBody] TUpdateDto updateDto)
         {
             var response = await _mediator.Send(new TUpdateCommand() { UpdateEntityDto = updateDto });
 
@@ -67,20 +67,20 @@ namespace DbConfigurator.Api.Controllers
             return Ok();
         }
         [HttpGet("all")]
-        public async Task<ActionResult<IEnumerable<TEntiyDto>>> GetArea()
+        public async Task<ActionResult<IEnumerable<TEntiyDto>>> Get()
         {
-            var Area = await _mediator.Send(new TGetListQuery());
-            return Ok(Area);
+            var response = await _mediator.Send(new TGetListQuery());
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<TEntiyDto>> GetAreaById(int id)
+        public async Task<ActionResult<TEntiyDto>> GetById(int id)
         {
-            var area = await _mediator.Send(new TGetDetailsQuery() { Id = id });
-            if (area.IsFailed)
-                return BadRequest(area.Errors.Single());
+            var result = await _mediator.Send(new TGetDetailsQuery() { Id = id });
+            if (result.IsFailed)
+                return BadRequest(result.Errors.Single());
 
-            return Ok(area.Value);
+            return Ok(result.Value);
         }
     }
 }

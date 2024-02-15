@@ -17,8 +17,6 @@ namespace DbConfigurator.Api
         public static WebApplication ConfigureServices(
             this WebApplicationBuilder builder)
         {
-
-
             builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
@@ -56,31 +54,12 @@ namespace DbConfigurator.Api
 
             builder.Services.AddHttpContextAccessor();
 
-            //builder.Services.AddIdentity<AppUser, IdentityRole>() 
-            //    .AddEntityFrameworkStores<SecurityContext>() 
-            //    .AddDefaultTokenProviders();
-
             builder.Services.AddControllers();
 
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
-
-            //builder.Services.AddAuthentication("Bearer")
-            //    .AddJwtBearer(options =>
-            //    {
-            //        options.TokenValidationParameters = new()
-            //        {
-            //            ValidateIssuer = true,
-            //            ValidateAudience = true,
-            //            ValidateIssuerSigningKey = true,
-            //            ValidIssuer = builder.Configuration["Authentication:Issuer"],
-            //            ValidAudience = builder.Configuration["Authentication:Audience"],
-            //            IssuerSigningKey = new SymmetricSecurityKey(
-            //                Encoding.UTF8.GetBytes(builder.Configuration["Authentication:SecretForKey"]))
-            //        };
-            //    });
 
             builder.Services.AddAuthentication("Bearer")
                 .AddJwtBearer(options =>
@@ -98,6 +77,7 @@ namespace DbConfigurator.Api
 
                     };
                 });
+
             builder.Services.AddIdentityCore<AppUser>(opt =>
             {
                 opt.Password.RequireNonAlphanumeric = false;

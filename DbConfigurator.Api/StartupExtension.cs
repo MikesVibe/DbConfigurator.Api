@@ -51,11 +51,8 @@ namespace DbConfigurator.Api
 
             builder.Services.AddApplicationServices();
             builder.Services.AddPersistenceServices(builder.Configuration);
-
             builder.Services.AddHttpContextAccessor();
-
             builder.Services.AddControllers();
-
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
@@ -90,7 +87,6 @@ namespace DbConfigurator.Api
                 .AddEntityFrameworkStores<DbConfiguratorApiDbContext>();
 
             return builder.Build();
-
         }
 
         public static async Task<WebApplication> ConfigurePipelineAsync(this WebApplication app)
@@ -106,14 +102,12 @@ namespace DbConfigurator.Api
                 });
             }
 
-
             app.UseCors("Open");
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
 
             return app;
-
         }
 
         public static async Task CreateDatabaseAsync(this WebApplication app)

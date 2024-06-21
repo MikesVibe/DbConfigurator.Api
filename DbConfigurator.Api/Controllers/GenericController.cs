@@ -3,7 +3,6 @@ using DbConfigurator.Application.Contracts.Features.Delete;
 using DbConfigurator.Application.Contracts.Features.GetDetail;
 using DbConfigurator.Application.Contracts.Features.GetList;
 using DbConfigurator.Application.Contracts.Features.Update;
-using DbConfigurator.Application.Dtos;
 using FluentResults;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -17,7 +16,7 @@ namespace DbConfigurator.Api.Controllers
     public class GenericController<
         TCreateCommand, TUpdateCommand, TDeleteCommand,
         TCreateDto, TUpdateDto,
-        TGetDetailsQuery, TGetListQuery, 
+        TGetDetailsQuery, TGetListQuery,
         TEntiyDto> : ControllerBase
         where TCreateCommand : ICreateCommand, IRequest<Result<TEntiyDto>>, new()
         where TUpdateCommand : IUpdateCommand, IRequest<Result>, new()

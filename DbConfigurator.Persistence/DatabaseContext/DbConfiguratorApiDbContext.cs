@@ -1,10 +1,9 @@
 ﻿using DbConfigurator.Domain.Model.Entities;
 using DbConfigurator.Domain.SecurityEntities;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using System.Reflection.Emit;
 
 namespace DbConfigurator.Persistence.DatabaseContext
 {

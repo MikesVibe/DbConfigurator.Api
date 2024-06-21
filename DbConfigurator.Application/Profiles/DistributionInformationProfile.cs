@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using DbConfigurator.Application.Dtos;
+using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Create;
 using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Update;
-using DbConfigurator.Domain.Model.Entities;
 using DbConfigurator.Application.Features.DistributionInformationFeature.Queries.GetDistributionInformationDetails;
 using DbConfigurator.Application.Features.DistributionInformationFeature.Queries.GetDistributionInformationList;
-using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Create;
+using DbConfigurator.Domain.Model.Entities;
 
 namespace DbConfigurator.Application.Profiles
 {

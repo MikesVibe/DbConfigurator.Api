@@ -1,15 +1,8 @@
 ﻿using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Domain.SecurityEntities;
-using DbConfigurator.Persistence.DatabaseContext;
 using FluentResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DbConfigurator.Persistence.Repository
 {

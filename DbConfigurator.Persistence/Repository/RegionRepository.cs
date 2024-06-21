@@ -1,5 +1,4 @@
-﻿using DbConfigurator.API.DataAccess;
-using DbConfigurator.API.DataAccess.Repository;
+﻿using DbConfigurator.API.DataAccess.Repository;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Domain.Model.Entities;
 using DbConfigurator.Persistence.DatabaseContext;

@@ -1,25 +1,12 @@
 ﻿using AutoMapper;
-using Azure.Core;
-using DbConfigurator.Api.Services;
-using DbConfigurator.API.DataAccess.Repository;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Create;
 using DbConfigurator.Domain.Model.Entities;
 using DbConfigurator.Domain.SecurityEntities;
 using DbConfigurator.Persistence.DatabaseContext;
-using DbConfigurator.Persistence.Repository;
-using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace DbConfigurator.Persistence.Seeding
 {

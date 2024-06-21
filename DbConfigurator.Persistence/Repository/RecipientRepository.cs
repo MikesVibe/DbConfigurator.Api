@@ -1,17 +1,9 @@
-﻿using Azure.Core;
-using DbConfigurator.API.DataAccess;
-using DbConfigurator.API.DataAccess.Repository;
+﻿using DbConfigurator.API.DataAccess.Repository;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Features.DistributionInformationFeature;
 using DbConfigurator.Domain.Model.Entities;
 using DbConfigurator.Persistence.DatabaseContext;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DbConfigurator.Persistence.Repository
 {

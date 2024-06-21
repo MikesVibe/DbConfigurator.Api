@@ -1,13 +1,6 @@
-﻿using AutoMapper;
+﻿using DbConfigurator.Application.Contracts.Features.Delete;
 using DbConfigurator.Application.Contracts.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DbConfigurator.Application.Features.AreaFeature.Commands.Delete;
 using FluentResults;
-using DbConfigurator.Application.Contracts.Features.Delete;
 
 namespace DbConfigurator.Application.Common
 {

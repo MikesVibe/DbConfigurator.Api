@@ -1,7 +1,5 @@
 ﻿using DbConfigurator.Application.Contracts.Features.GetDetail;
 using DbConfigurator.Application.Dtos;
-using DbConfigurator.Application.Features.DistributionInformationFeature.Queries.GetDistributionInformationList;
-using DbConfigurator.Domain.Model.Entities;
 using FluentResults;
 using MediatR;
 

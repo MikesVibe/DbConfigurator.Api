@@ -2,7 +2,6 @@
 using DbConfigurator.Application.Common;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
-using DbConfigurator.Application.Features.PriorityFeature.Commands.Create;
 using DbConfigurator.Domain.Model.Entities;
 using FluentResults;
 using MediatR;
@@ -14,7 +13,7 @@ namespace DbConfigurator.Application.Features.RecipientFeature.Commands.Create
     {
         public CreateRecipientCommandHandler(
             IRecipientRepository recipientRepository,
-            IMapper mapper):base(recipientRepository, mapper)
+            IMapper mapper) : base(recipientRepository, mapper)
         {
         }
     }

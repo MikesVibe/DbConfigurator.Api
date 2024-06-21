@@ -1,14 +1,7 @@
 ﻿using AutoMapper;
 using DbConfigurator.Application.Contracts.Features.Create;
 using DbConfigurator.Application.Contracts.Persistence;
-using DbConfigurator.Application.Dtos;
-using DbConfigurator.Application.Features.AreaFeature.Commands.Create;
 using FluentResults;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Common
 {

@@ -1,5 +1,4 @@
-﻿using DbConfigurator.API.DataAccess;
-using DbConfigurator.Application;
+﻿using DbConfigurator.Application;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Domain.SecurityEntities;
 using DbConfigurator.Persistence;

@@ -5,11 +5,6 @@ using DbConfigurator.Application.Dtos;
 using DbConfigurator.Domain.Model.Entities;
 using FluentResults;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.AreaFeature.Commands.Update
 {
@@ -18,7 +13,7 @@ namespace DbConfigurator.Application.Features.AreaFeature.Commands.Update
     {
         public UpdateAreaCommandHandler(
             IAreaRepository areaRepository,
-            IMapper mapper):base(areaRepository, mapper)
+            IMapper mapper) : base(areaRepository, mapper)
         {
         }
     }

@@ -2,11 +2,6 @@
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.NotificationFeature.GetList
 {
@@ -27,7 +22,7 @@ namespace DbConfigurator.Application.Features.NotificationFeature.GetList
         public async Task<DistributionListDto> Handle(GetDistributionListQuery request, CancellationToken cancellationToken)
         {
             var test = await _disInfoRepository.GetDistributionListBySingleName(request.NotificationData);
-            var recipientsTo = _mapper.Map<IEnumerable<RecipientDto>>(test.Item1); 
+            var recipientsTo = _mapper.Map<IEnumerable<RecipientDto>>(test.Item1);
             var recipientsCc = _mapper.Map<IEnumerable<RecipientDto>>(test.Item2);
 
             return new DistributionListDto() { RecipientsTo = recipientsTo, RecipientsCc = recipientsCc };

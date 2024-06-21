@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using DbConfigurator.Application.Contracts.Persistence;
-using DbConfigurator.Application.Dtos;
-using DbConfigurator.Domain.Model.Entities;
 using FluentResults;
 using MediatR;
 

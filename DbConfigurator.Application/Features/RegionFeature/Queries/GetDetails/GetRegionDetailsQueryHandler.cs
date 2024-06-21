@@ -2,15 +2,9 @@
 using DbConfigurator.Application.Common;
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Dtos;
-using DbConfigurator.Application.Features.PriorityFeature;
 using DbConfigurator.Domain.Model.Entities;
 using FluentResults;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Features.RegionFeature.Queries.GetDetails
 {
@@ -19,7 +13,7 @@ namespace DbConfigurator.Application.Features.RegionFeature.Queries.GetDetails
     {
         public GetRegionDetailsQueryHandler(
             IRegionRepository regionRepository,
-            IMapper mapper) : base(regionRepository, mapper) 
+            IMapper mapper) : base(regionRepository, mapper)
         {
         }
     }

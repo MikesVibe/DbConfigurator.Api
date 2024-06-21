@@ -8,15 +8,15 @@ using MediatR;
 namespace DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Delete
 {
     public class DeleteDistributionInfomationCommandHandler : DeleteCommandHandlerBase<
-        DistributionInformation, 
-        DistributionInformationDto, 
+        DistributionInformation,
+        DistributionInformationDto,
         DeleteDistributionInfomationCommand>,
         IRequestHandler<DeleteDistributionInfomationCommand, Result>
     {
         public DeleteDistributionInfomationCommandHandler(
             IDistributionInformationRepository distributionInformationRepository)
             : base(distributionInformationRepository)
-        { 
+        {
         }
     }
 }

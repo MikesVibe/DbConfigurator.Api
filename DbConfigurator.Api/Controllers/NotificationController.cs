@@ -1,8 +1,6 @@
 ﻿using DbConfigurator.Application.Features.NotificationFeature;
 using DbConfigurator.Application.Features.NotificationFeature.GetList;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DbConfigurator.Api.Controllers

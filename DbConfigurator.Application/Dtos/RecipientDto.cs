@@ -1,5 +1,4 @@
-﻿using DbConfigurator.Api.Services;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DbConfigurator.Application.Dtos
 {

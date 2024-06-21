@@ -1,5 +1,4 @@
-﻿using DbConfigurator.Application.Contracts.Features.GetDetail;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace DbConfigurator.Api.Controllers
 {

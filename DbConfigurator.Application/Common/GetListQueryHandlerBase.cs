@@ -1,20 +1,12 @@
 ﻿using AutoMapper;
-using DbConfigurator.Api.Services;
 using DbConfigurator.Application.Contracts.Features.GetList;
 using DbConfigurator.Application.Contracts.Persistence;
-using DbConfigurator.Application.Dtos;
-using DbConfigurator.Application.Features.AreaFeature.Queries.GetAreaList;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DbConfigurator.Application.Common
 {
     public class GetListQueryHandlerBase<TEntity, TEntityDto, TGetListQuery>
         where TEntity : class
-        where TGetListQuery: IGetListQuery
+        where TGetListQuery : IGetListQuery
     {
         protected readonly IRepository<TEntity> _repository;
         protected readonly IMapper _mapper;

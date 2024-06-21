@@ -10,7 +10,7 @@ namespace DbConfigurator.Application.Features.BusinessUnitFeature.Commands.Creat
 {
     public class CreateBusinessUnitCommandHandler : CreateCommandHandlerBase<BusinessUnit, BusinessUnitDto, CreateBusinessUnitCommand>,
         IRequestHandler<CreateBusinessUnitCommand, Result<BusinessUnitDto>>
-    {           
+    {
         public CreateBusinessUnitCommandHandler(
             IBusinessUnitRepository businessUnitRepository,
             IMapper mapper) : base(businessUnitRepository, mapper)

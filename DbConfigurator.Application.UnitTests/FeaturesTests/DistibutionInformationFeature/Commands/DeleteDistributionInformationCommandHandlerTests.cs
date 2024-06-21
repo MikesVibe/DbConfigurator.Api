@@ -1,5 +1,4 @@
-﻿using DbConfigurator.Application.Features.DistributionInformationFeature;
-using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Delete;
+﻿using DbConfigurator.Application.Features.DistributionInformationFeature.Commands.Delete;
 using DbConfigurator.Application.UnitTests.Common.Repositories;
 using FluentAssertions;
 using NSubstitute;

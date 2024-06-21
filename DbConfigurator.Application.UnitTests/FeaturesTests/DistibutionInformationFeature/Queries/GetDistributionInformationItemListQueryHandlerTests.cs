@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using DbConfigurator.Application.Features.DistributionInformationFeature;
 using DbConfigurator.Application.Features.DistributionInformationFeature.Queries.GetDistributionInformationList;
 using DbConfigurator.Application.UnitTests.Common;
 using DbConfigurator.Application.UnitTests.Common.Repositories;

@@ -5,8 +5,6 @@ using DbConfigurator.Application.Features.AreaFeature.Commands.Update;
 using DbConfigurator.Application.Features.AreaFeature.Queries.GetAreaDetails;
 using DbConfigurator.Application.Features.AreaFeature.Queries.GetAreaList;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
 namespace DbConfigurator.Api.Controllers
 {

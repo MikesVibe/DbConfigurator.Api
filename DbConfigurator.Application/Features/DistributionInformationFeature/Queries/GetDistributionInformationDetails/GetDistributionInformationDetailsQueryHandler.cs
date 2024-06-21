@@ -8,7 +8,7 @@ using MediatR;
 
 namespace DbConfigurator.Application.Features.DistributionInformationFeature.Queries.GetDistributionInformationDetails
 {
-    public class GetDistributionInformationDetailsQueryHandler : 
+    public class GetDistributionInformationDetailsQueryHandler :
         GetDetailQueryHandlerBase<DistributionInformation, DistributionInformationDto, GetDistributionInformationDetailsQuery>,
         IRequestHandler<GetDistributionInformationDetailsQuery, Result<DistributionInformationDto>>
     {

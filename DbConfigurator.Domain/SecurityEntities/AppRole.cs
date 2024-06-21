@@ -4,7 +4,7 @@ namespace DbConfigurator.Domain.SecurityEntities
 {
     public class AppRole : IdentityRole<int>
     {
-        public AppRole(string name) : base(name) 
+        public AppRole(string name) : base(name)
         {
         }
 

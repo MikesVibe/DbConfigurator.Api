@@ -2,11 +2,8 @@
 using DbConfigurator.Application.Contracts.Persistence;
 using DbConfigurator.Application.Features.AccountFeature;
 using DbConfigurator.Domain.SecurityEntities;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace DbConfigurator.Api.Controllers
 {
@@ -35,7 +32,7 @@ namespace DbConfigurator.Api.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register([FromBody] RegisterDto registerDto)
         {
-            if(await _accountRepository.UserExists(registerDto.UserName))
+            if (await _accountRepository.UserExists(registerDto.UserName))
             {
                 return BadRequest("Username is taken.");
             }
@@ -50,7 +47,7 @@ namespace DbConfigurator.Api.Controllers
             //};
 
             var result = await _accountRepository.CreateAsync(user, registerDto.Password);
-            if(result.IsFailed)
+            if (result.IsFailed)
             {
                 return BadRequest("Invalid password.");
             }
@@ -67,15 +64,15 @@ namespace DbConfigurator.Api.Controllers
         public async Task<ActionResult<UserDto>> Login(LoginDto login)
         {
             var resultUser = await _accountRepository.GetUserAsync(login.UserName);
-        
-            if(resultUser.IsFailed)
+
+            if (resultUser.IsFailed)
             {
                 return Unauthorized("Invalid username.");
             }
             var user = resultUser.Value;
 
             var resultPassword = await _accountRepository.CheckPasswordAsync(user, login.Password);
-            if(!resultPassword)
+            if (!resultPassword)
             {
                 return Unauthorized("Invalid Password.");
             }

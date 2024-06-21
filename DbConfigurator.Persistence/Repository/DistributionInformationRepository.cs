@@ -1,9 +1,7 @@
 ﻿using DbConfigurator.Application.Contracts.Persistence;
-using DbConfigurator.Application.Dtos;
 using DbConfigurator.Application.Features.NotificationFeature;
 using DbConfigurator.Domain.Model.Entities;
 using DbConfigurator.Persistence.DatabaseContext;
-using FluentResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace DbConfigurator.API.DataAccess.Repository
@@ -34,6 +32,6 @@ namespace DbConfigurator.API.DataAccess.Repository
             throw new NotImplementedException();
         }
 
-       
+
     }
 }
